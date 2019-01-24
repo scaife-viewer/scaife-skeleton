@@ -1,32 +1,20 @@
 <template>
     <div class="skeleton">
-        <aside class="left">
-            <Placeholder />
-            <Placeholder />
-            <Placeholder />
-            <Placeholder />
-        </aside>
+        <SidebarLayout class="left" />
         <main>
             <Placeholder />
             <Placeholder />
         </main>
-        <aside class="right">
-            <Placeholder />
-            <Placeholder />
-            <Placeholder />
-            <Placeholder />
-            <Placeholder />
-            <Placeholder />
-            <Placeholder />
-        </aside>
+        <SidebarLayout class="right" />
     </div>
 </template>
 
 <script>
+import SidebarLayout from './SidebarLayout.vue';
 import Placeholder from './Placeholder.vue';
 
 export default {
-    components: { Placeholder }
+    components: { Placeholder, SidebarLayout }
 }
 </script>
 
