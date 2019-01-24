@@ -12,13 +12,13 @@
         <keep-alive>
             <component :is="selectedComponent" v-if="selectedComponent !== null" />
         </keep-alive>
-        <a href="#" @click.prevent="onRemove">Remove Placeholder</a>
+        <a href="#" @click.prevent="onRemove" v-if="!fixed">Remove Placeholder</a>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['configuredComponent'],
+    props: ['configuredComponent', 'fixed'],
     data() {
         return {
             configure: false,

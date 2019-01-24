@@ -24,6 +24,8 @@ export default {
         flex: 1;
         min-width: 600px;
         background: #EEE;
+        display: flex;
+        flex-direction: column;
     }
     aside {
         width: 300px;
