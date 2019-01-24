@@ -8,6 +8,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     widgetOptions: [...widgets],
+    placeholders: {
+      right: [],
+      left: [],
+    }
   },
   mutations: {
 

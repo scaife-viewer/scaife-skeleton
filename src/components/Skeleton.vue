@@ -1,20 +1,18 @@
 <template>
     <div class="skeleton">
-        <SidebarLayout class="left" />
-        <main>
-            <Placeholder />
-            <Placeholder />
-        </main>
-        <SidebarLayout class="right" />
+        <SidebarLayout name="left" class="left" />
+        <GridLayout />
+        <SidebarLayout name="right" class="right" />
     </div>
 </template>
 
 <script>
+import GridLayout from './GridLayout.vue';
 import SidebarLayout from './SidebarLayout.vue';
 import Placeholder from './Placeholder.vue';
 
 export default {
-    components: { Placeholder, SidebarLayout }
+    components: { GridLayout, Placeholder, SidebarLayout }
 }
 </script>
 
@@ -22,7 +20,7 @@ export default {
 .skeleton {
     display: flex;
     height: 100vh;
-    main {
+    .grid-layout {
         flex: 1;
         min-width: 600px;
         background: #EEE;
