@@ -1,32 +1,32 @@
 <template>
     <div class="skeleton">
         <aside class="left">
-            <Widget />
-            <Widget />
-            <Widget />
-            <Widget />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
         </aside>
         <main>
-            <Widget />
-            <Widget />
+            <Placeholder />
+            <Placeholder />
         </main>
         <aside class="right">
-            <Widget />
-            <Widget />
-            <Widget />
-            <Widget />
-            <Widget />
-            <Widget />
-            <Widget />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
         </aside>
     </div>
 </template>
 
 <script>
-import Widget from './Widget.vue';
+import Placeholder from './Placeholder.vue';
 
 export default {
-    components: { Widget }
+    components: { Placeholder }
 }
 </script>
 
