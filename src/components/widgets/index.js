@@ -1,13 +1,11 @@
-import BlueWidget from './BlueWidget.vue';
-import BrownWidget from './BrownWidget.vue';
-import GreenWidget from './GreenWidget.vue';
-import RedWidget from './RedWidget.vue';
-import YellowWidget from './YellowWidget.vue';
+import HomerWidget from './homer/HomerWidget.vue';
+import MorphologyWidget from './morpheus/MorphologyWidget.vue';
+import ReaderWidget from './reader/ReaderWidget.vue';
+import TextSizeWidget from './text-size/TextSizeWidget.vue';
 
 export default [
-  BlueWidget,
-  BrownWidget,
-  GreenWidget,
-  RedWidget,
-  YellowWidget
+  HomerWidget,
+  // MorphologyWidget,
+  ReaderWidget,
+  TextSizeWidget,
 ];
