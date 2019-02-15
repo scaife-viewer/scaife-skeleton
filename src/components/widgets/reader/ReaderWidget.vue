@@ -27,10 +27,21 @@ export default {
   .text {
     font-family: 'Noto Serif';
     text-align: left;
-    margin: 0 auto;
-  }
+    margin: 1em 1em 4em;
 
-  .text {
+    .line {
+      display: flex;
+      align-items: flex-start;
+      .line-ref {
+        font-family: 'Noto Sans';
+        color: #69C;
+        width: 3em;
+        flex-shrink: 0;
+      }
+      .line-text {
+      }
+    }
+
     &.text-xs {
       max-width: 500px;
       line-height: 1.5;
@@ -54,21 +65,6 @@ export default {
     &.text-xl {
       max-width: 900px;
       line-height: 1.9;
-    }
-  }
-
-  .text {
-    .line {
-      display: flex;
-      align-items: flex-start;
-      .line-ref {
-        font-family: 'Noto Sans';
-        color: #69C;
-        width: 3em;
-        flex-shrink: 0;
-      }
-      .line-text {
-      }
     }
   }
 

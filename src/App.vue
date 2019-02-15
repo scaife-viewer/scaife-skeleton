@@ -32,4 +32,8 @@ export default {
   .selected {
     font-weight: 600;
   }
+  .body {
+    display: flex;
+    justify-content: center;
+  }
 </style>
