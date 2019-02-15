@@ -16,32 +16,20 @@ export default {
 </script>
 
 <style lang="scss">
-html,body {
-  margin: 0;
-  padding: 0;
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
-.text-xs {
-    font-size: 0.8rem;
-}
-.text-sm {
-    font-size: 0.9rem;
-}
-.text-md {
-    font-size: 1rem;
-}
-.text-lg {
-    font-size: 1.1rem;
-}
-.text-xl {
-    font-size: 1.2rem;
-}
-.selected {
-  font-weight: 600;
-}
+  @import url(https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&subset=greek,greek-ext,latin-ext);
+  @import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700);
+
+  html,body {
+    margin: 0;
+    padding: 0;
+  }
+  #app {
+    font-family: 'Noto Sans', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+  }
+  .selected {
+    font-weight: 600;
+  }
 </style>

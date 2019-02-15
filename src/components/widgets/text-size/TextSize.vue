@@ -16,7 +16,8 @@ export default {
 };
 </script>
 <style>
-.text-size-control {
+  .text-size-control {
     cursor: pointer;
-}
+    font-family: 'Noto Serif';
+  }
 </style>
