@@ -60,7 +60,7 @@ export default {
   .text {
     .line {
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       .line-ref {
         font-family: 'Noto Sans';
         color: #69C;
