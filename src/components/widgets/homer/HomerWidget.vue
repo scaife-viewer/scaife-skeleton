@@ -12,7 +12,7 @@
           <a
             href
             @click.prevent="selectBook(work.urn, bIndex + 1, bookLength)"
-          >{{ work.displayName }} {{ bIndex + 1 }}.1&mdash;{{ bIndex + 1 }}.{{ bookLength }}</a>
+          >{{ work.displayName }} {{ bIndex + 1 }}.1&ndash;{{ bIndex + 1 }}.{{ bookLength }}</a>
         </div>
       </div>
     </template>
