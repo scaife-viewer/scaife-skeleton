@@ -61,7 +61,7 @@ export default {
     works() {
       return [
         {
-          displayName: "Illiad",
+          displayName: "Iliad",
           urn: "urn:cts:greekLit:tlg0012.tlg001.perseus-grc2",
           bookLengths: [
             611,
