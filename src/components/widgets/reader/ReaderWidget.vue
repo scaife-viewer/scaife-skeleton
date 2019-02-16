@@ -1,5 +1,5 @@
 <template>
-  <BaseWidget class="text-size-widget">
+  <BaseWidget class="reader-widget">
     <template slot="body">
       <div :class="['text', `text-${textSize}`]">
         <div class="line" v-for="line in passageText" :key="line[0]">

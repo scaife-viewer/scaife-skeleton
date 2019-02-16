@@ -1,5 +1,5 @@
 <template>
-  <BaseWidget class="text-size-widget">
+  <BaseWidget class="homer-widget">
     <span slot="header">Homer</span>
     <template slot="body">
       <div class="work" v-for="(work, index) in works" :key="index">
@@ -95,3 +95,21 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+  .homer-widget {
+    .body {
+      margin: 0 1em 1em;
+      justify-content: left;
+      .book {
+        text-align: left;
+        a {
+          color: #666;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+</style>
