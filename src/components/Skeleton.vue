@@ -45,15 +45,19 @@ export default {
   display: flex;
   height: 100vh;
   .grid-layout {
-    flex: 1;
+    flex: 2;
     min-width: 600px;
     background: #eee;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
   }
   aside {
-    width: 300px;
+    flex: 1;
     background: #ddd;
+    max-width: 600px;
+    position: relative;
+    overflow-y: auto;
   }
 }
 

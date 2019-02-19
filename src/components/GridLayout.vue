@@ -55,6 +55,13 @@ export default {
 };
 </script>
 <style>
+.grid-layout {
+  height: 100vh;
+  position: relative;
+}
+.grid-layout .widget .body {
+  overflow-y: scroll;
+}
 .grid-config {
   text-align: center;
 }
