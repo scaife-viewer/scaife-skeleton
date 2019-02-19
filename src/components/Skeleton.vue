@@ -52,51 +52,6 @@ export default {
     flex-direction: column;
     overflow-y: auto;
   }
-  aside {
-    flex: 1;
-    background: #ddd;
-    max-width: 600px;
-    position: relative;
-    overflow-y: auto;
-  }
-}
-
-
-.skeleton {
   position: relative;
-  aside.left {
-    width: 0;
-    button.toggle-open {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    &.sidebar-left--open {
-      width: 300px;
-
-      button.toggle-open {
-        position: inherit;
-        top: inherit;
-        left: inherit;
-      }
-    }
-  }
-  aside.right {
-    width: 0;
-    button.toggle-open {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-    &.sidebar-right--open {
-      width: 300px;
-
-      button.toggle-open {
-        position: inherit;
-        top: inherit;
-        right: inherit;
-      }
-    }
-  }
 }
 </style>
