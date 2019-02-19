@@ -1,60 +1,18 @@
 <template>
-    <div class="placeholder back" v-if="configure">
-      <select v-model="selectedComponent">
-        <option
-          v-for="(option, i) in widgetOptions"
-          :key="i"
-          :value="option.component"
-        >{{ option.text }}</option>
-      </select>
-      <button @click.prevent="onDone">Done</button>
-    </div>
-
-    <div class="placeholder front" v-else>
-      <a href="#" @click.prevent="onConfigure">Configure Widget</a>
+    <div class="placeholder">
       <keep-alive>
-        <component :is="selectedComponent" v-if="selectedComponent !== null" :widget-base="widgetBase" />
+        <component :is="configuredComponent" :widget-base="widgetBase" />
       </keep-alive>
-      <a href="#" @click.prevent="onRemove" v-if="!fixed">Remove Placeholder</a>
+      <a href="#" @click.prevent="onRemove" v-if="!fixed">Remove</a>
     </div>
 </template>
 
 <script>
 export default {
   props: ['widget-base', 'configuredComponent', 'fixed'],
-  data() {
-    return {
-      configure: false,
-      selectedComponent: null
-    };
-  },
-  watch: {
-    configuredComponent: {
-      immediate: true,
-      handler(c) {
-        if (c) {
-          this.selectedComponent = c;
-        }
-      }
-    }
-  },
   methods: {
-    onDone() {
-      this.$emit("configured", this.selectedComponent);
-      this.configure = !this.configure;
-    },
     onRemove() {
       this.$emit("remove");
-    },
-    onConfigure() {
-      this.configure = !this.configure;
-    }
-  },
-  computed: {
-    widgetOptions() {
-      return this.$store.state.widgetOptions.map(o => {
-        return { text: o.displayName, component: o };
-      });
     }
   }
 };
@@ -73,9 +31,5 @@ export default {
   > div {
     flex: 1;
   }
-}
-.placeholder.back {
-  background: black;
-  color: white;
 }
 </style>

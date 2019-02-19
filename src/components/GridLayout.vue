@@ -15,7 +15,10 @@
       <Placeholder :fixed="true" :widget-base="widgetBase" />
     </div>
     <div class="grid-container grid-single" v-else-if="placeholderCount === 1">
-      <Placeholder :fixed="true" :widget-base="widgetBase" />
+      <Placeholder :fixed="true" :configured-component="configuredComponent" :widget-base="widgetBase" />
+
+      <WidgetSelector v-if="editing" @select="changePlaceholder" />
+      <button @click="editing = !editing">{{ editing ? 'Done' : 'Edit' }}</button>
     </div>
     <div class="grid-container grid-quad" v-else>
       <Placeholder :fixed="true" :widget-base="widgetBase" />
@@ -28,10 +31,12 @@
 <script>
 import Placeholder from "./Placeholder.vue";
 import MainWidget from './MainWidget.vue';
+import WidgetSelector from './WidgetSelector.vue';
 
 export default {
   components: {
     Placeholder,
+    WidgetSelector,
   },
   computed: {
     widgetBase(){
@@ -49,8 +54,22 @@ export default {
   },
   data() {
     return {
-      grid: "1x1"
+      grid: "1x1",
+      editing: false,
+      configuredComponent: null,
     };
+  },
+  methods: {
+    changePlaceholder(component) {
+      this.configuredComponent = component;
+      // this.$store.state.placeholders[this.name] = [
+      //   ...this.$store.state.placeholders[this.name],
+      //   {
+      //     placeholder: Placeholder,
+      //     widget: component
+      //   }
+      // ];
+    }
   }
 };
 </script>

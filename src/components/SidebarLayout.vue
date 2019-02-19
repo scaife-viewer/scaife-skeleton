@@ -5,8 +5,7 @@
       <button class="toggle-open" v-else @click="$emit('toggle')"><slot name="close-open-button" /></button>
     </div>
     <div class="sidebar">
-      <div>
-        <button @click="addPlaceholder">Add Placeholder</button>
+      <div class="placeholders">
         <component
           v-for="(placeholder, index) in placeholders"
           :key="index"
@@ -17,15 +16,24 @@
           @remove="removePlaceholder(index)"
         />
       </div>
+      <WidgetSelector v-if="editing" @select="addPlaceholder" />
+      <button @click="editing = !editing">{{ editing ? 'Done' : 'Edit' }}</button>
     </div>
   </aside>
 </template>
 <script>
 import Placeholder from "./Placeholder.vue";
 import SidebarWidget from './SidebarWidget.vue';
+import WidgetSelector from './WidgetSelector.vue';
 
 export default {
   props: ["name", "open"],
+  components: { WidgetSelector },
+  data() {
+    return {
+      editing: false,
+    }
+  },
   computed: {
     widgetBase() {
       return SidebarWidget;
@@ -38,18 +46,15 @@ export default {
     },
     placeholders() {
       return this.$store.state.placeholders[this.name];
-    }
+    },
   },
   methods: {
-    onConfigure(widget, index) {
-      this.$store.state.placeholders[this.name][index].widget = widget;
-    },
-    addPlaceholder() {
+    addPlaceholder(component) {
       this.$store.state.placeholders[this.name] = [
         ...this.$store.state.placeholders[this.name],
         {
           placeholder: Placeholder,
-          widget: null
+          widget: component
         }
       ];
     },
