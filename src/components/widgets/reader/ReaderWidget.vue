@@ -1,5 +1,5 @@
 <template>
-  <BaseWidget class="reader-widget">
+  <component :is="widgetBase"  class="reader-widget">
     <template slot="body">
       <div :class="['text', `text-${textSize}`]">
         <div class="line" v-for="line in passageText" :key="line[0]">
@@ -8,12 +8,18 @@
         </div>
       </div>
     </template>
-  </BaseWidget>
+  </component>
 </template>
 <script>
 export default {
+  props: ['widget-base'],
   displayName: "Reader",
   computed: {
+    widgetProps() {
+      return {
+        sidebar: false,
+      };
+    },
     passageText() {
       return this.$store.state.passageText;
     },

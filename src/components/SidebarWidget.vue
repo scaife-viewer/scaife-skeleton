@@ -1,30 +1,27 @@
 <template>
-  <div class="widget">
+  <div class="widget widget-sidebar">
     <div class="sticky-block">
       <h2>
         <span @click.prevent="toggle">
           <span class="open-toggle">
             <Icon :name="open ? 'chevron-down' : 'chevron-right'" />
           </span>
-          <slot name="header"></slot>
+          <slot name="header" />
         </span>
         <span v-if="open" class="fixed-toggle" @click.prevent="toggleFix">
           <Icon :name="fixed ? 'expand' : 'compress'" />
         </span>
       </h2>
       <div v-if="open" class="sticky-body">
-        <slot name="sticky"></slot>
+        <slot name="sticky" />
       </div>
     </div>
     <div v-if="open" :class="['body', { fixed }]">
-      <slot name="body"></slot>
+      <slot name="body" />
     </div>
   </div>
 </template>
-
 <script>
-import Icon from "./Icon.vue";
-
 export default {
   data() {
     return {
@@ -39,9 +36,6 @@ export default {
     toggleFix() {
       this.fixed = !this.fixed;
     }
-  },
-  components: {
-      Icon
   }
-};
+}
 </script>

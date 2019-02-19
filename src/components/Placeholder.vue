@@ -1,27 +1,27 @@
 <template>
-  <div class="placeholder back" v-if="configure">
-    <select v-model="selectedComponent">
-      <option
-        v-for="(option, i) in widgetOptions"
-        :key="i"
-        :value="option.component"
-      >{{ option.text }}</option>
-    </select>
-    <button @click.prevent="onDone">Done</button>
-  </div>
+    <div class="placeholder back" v-if="configure">
+      <select v-model="selectedComponent">
+        <option
+          v-for="(option, i) in widgetOptions"
+          :key="i"
+          :value="option.component"
+        >{{ option.text }}</option>
+      </select>
+      <button @click.prevent="onDone">Done</button>
+    </div>
 
-  <div class="placeholder front" v-else>
-    <a href="#" @click.prevent="onConfigure">Configure Widget</a>
-    <keep-alive>
-      <component :is="selectedComponent" v-if="selectedComponent !== null"/>
-    </keep-alive>
-    <a href="#" @click.prevent="onRemove" v-if="!fixed">Remove Placeholder</a>
-  </div>
+    <div class="placeholder front" v-else>
+      <a href="#" @click.prevent="onConfigure">Configure Widget</a>
+      <keep-alive>
+        <component :is="selectedComponent" v-if="selectedComponent !== null" :widget-base="widgetBase" />
+      </keep-alive>
+      <a href="#" @click.prevent="onRemove" v-if="!fixed">Remove Placeholder</a>
+    </div>
 </template>
 
 <script>
 export default {
-  props: ["configuredComponent", "fixed"],
+  props: ['widget-base', 'configuredComponent', 'fixed'],
   data() {
     return {
       configure: false,

@@ -1,5 +1,5 @@
 <template>
-  <BaseWidget class="morphology-widget" v-if="enabled">
+  <component :is="widgetBase" class="morphology-widget" v-if="enabled">
     <span slot="header">Morphology</span>
     <div slot="body">
       <text-loader v-if="loading" size="7px" margin="1px"/>
@@ -42,13 +42,14 @@
         <span class="mode">HIGHLIGHT</span> text mode, select a word to get morphological analysis (Greek and Latin only).
       </p>
     </div>
-  </BaseWidget>
-  <BaseWidget v-else>
+  </component>
+  <component :is="scaifeWidget" v-else>
     <div slot="body">Not enabled</div>
-  </BaseWidget>
+  </component>
 </template>
 <script>
 export default {
+  props: ['widget-base'],
   displayName: 'Morphology',
   watch: {
     selectedWord: {

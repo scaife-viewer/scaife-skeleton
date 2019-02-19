@@ -1,7 +1,7 @@
 <template>
-  <BaseWidget class="homer-widget">
+  <component :is="widgetBase" class="homer-widget">
     <span slot="header">Homer</span>
-    <template slot="body">
+    <template slot="body" :works="works">
       <div class="work" v-for="(work, index) in works" :key="index">
         <div
           class="book"
@@ -16,12 +16,13 @@
         </div>
       </div>
     </template>
-  </BaseWidget>
+  </component>
 </template>
 <script>
 import axios from "axios";
 
 export default {
+  props: ['widget-base'],
   displayName: "Homer",
   data() {
     return {

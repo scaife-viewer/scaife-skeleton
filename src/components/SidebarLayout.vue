@@ -9,6 +9,7 @@
         :key="index"
         :configured-component="placeholder.widget"
         :is="placeholder.placeholder"
+        :widget-base="widgetBase"
         @configured="widget => onConfigure(widget, index)"
         @remove="removePlaceholder(index)"
       />
@@ -17,10 +18,14 @@
 </template>
 <script>
 import Placeholder from "./Placeholder.vue";
+import SidebarWidget from './SidebarWidget.vue';
 
 export default {
   props: ["name", "open"],
   computed: {
+    widgetBase() {
+      return SidebarWidget;
+    },
     leftOpen() {
       return this.$store.state.leftOpen;
     },

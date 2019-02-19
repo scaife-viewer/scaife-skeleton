@@ -11,28 +11,32 @@
       :class="grid === '1x2' ? 'grid-vertical': 'grid-horizontal'"
       v-if="placeholderCount === 2"
     >
-      <Placeholder :fixed="true"/>
-      <Placeholder :fixed="true"/>
+      <Placeholder :fixed="true" :widget-base="widgetBase" />
+      <Placeholder :fixed="true" :widget-base="widgetBase" />
     </div>
     <div class="grid-container grid-single" v-else-if="placeholderCount === 1">
-      <Placeholder :fixed="true"/>
+      <Placeholder :fixed="true" :widget-base="widgetBase" />
     </div>
     <div class="grid-container grid-quad" v-else>
-      <Placeholder :fixed="true"/>
-      <Placeholder :fixed="true"/>
-      <Placeholder :fixed="true"/>
-      <Placeholder :fixed="true"/>
+      <Placeholder :fixed="true" :widget-base="widgetBase" />
+      <Placeholder :fixed="true" :widget-base="widgetBase" />
+      <Placeholder :fixed="true" :widget-base="widgetBase" />
+      <Placeholder :fixed="true" :widget-base="widgetBase" />
     </div>
   </div>
 </template>
 <script>
 import Placeholder from "./Placeholder.vue";
+import MainWidget from './MainWidget.vue';
 
 export default {
   components: {
-    Placeholder
+    Placeholder,
   },
   computed: {
+    widgetBase(){
+      return MainWidget;
+    },
     placeholderCount() {
       if (this.grid === "1x1") {
         return 1;
