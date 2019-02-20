@@ -71,9 +71,6 @@ export default {
   .left .button-container {
     text-align: right;
   }
-  .right .button-container {
-    text-align: left;
-  }
 
   button.toggle-open {
     border: none;

@@ -27,7 +27,6 @@ export default {
     font-family: 'Noto Sans', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
   }
   .selected {
     font-weight: 600;

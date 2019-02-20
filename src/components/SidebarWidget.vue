@@ -50,21 +50,6 @@ export default {
   color: red;
 }
 
-.placeholder {
-  text-align: left;
-
-  min-height: 200px;
-  border: 1px solid #efefef;
-  border-radius: 3px;
-  margin: 10px;
-  padding: 5px 10px;
-  display: flex;
-  flex-direction: column;
-  > div {
-    flex: 1;
-  }
-}
-
 .widget {
   background: white;
   position: relative;

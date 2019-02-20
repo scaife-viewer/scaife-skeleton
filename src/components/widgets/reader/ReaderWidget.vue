@@ -27,7 +27,6 @@ export default {
 <style lang="scss">
   .text {
     font-family: 'Noto Serif';
-    text-align: left;
     margin: 1em 1em 4em;
 
     .line {

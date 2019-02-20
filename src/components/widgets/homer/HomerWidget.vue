@@ -99,7 +99,6 @@ export default {
     margin: 0 1em 1em;
     flex: 1;
     .book {
-      text-align: left;
       a {
         color: $gray-600;
         text-decoration: none;
