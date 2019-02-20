@@ -74,8 +74,8 @@ export default {
     overflow-y: auto;
     flex: 1;
   }
-  .sidebar-left--closed .sidebar,
-  .sidebar-right--closed .sidebar {
+  .left.sidebar-left--closed .sidebar,
+  .right.sidebar-right--closed .sidebar {
     max-width: 0;
     overflow: hidden;
     opacity: 0;
