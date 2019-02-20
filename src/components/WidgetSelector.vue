@@ -25,7 +25,7 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    padding: 0.75rem 2.25rem;
+    padding: 0.75rem 1.25rem;
     margin: 0.5rem 0.375rem;
     border: 1px solid $gray-100;
     background: $gray-200;
