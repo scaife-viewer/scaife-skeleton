@@ -23,8 +23,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    border-top: 1px solid #ddd;
-    background: $white;
+    border-top: 1px solid $gray-300;
+    background: $gray-100;
     text-align: center;
     display: none;
     &.editing,

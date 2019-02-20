@@ -40,14 +40,15 @@
 </script>
 
 <style lang="scss">
+  @import "../variables.scss";
+
   .skeleton {
     display: flex;
     height: 100vh;
-    background: #efefef;
+    background: $gray-200;
     .grid-layout {
       flex: 2;
       min-width: 600px;
-      background: #ddd;
       display: flex;
       flex-direction: column;
       overflow-y: auto;

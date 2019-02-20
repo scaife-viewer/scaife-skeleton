@@ -86,10 +86,10 @@
   }
 
   .left.sidebar-wrapper {
-    border-right: 1px solid #ddd;
+    border-right: 1px solid $gray-300;
   }
   .right.sidebar-wrapper {
-    border-left: 1px solid #ddd;
+    border-left: 1px solid $gray-300;
   }
   .left.sidebar-wrapper.sidebar-left--closed,
   .right.sidebar-wrapper.sidebar-right--closed {

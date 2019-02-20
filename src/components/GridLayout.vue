@@ -20,7 +20,7 @@
           @remove="configuredComponent = null">
           <component slot="body" :is="configuredComponent" />
         </MainWidget>
-        <div v-else>Click on edit to add a component</div>
+        <div v-else class="instructions">Click Edit to add a component</div>
       </div>
     </div>
     <div class="grid-container grid-quad" v-else>
@@ -110,5 +110,10 @@
   .grid-two.grid-horizontal {
     grid-template-columns: auto auto;
     grid-template-rows: auto;
+  }
+
+  .instructions {
+    margin-top: 100px;
+    text-align: center;
   }
 </style>
