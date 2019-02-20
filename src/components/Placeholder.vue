@@ -1,15 +1,15 @@
 <template>
     <div class="placeholder">
+      <a v-if="editing && !fixed" href="#" @click.prevent="onRemove" class="remove-link"><icon name="minus-circle" /></a>
       <keep-alive>
         <component :is="configuredComponent" :widget-base="widgetBase" />
       </keep-alive>
-      <a href="#" @click.prevent="onRemove" v-if="!fixed">Remove</a>
     </div>
 </template>
 
 <script>
 export default {
-  props: ['widget-base', 'configuredComponent', 'fixed'],
+  props: ['widget-base', 'configuredComponent', 'fixed', 'editing'],
   methods: {
     onRemove() {
       this.$emit("remove");
@@ -19,13 +19,17 @@ export default {
 </script>
 
 <style lang="scss">
+.remove-link {
+  color: red;
+}
 .placeholder {
+  text-align: left;
   background: white;
   min-height: 200px;
   border: 1px solid #efefef;
   border-radius: 3px;
   margin: 10px;
-  padding: 10px;
+  padding: 5px 10px;
   display: flex;
   flex-direction: column;
   > div {

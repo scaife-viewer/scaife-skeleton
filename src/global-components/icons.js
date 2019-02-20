@@ -8,6 +8,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 import { faBook } from '@fortawesome/free-solid-svg-icons/faBook';
 import { faColumns } from '@fortawesome/free-solid-svg-icons/faColumns';
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons/faMinusCircle';
 
 const iconMap = [
   faArrowLeft,
@@ -20,6 +21,7 @@ const iconMap = [
   faTimes,
   faBook,
   faColumns,
+  faMinusCircle,
 ].reduce((map, obj) => {
   map[obj.iconName] = obj;
   return map;

@@ -14,6 +14,7 @@
           :widget-base="widgetBase"
           @configured="widget => onConfigure(widget, index)"
           @remove="removePlaceholder(index)"
+          :editing="editing"
         />
       </div>
       <WidgetSelector v-if="editing" @select="addPlaceholder" />
