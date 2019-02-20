@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar-wrapper" :class="{ 'sidebar-left--open': leftOpen, 'sidebar-left--closed': !leftOpen, 'sidebar-right--open': rightOpen, 'sidebar-right--closed': !rightOpen }">
-    <div>
+    <div class="button-container">
       <button class="toggle-open" v-if="open" @click="$emit('toggle')"><slot name="open-close-button" /></button>
       <button class="toggle-open" v-else @click="$emit('toggle')"><slot name="close-open-button" /></button>
     </div>
@@ -59,11 +59,27 @@ export default {
 };
 </script>
 <style lang="scss">
+  @import "../variables.scss";
+
   .sidebar-wrapper {
     flex: 1;
     position: relative;
     display: flex;
     flex-direction: column;
+  }
+
+  .left .button-container {
+    text-align: right;
+  }
+  .right .button-container {
+    text-align: left;
+  }
+
+  button.toggle-open {
+    border: none;
+    font-size: 18px;
+    color: $gray-600;
+    outline: none;
   }
 
   .left.sidebar-wrapper {
