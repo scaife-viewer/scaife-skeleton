@@ -5,64 +5,55 @@
       <button class="toggle-open" v-else @click="$emit('toggle')"><slot name="close-open-button" /></button>
     </div>
     <div class="sidebar">
-      <div class="placeholders">
-        <component
-          v-for="(placeholder, index) in placeholders"
+      <div class="widgets">
+        <SidebarWidget
+          v-for="(widget, index) in widgets"
           :key="index"
-          :configured-component="placeholder.widget"
-          :is="placeholder.placeholder"
-          :widget-base="widgetBase"
-          @configured="widget => onConfigure(widget, index)"
-          @remove="removePlaceholder(index)"
+          @remove="removeWidget(index)"
           :editing="editing"
-        />
+          :heading="widget.displayName">
+          <component slot="body" :is="widget" />
+        </SidebarWidget>
       </div>
-      <WidgetSelector v-if="editing" @select="addPlaceholder" />
+      <WidgetSelector v-if="editing" @select="addWidget" />
       <button @click="editing = !editing">{{ editing ? 'Done' : 'Edit' }}</button>
     </div>
   </aside>
 </template>
 <script>
-import Placeholder from "./Placeholder.vue";
 import SidebarWidget from './SidebarWidget.vue';
 import WidgetSelector from './WidgetSelector.vue';
 
 export default {
   props: ["name", "open"],
-  components: { WidgetSelector },
+  components: { WidgetSelector, SidebarWidget },
   data() {
     return {
       editing: false,
     }
   },
   computed: {
-    widgetBase() {
-      return SidebarWidget;
-    },
     leftOpen() {
       return this.$store.state.leftOpen;
     },
     rightOpen() {
       return this.$store.state.rightOpen;
     },
-    placeholders() {
-      return this.$store.state.placeholders[this.name];
+    widgets() {
+      return this.$store.state.widgets[this.name];
     },
   },
   methods: {
-    addPlaceholder(component) {
-      this.$store.state.placeholders[this.name] = [
-        ...this.$store.state.placeholders[this.name],
-        {
-          placeholder: Placeholder,
-          widget: component
-        }
+    addWidget(component) {
+      this.$store.state.widgets[this.name] = [
+        ...this.$store.state.widgets[this.name],
+        component
       ];
     },
-    removePlaceholder(index) {
-      const placeholders = [...this.$store.state.placeholders[this.name]];
-      placeholders.splice(index, 1);
-      this.$store.state.placeholders[this.name] = placeholders;
+    removeWidget(index) {
+      const widgets = [...this.$store.state.widgets[this.name]];
+      widgets.splice(index, 1);
+      this.$store.state.widgets[this.name] = widgets;
     }
   }
 };

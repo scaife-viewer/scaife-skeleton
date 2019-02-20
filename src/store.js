@@ -18,7 +18,7 @@ export default new Vuex.Store({
     rightOpen: true,
     leftOpen: true,
     widgetOptions: [...widgets],
-    placeholders: {
+    widgets: {
       right: [],
       left: [],
     },

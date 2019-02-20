@@ -2,11 +2,14 @@
   <div class="widget widget-sidebar">
     <div class="sticky-block">
       <h2>
-        <span @click.prevent="toggle">
-          <span class="open-toggle">
-            <Icon :name="open ? 'chevron-down' : 'chevron-right'" />
+        <span>
+          <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link"><icon name="minus-circle" /></a>
+          <span @click.prevent="toggle">
+            <span class="open-toggle">
+              <Icon :name="open ? 'chevron-down' : 'chevron-right'" />
+            </span>
+            <span class="heading">{{ heading }}</span>
           </span>
-          <slot name="header" />
         </span>
         <span v-if="open" class="fixed-toggle" @click.prevent="toggleFix">
           <Icon :name="fixed ? 'expand' : 'compress'" />
@@ -23,6 +26,7 @@
 </template>
 <script>
 export default {
+  props: ['editing', 'heading'],
   data() {
     return {
       open: true,
@@ -42,7 +46,27 @@ export default {
 <style lang="scss">
 @import "../variables.scss";
 
+.remove-link {
+  color: red;
+}
+
+.placeholder {
+  text-align: left;
+
+  min-height: 200px;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  margin: 10px;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  > div {
+    flex: 1;
+  }
+}
+
 .widget {
+  background: white;
   position: relative;
   padding: 0 8px 8px 8px;
   border-bottom: 1px solid $gray-200;

@@ -1,51 +1,48 @@
 <template>
-  <component :is="widgetBase" class="morphology-widget" v-if="enabled">
-    <span slot="header">Morphology</span>
-    <div slot="body">
-      <text-loader v-if="loading" size="7px" margin="1px"/>
-      <div v-else-if="morphBody">
-        <div class="group" v-for="group in morphBody" :key="group.uri">
-          <div class="head">
-            <span class="hdwd">{{ group.hdwd }}</span>
-            <span class="pofs-decl">{{ group.pofs }} {{ group.decl }}</span>
-          </div>
-          <div class="entries">
-            <div class="entry" v-for="(entry, index) in group.infl" :key="index">
-              <div class="form">
-                <span class="stem">{{ entry.stem }}</span>
-                <span v-if="entry.suff" class="suff">-{{ entry.suff }}</span>
-              </div>
-              <!-- {{ entry.pofs }} -->
-              <!-- {{ entry.stemtype }} -->
-              <div class="props">
-                {{ entry.tense }}
-                {{ entry.voice }}
-                {{ entry.mood }}
-                {{ entry.pers }}
-                {{ entry.case }}
-                {{ entry.num }}
-                {{ entry.gend }}
-                {{ entry.comp }}
-                <span
-                  v-if="entry.dial"
-                  class="dial"
-                >({{ entry.dial }})</span>
-              </div>
-              <!-- {{ entry.derivtype }} -->
-              <!-- {{ entry.morph }} -->
+  <div class="morphology-widget" v-if="enabled">
+    <text-loader v-if="loading" size="7px" margin="1px"/>
+    <div v-else-if="morphBody">
+      <div class="group" v-for="group in morphBody" :key="group.uri">
+        <div class="head">
+          <span class="hdwd">{{ group.hdwd }}</span>
+          <span class="pofs-decl">{{ group.pofs }} {{ group.decl }}</span>
+        </div>
+        <div class="entries">
+          <div class="entry" v-for="(entry, index) in group.infl" :key="index">
+            <div class="form">
+              <span class="stem">{{ entry.stem }}</span>
+              <span v-if="entry.suff" class="suff">-{{ entry.suff }}</span>
             </div>
+            <!-- {{ entry.pofs }} -->
+            <!-- {{ entry.stemtype }} -->
+            <div class="props">
+              {{ entry.tense }}
+              {{ entry.voice }}
+              {{ entry.mood }}
+              {{ entry.pers }}
+              {{ entry.case }}
+              {{ entry.num }}
+              {{ entry.gend }}
+              {{ entry.comp }}
+              <span
+                v-if="entry.dial"
+                class="dial"
+              >({{ entry.dial }})</span>
+            </div>
+            <!-- {{ entry.derivtype }} -->
+            <!-- {{ entry.morph }} -->
           </div>
         </div>
       </div>
-      <p v-else-if="selectedWord" class="no-results">No results found.</p>
-      <p v-else class="instructions">In
-        <span class="mode">HIGHLIGHT</span> text mode, select a word to get morphological analysis (Greek and Latin only).
-      </p>
     </div>
-  </component>
-  <component :is="scaifeWidget" v-else>
+    <p v-else-if="selectedWord" class="no-results">No results found.</p>
+    <p v-else class="instructions">In
+      <span class="mode">HIGHLIGHT</span> text mode, select a word to get morphological analysis (Greek and Latin only).
+    </p>
+  </div>
+  <div v-else>
     <div slot="body">Not enabled</div>
-  </component>
+  </div>
 </template>
 <script>
 export default {

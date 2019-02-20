@@ -1,21 +1,17 @@
 <template>
-  <component :is="widgetBase" class="text-size-widget">
-    <span slot="header">Text Size</span>
-    <div slot="body">
+  <div class="text-size-widget">
       <TextSize :value="textSize" @input="changeTextSize" size="xs" />{{ ' ' }}
       <TextSize :value="textSize" @input="changeTextSize" size="sm" />{{ ' ' }}
       <TextSize :value="textSize" @input="changeTextSize" size="md" />{{ ' ' }}
       <TextSize :value="textSize" @input="changeTextSize" size="lg" />{{ ' ' }}
       <TextSize :value="textSize" @input="changeTextSize" size="xl" />
-    </div>
-  </component>
+  </div>
 </template>
 
 <script>
 import TextSize from './TextSize.vue';
 
 export default {
-  props: ['widget-base'],
   displayName: 'Text Size',
   computed: {
     textSize() {

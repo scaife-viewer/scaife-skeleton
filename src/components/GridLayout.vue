@@ -9,42 +9,39 @@
     <div
       class="grid-container grid-two"
       :class="grid === '1x2' ? 'grid-vertical': 'grid-horizontal'"
-      v-if="placeholderCount === 2"
+      v-if="widgetCount === 2"
     >
-      <Placeholder :fixed="true" :widget-base="widgetBase" />
-      <Placeholder :fixed="true" :widget-base="widgetBase" />
     </div>
-    <div class="grid-container grid-single" v-else-if="placeholderCount === 1">
+    <div class="grid-container grid-single" v-else-if="widgetCount === 1">
       <div>
-        <Placeholder :fixed="true" :configured-component="configuredComponent" :widget-base="widgetBase" />
-
-        <WidgetSelector v-if="editing" @select="changePlaceholder" />
-        <button @click="editing = !editing">{{ editing ? 'Done' : 'Edit' }}</button>
+        <MainWidget
+          v-if="configuredComponent !== null"
+          :editing="editing"
+          @remove="configuredComponent = null">
+          <component slot="body" :is="configuredComponent" />
+        </MainWidget>
+        <div v-else>Click on edit to add a component</div>
       </div>
     </div>
     <div class="grid-container grid-quad" v-else>
-      <Placeholder :fixed="true" :widget-base="widgetBase" />
-      <Placeholder :fixed="true" :widget-base="widgetBase" />
-      <Placeholder :fixed="true" :widget-base="widgetBase" />
-      <Placeholder :fixed="true" :widget-base="widgetBase" />
+    </div>
+    <div class="edit-mode">
+      <WidgetSelector v-if="editing" @select="changeWidget" />
+      <button @click="editing = !editing">{{ editing ? 'Done' : 'Edit' }}</button>
     </div>
   </div>
 </template>
 <script>
-import Placeholder from "./Placeholder.vue";
 import MainWidget from './MainWidget.vue';
 import WidgetSelector from './WidgetSelector.vue';
 
 export default {
   components: {
-    Placeholder,
+    MainWidget,
     WidgetSelector,
   },
   computed: {
-    widgetBase(){
-      return MainWidget;
-    },
-    placeholderCount() {
+    widgetCount() {
       if (this.grid === "1x1") {
         return 1;
       } else if (this.grid === "1x2" || this.grid === "2x1") {
@@ -62,15 +59,8 @@ export default {
     };
   },
   methods: {
-    changePlaceholder(component) {
+    changeWidget(component) {
       this.configuredComponent = component;
-      // this.$store.state.placeholders[this.name] = [
-      //   ...this.$store.state.placeholders[this.name],
-      //   {
-      //     placeholder: Placeholder,
-      //     widget: component
-      //   }
-      // ];
     }
   }
 };
@@ -105,7 +95,5 @@ export default {
 .grid-two.grid-horizontal {
   grid-template-columns: auto auto;
   grid-template-rows: auto;
-}
-.grid-container .placeholder {
 }
 </style>

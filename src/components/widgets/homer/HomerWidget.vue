@@ -1,28 +1,24 @@
 <template>
-  <component :is="widgetBase" class="homer-widget">
-    <span slot="header">Homer</span>
-    <template slot="body" :works="works">
-      <div class="work" v-for="(work, index) in works" :key="index">
-        <div
-          class="book"
-          :key="bIndex"
-          v-for="(bookLength, bIndex) in work.bookLengths"
-          :class="{ selected: isSelected(work.urn, bIndex + 1, bookLength) }"
-        >
-          <a
-            href
-            @click.prevent="selectBook(work.urn, bIndex + 1, bookLength)"
-          >{{ work.displayName }} {{ bIndex + 1 }}.1&ndash;{{ bIndex + 1 }}.{{ bookLength }}</a>
-        </div>
+  <div class="homer-widget">
+    <div class="work" v-for="(work, index) in works" :key="index">
+      <div
+        class="book"
+        :key="bIndex"
+        v-for="(bookLength, bIndex) in work.bookLengths"
+        :class="{ selected: isSelected(work.urn, bIndex + 1, bookLength) }"
+      >
+        <a
+          href
+          @click.prevent="selectBook(work.urn, bIndex + 1, bookLength)"
+        >{{ work.displayName }} {{ bIndex + 1 }}.1&ndash;{{ bIndex + 1 }}.{{ bookLength }}</a>
       </div>
-    </template>
-  </component>
+    </div>
+  </div>
 </template>
 <script>
 import axios from "axios";
 
 export default {
-  props: ['widget-base'],
   displayName: "Homer",
   data() {
     return {

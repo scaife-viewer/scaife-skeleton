@@ -1,18 +1,13 @@
 <template>
-  <component :is="widgetBase"  class="reader-widget">
-    <template slot="body">
-      <div :class="['text', `text-${textSize}`]">
-        <div class="line" v-for="line in passageText" :key="line[0]">
-          <div class="line-ref">{{ line[0] }}</div>
-          <div class="line-text">{{ line[1] }}</div>
-        </div>
+    <div class="reader-widget" :class="['text', `text-${textSize}`]">
+      <div class="line" v-for="line in passageText" :key="line[0]">
+        <div class="line-ref">{{ line[0] }}</div>
+        <div class="line-text">{{ line[1] }}</div>
       </div>
-    </template>
-  </component>
+    </div>
 </template>
 <script>
 export default {
-  props: ['widget-base'],
   displayName: "Reader",
   computed: {
     widgetProps() {

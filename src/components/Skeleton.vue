@@ -17,10 +17,9 @@ import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
 
 import GridLayout from "./GridLayout.vue";
 import SidebarLayout from "./SidebarLayout.vue";
-import Placeholder from "./Placeholder.vue";
 
 export default {
-  components: { GridLayout, Placeholder, SidebarLayout },
+  components: { GridLayout, SidebarLayout },
   methods: {
     onLeftToggle() {
       this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
