@@ -32,6 +32,9 @@
     &:hover {
       background: $gray-300;
       color: $black;
+      span svg {
+        color: #0A0;
+      }
     }
 
     color: $gray-700;
