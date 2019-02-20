@@ -66,6 +66,8 @@ export default {
     position: relative;
     display: flex;
     flex-direction: column;
+    max-width: 600px;
+    background: white;
   }
 
   .left .button-container {

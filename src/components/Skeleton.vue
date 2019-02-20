@@ -43,10 +43,11 @@ export default {
 .skeleton {
   display: flex;
   height: 100vh;
+  background: #efefef;
   .grid-layout {
     flex: 2;
     min-width: 600px;
-    background: #eee;
+    background: #ddd;
     display: flex;
     flex-direction: column;
     overflow-y: auto;

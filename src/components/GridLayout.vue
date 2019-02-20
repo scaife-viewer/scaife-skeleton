@@ -65,11 +65,26 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss">
 .grid-layout {
   height: 100vh;
   position: relative;
+  margin: 0 auto;
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+  @media (min-width: 768px) {
+     max-width: 720px;
+  }
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
 }
+
 .grid-layout .widget .body {
   overflow-y: scroll;
 }
