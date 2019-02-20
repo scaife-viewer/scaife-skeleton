@@ -5,16 +5,18 @@
     @click.prevent="$emit('input', size)"
   >Αα</span>
 </template>
+
 <script>
-export default {
-  props: ["value", "size"],
-  computed: {
-    selected() {
-      return this.value === this.size;
+  export default {
+    props: ["value", "size"],
+    computed: {
+      selected() {
+        return this.value === this.size;
+      }
     }
-  }
-};
+  };
 </script>
+
 <style>
   .text-size-control {
     cursor: pointer;

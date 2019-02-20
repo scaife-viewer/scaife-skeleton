@@ -1,29 +1,31 @@
 <template>
-    <div class="reader-widget" :class="['text', `text-${textSize}`]">
-      <div class="line" v-for="line in passageText" :key="line[0]">
-        <div class="line-ref">{{ line[0] }}</div>
-        <div class="line-text">{{ line[1] }}</div>
-      </div>
+  <div class="reader-widget" :class="['text', `text-${textSize}`]">
+    <div class="line" v-for="line in passageText" :key="line[0]">
+      <div class="line-ref">{{ line[0] }}</div>
+      <div class="line-text">{{ line[1] }}</div>
     </div>
+  </div>
 </template>
+
 <script>
-export default {
-  displayName: "Reader",
-  computed: {
-    widgetProps() {
-      return {
-        sidebar: false,
-      };
-    },
-    passageText() {
-      return this.$store.state.passageText;
-    },
-    textSize() {
-      return this.$store.state.readerTextSize;
+  export default {
+    displayName: "Reader",
+    computed: {
+      widgetProps() {
+        return {
+          sidebar: false,
+        };
+      },
+      passageText() {
+        return this.$store.state.passageText;
+      },
+      textSize() {
+        return this.$store.state.readerTextSize;
+      }
     }
-  }
-};
+  };
 </script>
+
 <style lang="scss">
   .text {
     font-family: 'Noto Serif';

@@ -13,45 +13,45 @@
 </template>
 
 <script>
-import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
+  import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
 
-import GridLayout from "./GridLayout.vue";
-import SidebarLayout from "./SidebarLayout.vue";
+  import GridLayout from "./GridLayout.vue";
+  import SidebarLayout from "./SidebarLayout.vue";
 
-export default {
-  components: { GridLayout, SidebarLayout },
-  methods: {
-    onLeftToggle() {
-      this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
+  export default {
+    components: { GridLayout, SidebarLayout },
+    methods: {
+      onLeftToggle() {
+        this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
+      },
+      onRightToggle() {
+        this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR);
+      },
     },
-    onRightToggle() {
-      this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR);
-    },
-  },
-  computed: {
-    leftOpen() {
-      return this.$store.state.leftOpen;
-    },
-    rightOpen() {
-      return this.$store.state.rightOpen;
-    },
-  }
-};
+    computed: {
+      leftOpen() {
+        return this.$store.state.leftOpen;
+      },
+      rightOpen() {
+        return this.$store.state.rightOpen;
+      },
+    }
+  };
 </script>
 
 <style lang="scss">
-.skeleton {
-  display: flex;
-  height: 100vh;
-  background: #efefef;
-  .grid-layout {
-    flex: 2;
-    min-width: 600px;
-    background: #ddd;
+  .skeleton {
     display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+    height: 100vh;
+    background: #efefef;
+    .grid-layout {
+      flex: 2;
+      min-width: 600px;
+      background: #ddd;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    position: relative;
   }
-  position: relative;
-}
 </style>

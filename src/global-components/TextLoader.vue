@@ -1,4 +1,3 @@
-
 <template>
   <div class="ball-pulse partial-loader">
     <div></div>
@@ -8,5 +7,5 @@
 </template>
 
 <script>
-export default {};
+  export default {};
 </script>

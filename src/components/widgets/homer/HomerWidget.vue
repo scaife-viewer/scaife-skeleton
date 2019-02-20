@@ -15,87 +15,89 @@
     </div>
   </div>
 </template>
-<script>
-import axios from "axios";
 
-export default {
-  displayName: "Homer",
-  data() {
-    return {
-      selected: {
-        urn: "",
-        book: null,
-        start: null,
-        end: null
-      }
-    };
-  },
-  methods: {
-    isSelected(urn, book, bookLength) {
-      return (
-        this.selected.urn === urn &&
-        this.selected.book === book &&
-        this.selected.end === bookLength
-      );
-    },
-    selectBook(urn, book, bookLength) {
-      this.selected = {
-        urn,
-        book,
-        start: 1,
-        end: bookLength
-      };
-      axios
-        .get(`https://homer-api.herokuapp.com/${this.selectedUrn}/`)
-        .then(r => this.$store.dispatch("setPassageText", { lines: r.data} ));
-    }
-  },
-  computed: {
-    selectedUrn() {
-      const { urn, book, start, end } = this.selected;
-      return `${urn}:${book}.${start}-${book}.${end}`;
-    },
-    works() {
-      return [
-        {
-          displayName: "Iliad",
-          urn: "urn:cts:greekLit:tlg0012.tlg001.perseus-grc2",
-          bookLengths: [
-            611,
-            877,
-            461,
-            544,
-            909,
-            529,
-            482,
-            565,
-            713,
-            579,
-            848,
-            471,
-            837,
-            522,
-            746,
-            867,
-            761,
-            616,
-            424,
-            503,
-            611,
-            515,
-            897,
-            804
-          ]
+<script>
+  import axios from "axios";
+
+  export default {
+    displayName: "Homer",
+    data() {
+      return {
+        selected: {
+          urn: "",
+          book: null,
+          start: null,
+          end: null
         }
-      ];
+      };
+    },
+    methods: {
+      isSelected(urn, book, bookLength) {
+        return (
+          this.selected.urn === urn &&
+          this.selected.book === book &&
+          this.selected.end === bookLength
+        );
+      },
+      selectBook(urn, book, bookLength) {
+        this.selected = {
+          urn,
+          book,
+          start: 1,
+          end: bookLength
+        };
+        axios
+          .get(`https://homer-api.herokuapp.com/${this.selectedUrn}/`)
+          .then(r => this.$store.dispatch("setPassageText", { lines: r.data} ));
+      }
+    },
+    computed: {
+      selectedUrn() {
+        const { urn, book, start, end } = this.selected;
+        return `${urn}:${book}.${start}-${book}.${end}`;
+      },
+      works() {
+        return [
+          {
+            displayName: "Iliad",
+            urn: "urn:cts:greekLit:tlg0012.tlg001.perseus-grc2",
+            bookLengths: [
+              611,
+              877,
+              461,
+              544,
+              909,
+              529,
+              482,
+              565,
+              713,
+              579,
+              848,
+              471,
+              837,
+              522,
+              746,
+              867,
+              761,
+              616,
+              424,
+              503,
+              611,
+              515,
+              897,
+              804
+            ]
+          }
+        ];
+      }
     }
-  }
-};
+  };
 </script>
+
 <style lang="scss">
   @import "../../../variables.scss";
 
-.homer-widget {
+  .homer-widget {
     margin: 0 1em 1em;
     flex: 1;
     .book {

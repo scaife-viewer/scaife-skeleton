@@ -44,75 +44,76 @@
     <div slot="body">Not enabled</div>
   </div>
 </template>
+
 <script>
-export default {
-  props: ['widget-base'],
-  displayName: 'Morphology',
-  watch: {
-    selectedWord: {
-      handler: 'fetchData',
-      immediate: true,
+  export default {
+    props: ['widget-base'],
+    displayName: 'Morphology',
+    watch: {
+      selectedWord: {
+        handler: 'fetchData',
+        immediate: true,
+      },
     },
-  },
-  data() {
-    return {
-      loading: false,
-      morphBody: null,
-    };
-  },
-  computed: {
-    enabled() {
-      return this.textMetadata && (this.textMetadata.lang === 'grc' || this.textMetadata.lang === 'lat');
+    data() {
+      return {
+        loading: false,
+        morphBody: null,
+      };
     },
-    selectedWord() {
-      const selectedWords = this.$store.state.selectedWords;
-      if (selectedWords.length === 0) {
-        return null;
-      }
-      return selectedWords[0];
+    computed: {
+      enabled() {
+        return this.textMetadata && (this.textMetadata.lang === 'grc' || this.textMetadata.lang === 'lat');
+      },
+      selectedWord() {
+        const selectedWords = this.$store.state.selectedWords;
+        if (selectedWords.length === 0) {
+          return null;
+        }
+        return selectedWords[0];
+      },
+      textMetadata() {
+          return this.text.metadata;
+      },
+      text() {
+        return this.$store.state.readerText;
+      },
     },
-    textMetadata() {
-        return this.text.metadata;
-    },
-    text() {
-      return this.$store.state.readerText;
-    },
-  },
-  methods: {
-    fetchData() {
-      if (this.enabled) {
-        const word = this.selectedWord;
-        const lang = this.text.metadata.lang;
-        if (word) {
+    methods: {
+      fetchData() {
+        if (this.enabled) {
+          const word = this.selectedWord;
+          const lang = this.text.metadata.lang;
+          if (word) {
             this.loading = true;
             const url = `/morpheus/?word=${word.w}&lang=${lang}`;
             const headers = new Headers({
-            Accept: 'application/json',
+              Accept: 'application/json',
             });
             fetch(url, { method: 'GET', headers }).then((resp) => {
-            resp.json().then((data) => {
+              resp.json().then((data) => {
                 if (data.Body && data.Body.length > 0) {
-                this.morphBody = data.Body;
-                const lemmas = [];
-                this.morphBody.forEach(({ hdwd }) => {
+                  this.morphBody = data.Body;
+                  const lemmas = [];
+                  this.morphBody.forEach(({ hdwd }) => {
                     lemmas.push(hdwd);
-                });
-                this.$store.dispatch('setSelectedLemmas', { lemmas });
+                  });
+                  this.$store.dispatch('setSelectedLemmas', { lemmas });
                 } else {
-                this.reset();
+                  this.reset();
                 }
                 this.loading = false;
+              });
             });
-            });
-        } else {
+          } else {
             this.reset();
+          }
         }
-      }
+      },
+      reset() {
+        this.morphBody = null;
+        this.$store.dispatch('setSelectedLemmas', { lemmas: null });
+      },
     },
-    reset() {
-      this.morphBody = null;
-      this.$store.dispatch('setSelectedLemmas', { lemmas: null });
-    },
-  },
-};
+  };
 </script>

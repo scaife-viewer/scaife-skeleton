@@ -19,45 +19,47 @@
     </div>
   </aside>
 </template>
-<script>
-import SidebarWidget from './SidebarWidget.vue';
-import WidgetEditor from './WidgetEditor.vue';
 
-export default {
-  props: ["name", "open"],
-  components: { WidgetEditor, SidebarWidget },
-  data() {
-    return {
-      editing: false,
-      hovering: false,
+<script>
+  import SidebarWidget from './SidebarWidget.vue';
+  import WidgetEditor from './WidgetEditor.vue';
+
+  export default {
+    props: ["name", "open"],
+    components: { WidgetEditor, SidebarWidget },
+    data() {
+      return {
+        editing: false,
+        hovering: false,
+      }
+    },
+    computed: {
+      leftOpen() {
+        return this.$store.state.leftOpen;
+      },
+      rightOpen() {
+        return this.$store.state.rightOpen;
+      },
+      widgets() {
+        return this.$store.state.widgets[this.name];
+      },
+    },
+    methods: {
+      addWidget(component) {
+        this.$store.state.widgets[this.name] = [
+          ...this.$store.state.widgets[this.name],
+          component
+        ];
+      },
+      removeWidget(index) {
+        const widgets = [...this.$store.state.widgets[this.name]];
+        widgets.splice(index, 1);
+        this.$store.state.widgets[this.name] = widgets;
+      }
     }
-  },
-  computed: {
-    leftOpen() {
-      return this.$store.state.leftOpen;
-    },
-    rightOpen() {
-      return this.$store.state.rightOpen;
-    },
-    widgets() {
-      return this.$store.state.widgets[this.name];
-    },
-  },
-  methods: {
-    addWidget(component) {
-      this.$store.state.widgets[this.name] = [
-        ...this.$store.state.widgets[this.name],
-        component
-      ];
-    },
-    removeWidget(index) {
-      const widgets = [...this.$store.state.widgets[this.name]];
-      widgets.splice(index, 1);
-      this.$store.state.widgets[this.name] = widgets;
-    }
-  }
-};
+  };
 </script>
+
 <style lang="scss">
   @import "../variables.scss";
 

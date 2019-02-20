@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import Skeleton from './components/Skeleton.vue'
+  import Skeleton from './components/Skeleton.vue'
 
-export default {
-  name: 'app',
-  components: {
-    Skeleton
+  export default {
+    name: 'app',
+    components: {
+      Skeleton
+    }
   }
-}
 </script>
 
 <style lang="scss">
