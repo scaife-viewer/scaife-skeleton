@@ -65,12 +65,18 @@ export default {
     display: flex;
     flex-direction: column;
   }
+
+  .left.sidebar-wrapper {
+    border-right: 1px solid #ddd;
+  }
+  .right.sidebar-wrapper {
+    border-left: 1px solid #ddd;
+  }
   .left.sidebar-wrapper.sidebar-left--closed,
   .right.sidebar-wrapper.sidebar-right--closed {
     flex: 0;
   }
   .sidebar {
-    background: #ddd;
     overflow-y: auto;
     flex: 1;
   }
