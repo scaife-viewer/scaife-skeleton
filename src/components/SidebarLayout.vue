@@ -1,5 +1,5 @@
 <template>
-  <aside class="sidebar-wrapper" :class="{ 'sidebar-left--open': leftOpen, 'sidebar-left--closed': !leftOpen, 'sidebar-right--open': rightOpen, 'sidebar-right--closed': !rightOpen }">
+  <aside @mouseover="hovering = true" @mouseout="hovering = false" class="sidebar-wrapper" :class="{ 'sidebar-left--open': leftOpen, 'sidebar-left--closed': !leftOpen, 'sidebar-right--open': rightOpen, 'sidebar-right--closed': !rightOpen }">
     <div class="button-container">
       <button class="toggle-open" v-if="open" @click="$emit('toggle')"><slot name="open-close-button" /></button>
       <button class="toggle-open" v-else @click="$emit('toggle')"><slot name="close-open-button" /></button>
@@ -15,7 +15,7 @@
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
-      <WidgetEditor :editing="editing" @toggle-edit="editing = !editing" @change-widget="addWidget" />
+      <WidgetEditor :editing="editing" :hovering="hovering" @toggle-edit="editing = !editing" @change-widget="addWidget" />
     </div>
   </aside>
 </template>
@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       editing: false,
+      hovering: false,
     }
   },
   computed: {

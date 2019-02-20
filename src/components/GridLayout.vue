@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-layout">
+  <div class="grid-layout" @mouseover="hovering = true" @mouseout="hovering = false">
     <!-- <div class="grid-config">
       <a href="#" @click="grid = '1x1'">1x1</a> |
       <a href="#" @click="grid = '1x2'">1x2</a> |
@@ -25,7 +25,7 @@
     </div>
     <div class="grid-container grid-quad" v-else>
     </div>
-    <WidgetEditor :editing="editing" @toggle-edit="editing = !editing" @change-widget="changeWidget" />
+    <WidgetEditor :editing="editing" :hovering="hovering" @toggle-edit="editing = !editing" @change-widget="changeWidget" />
   </div>
 </template>
 <script>
@@ -53,6 +53,7 @@ export default {
       grid: "1x1",
       editing: false,
       configuredComponent: null,
+      hovering: false,
     };
   },
   methods: {
