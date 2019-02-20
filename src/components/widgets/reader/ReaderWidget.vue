@@ -37,7 +37,7 @@
       .line-ref {
         font-family: 'Noto Sans';
         color: #69C;
-        width: 3em;
+        width: 3.5em;
         flex-shrink: 0;
       }
       .line-text {
