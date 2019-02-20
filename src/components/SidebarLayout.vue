@@ -68,8 +68,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    min-width: 200px;
     max-width: 600px;
-    background: white;
+    background: $white;
   }
 
   .left .button-container {
