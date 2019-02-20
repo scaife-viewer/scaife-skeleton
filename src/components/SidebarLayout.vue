@@ -79,6 +79,7 @@ export default {
     font-size: 18px;
     color: $gray-600;
     outline: none;
+    background: transparent;
   }
 
   .left.sidebar-wrapper {
