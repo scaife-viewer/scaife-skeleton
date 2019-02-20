@@ -46,13 +46,13 @@
     display: flex;
     height: 100vh;
     background: $gray-200;
+    position: relative;
+
     .grid-layout {
       flex: 2;
       min-width: 600px;
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
     }
-    position: relative;
   }
 </style>

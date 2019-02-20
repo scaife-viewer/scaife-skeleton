@@ -94,6 +94,7 @@
   .grid-container {
     display: grid;
     flex: 1;
+    overflow-y: auto;
   }
   .grid-single {
     grid-template-columns: auto;

@@ -29,7 +29,7 @@
 <style lang="scss">
   .text {
     font-family: 'Noto Serif';
-    margin: 1em 1em 4em;
+    margin: 1em 1em 6em;
 
     .line {
       display: flex;
