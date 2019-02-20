@@ -68,7 +68,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    min-width: 200px;
     max-width: 600px;
     background: $white;
   }
@@ -124,7 +123,10 @@
 
   .left.sidebar-left--open,
   .right.sidebar-right--open {
-     button.toggle-open {
+
+    min-width: 200px;
+
+    button.toggle-open {
       position: inherit;
       top: inherit;
       left: inherit;
