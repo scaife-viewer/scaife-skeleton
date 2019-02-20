@@ -133,4 +133,3 @@ export default {
     max-width: 600px;
   }
 </style>
-

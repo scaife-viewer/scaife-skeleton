@@ -32,4 +32,3 @@ export default {
     font-size: 18px;
 }
 </style>
-
