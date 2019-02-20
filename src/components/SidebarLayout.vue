@@ -135,6 +135,9 @@
     max-width: 600px;
   }
 
+  .widgets {
+    margin-bottom: 50px;
+  }
   .sidebar {
     display: flex;
     flex-direction: column;

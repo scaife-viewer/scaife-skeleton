@@ -1,8 +1,7 @@
 <template>
   <div class="add-widgets">
     <div class="widget-option" v-for="(option, i) in widgetOptions" :key="i" @click.prevent="$emit('select', option.component)">
-      <span>{{ option.text }}</span>
-      <icon name="plus-square" />
+      <span><icon name="plus-square" /> {{ option.text }}</span>
     </div>
   </div>
 </template>
@@ -20,17 +19,26 @@
 </script>
 
 <style lang="scss">
+  @import "../variables.scss";
+
   .widget-option {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    padding: 1.75rem 2.25rem;
+    padding: 0.75rem 2.25rem;
     margin: 0.5rem 0.375rem;
-    border: 1px solid #EEE;
-    background: rgba(#CCC, 0.5);
+    border: 1px solid $gray-100;
+    background: $gray-200;
     &:hover {
-      background: #CCC;
+      background: $gray-300;
+      color: $black;
     }
-    font-size: 18px;
+
+    color: $gray-700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
   }
 </style>
