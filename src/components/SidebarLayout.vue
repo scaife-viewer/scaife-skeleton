@@ -134,4 +134,10 @@
   .right.sidebar-right--open .sidebar {
     max-width: 600px;
   }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 </style>
