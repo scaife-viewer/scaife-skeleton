@@ -25,20 +25,17 @@
     </div>
     <div class="grid-container grid-quad" v-else>
     </div>
-    <div class="edit-mode">
-      <WidgetSelector v-if="editing" @select="changeWidget" />
-      <button @click="editing = !editing">{{ editing ? 'Done' : 'Edit' }}</button>
-    </div>
+    <WidgetEditor :editing="editing" @toggle-edit="editing = !editing" @change-widget="changeWidget" />
   </div>
 </template>
 <script>
 import MainWidget from './MainWidget.vue';
-import WidgetSelector from './WidgetSelector.vue';
+import WidgetEditor from './WidgetEditor.vue';
 
 export default {
   components: {
     MainWidget,
-    WidgetSelector,
+    WidgetEditor,
   },
   computed: {
     widgetCount() {

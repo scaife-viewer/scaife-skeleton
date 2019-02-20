@@ -15,18 +15,17 @@
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
-      <WidgetSelector v-if="editing" @select="addWidget" />
-      <button @click="editing = !editing">{{ editing ? 'Done' : 'Edit' }}</button>
+      <WidgetEditor :editing="editing" @toggle-edit="editing = !editing" @change-widget="addWidget" />
     </div>
   </aside>
 </template>
 <script>
 import SidebarWidget from './SidebarWidget.vue';
-import WidgetSelector from './WidgetSelector.vue';
+import WidgetEditor from './WidgetEditor.vue';
 
 export default {
   props: ["name", "open"],
-  components: { WidgetSelector, SidebarWidget },
+  components: { WidgetEditor, SidebarWidget },
   data() {
     return {
       editing: false,
