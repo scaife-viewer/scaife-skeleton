@@ -15,10 +15,12 @@
       <Placeholder :fixed="true" :widget-base="widgetBase" />
     </div>
     <div class="grid-container grid-single" v-else-if="placeholderCount === 1">
-      <Placeholder :fixed="true" :configured-component="configuredComponent" :widget-base="widgetBase" />
+      <div>
+        <Placeholder :fixed="true" :configured-component="configuredComponent" :widget-base="widgetBase" />
 
-      <WidgetSelector v-if="editing" @select="changePlaceholder" />
-      <button @click="editing = !editing">{{ editing ? 'Done' : 'Edit' }}</button>
+        <WidgetSelector v-if="editing" @select="changePlaceholder" />
+        <button @click="editing = !editing">{{ editing ? 'Done' : 'Edit' }}</button>
+      </div>
     </div>
     <div class="grid-container grid-quad" v-else>
       <Placeholder :fixed="true" :widget-base="widgetBase" />
