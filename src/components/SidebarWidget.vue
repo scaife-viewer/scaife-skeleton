@@ -2,16 +2,14 @@
   <div class="widget widget-sidebar">
     <div class="sticky-block">
       <h2>
-        <span>
-          <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link"><icon name="minus-circle" /></a>
-          <span @click.prevent="toggle">
-            <span class="open-toggle">
-              <Icon :name="open ? 'chevron-down' : 'chevron-right'" />
-            </span>
-            <span class="heading">{{ heading }}</span>
+        <span @click.prevent="toggle">
+          <span class="open-toggle">
+            <Icon :name="open ? 'chevron-down' : 'chevron-right'" />
           </span>
+          <span class="heading">{{ heading }}</span>
         </span>
-        <span v-if="open" class="fixed-toggle" @click.prevent="toggleFix">
+        <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link"><icon name="minus-circle" /></a>
+        <span v-if="open & !editing" class="fixed-toggle" @click.prevent="toggleFix">
           <Icon :name="fixed ? 'expand' : 'compress'" />
         </span>
       </h2>
@@ -79,17 +77,15 @@
       font-weight: 400;
       cursor: pointer;
       > span:first-of-type {
+        flex-grow: 2;
         display: flex;
-        > span {
-          display: flex;
-          .open-toggle {
-            text-align: center;
-            min-width: 2em;
-            color: $gray-400;
-          }
-          &:hover .open-toggle {
-            color: $gray-700;
-          }
+        .open-toggle {
+          text-align: center;
+          min-width: 2em;
+          color: $gray-400;
+        }
+        &:hover .open-toggle {
+          color: $gray-700;
         }
       }
       .fixed-toggle {
