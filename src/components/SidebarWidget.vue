@@ -53,7 +53,7 @@
   }
 
   .widget {
-    background: white;
+    background: $white;
     position: relative;
     padding: 0 8px 8px 8px;
     border-bottom: 1px solid $gray-200;
@@ -71,7 +71,7 @@
       display: flex;
       justify-content: space-between;
       margin: 0;
-      color: $gray-600;
+      color: $gray-700;
       text-transform: uppercase;
       letter-spacing: 0.2em;
       font-size: 16px;
@@ -80,12 +80,16 @@
       cursor: pointer;
       > span:first-of-type {
         display: flex;
-        .open-toggle {
-          min-width: 1.5em;
-          color: $gray-400;
-        }
-        &:hover .open-toggle {
-          color: $gray-600;
+        > span {
+          display: flex;
+          .open-toggle {
+            text-align: center;
+            min-width: 2em;
+            color: $gray-400;
+          }
+          &:hover .open-toggle {
+            color: $gray-700;
+          }
         }
       }
       .fixed-toggle {
