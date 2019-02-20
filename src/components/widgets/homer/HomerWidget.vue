@@ -93,18 +93,18 @@ export default {
 };
 </script>
 <style lang="scss">
-  .homer-widget {
-    .body {
-      margin: 0 1em 1em;
-      justify-content: left;
-      .book {
-        text-align: left;
-        a {
-          color: #666;
-          text-decoration: none;
-          &:hover {
-            text-decoration: underline;
-          }
+  @import "../../../variables.scss";
+
+.homer-widget {
+    margin: 0 1em 1em;
+    flex: 1;
+    .book {
+      text-align: left;
+      a {
+        color: $gray-600;
+        text-decoration: none;
+        &:hover {
+          color: $gray-800;
         }
       }
     }
