@@ -100,6 +100,7 @@
   .homer-widget {
     margin: 0 2em;
     flex: 1;
+
     .book {
       // font-family: 'Noto Serif';
       font-size: 14px;
@@ -110,6 +111,11 @@
           color: $gray-800;
         }
       }
+      &.selected a {
+        font-weight: bold;
+        color: $gray-700;
+      }
     }
+
   }
 </style>

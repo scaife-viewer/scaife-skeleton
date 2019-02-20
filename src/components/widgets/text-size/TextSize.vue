@@ -17,9 +17,17 @@
   };
 </script>
 
-<style>
+<style lang="scss">
+  @import "../../../variables.scss";
+
   .text-size-control {
     cursor: pointer;
     font-family: 'Noto Serif';
+
+    color: $gray-500;
+
+    &.selected {
+      color: $gray-800;
+    }
   }
 </style>

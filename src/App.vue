@@ -28,9 +28,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .selected {
-    font-weight: 600;
-  }
   .body {
     display: flex;
     justify-content: center;
