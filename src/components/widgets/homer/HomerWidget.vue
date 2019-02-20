@@ -98,9 +98,11 @@
   @import "../../../variables.scss";
 
   .homer-widget {
-    margin: 0 1em 1em;
+    margin: 0 2em;
     flex: 1;
     .book {
+      // font-family: 'Noto Serif';
+      font-size: 14px;
       a {
         color: $gray-600;
         text-decoration: none;

@@ -26,3 +26,12 @@
     components: { TextSize },
   };
 </script>
+
+<style lang="scss">
+  @import "../../../variables.scss";
+
+  .text-size-widget {
+    margin: 0 2em;
+    flex: 1;
+  }
+</style>
