@@ -1,11 +1,11 @@
 <template>
   <div class="main-layout" @mouseover="hovering = true" @mouseout="hovering = false">
     <MainWidget @remove="removeWidget" :editing="editing" v-if="widget !== null">
-      <div slot="heading">{{ widget.displayName }}</div>
+      <div slot="heading">{{ widget.scaifeConfig.displayName }}</div>
       <component slot="body" :is="widget" />
     </MainWidget>
 
-    <WidgetEditor :editing="editing" :hovering="hovering" @toggle-edit="editing = !editing" @change-widget="changeWidget" />
+    <WidgetEditor kind="main" :editing="editing" :hovering="hovering" @toggle-edit="editing = !editing" @change-widget="changeWidget" />
   </div>
 </template>
 

@@ -9,7 +9,11 @@
 
 <script>
   export default {
-    displayName: "Reader",
+    scaifeConfig: {
+      displayName: 'Reader',
+      singleton: false,
+      location: 'main',
+    },
     computed: {
       widgetProps() {
         return {

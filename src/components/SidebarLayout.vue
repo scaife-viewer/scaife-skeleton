@@ -11,11 +11,11 @@
           :key="index"
           @remove="removeWidget(index)"
           :editing="editing">
-          <span slot="heading" class="heading">{{ widget.displayName }}</span>
+          <span slot="heading" class="heading">{{ widget.scaifeConfig.displayName }}</span>
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
-      <WidgetEditor :editing="editing" :hovering="hovering" @toggle-edit="editing = !editing" @change-widget="addWidget" />
+      <WidgetEditor kind="sidebar" :editing="editing" :hovering="hovering" @toggle-edit="editing = !editing" @change-widget="addWidget" />
     </div>
   </aside>
 </template>

@@ -20,7 +20,11 @@
   import axios from "axios";
 
   export default {
-    displayName: "Homer",
+    scaifeConfig: {
+      displayName: 'Homer',
+      singleton: true,
+      location: 'sidebar',
+    },
     data() {
       return {
         selected: {

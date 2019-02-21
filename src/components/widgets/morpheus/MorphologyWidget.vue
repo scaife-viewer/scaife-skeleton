@@ -47,8 +47,12 @@
 
 <script>
   export default {
+    scaifeConfig: {
+      displayName: 'Morphology',
+      singleton: true,
+      location: 'sidebar',
+    },
     props: ['widget-base'],
-    displayName: 'Morphology',
     watch: {
       selectedWord: {
         handler: 'fetchData',

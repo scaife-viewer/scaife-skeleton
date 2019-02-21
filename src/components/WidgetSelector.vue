@@ -8,10 +8,15 @@
 
 <script>
   export default {
+    props: ['kind'],
     computed: {
       widgetOptions() {
-        return this.$store.state.widgetOptions.map(o => {
-          return { text: o.displayName, component: o };
+        return this.$store.state.widgetOptions.filter(o => {
+          const { location } = o.scaifeConfig;
+          console.log(location, this.kind, o);
+          return location === this.kind || location === 'both';
+        }).map(o => {
+          return { text: o.scaifeConfig.displayName, component: o };
         });
       }
     }

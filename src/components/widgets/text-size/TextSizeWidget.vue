@@ -12,7 +12,11 @@
   import TextSize from './TextSize.vue';
 
   export default {
-    displayName: 'Text Size',
+    scaifeConfig: {
+      displayName: 'Text Size',
+      singleton: true,
+      location: 'both',  // Should be sidebar but just testing the 'both' option
+    },
     computed: {
       textSize() {
         return this.$store.state.readerTextSize;
