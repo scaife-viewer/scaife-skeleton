@@ -3,7 +3,7 @@
     <h2>
       <span>
         <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link"><icon name="minus-circle" /></a>
-        {{ heading }}
+        <slot name="heading" />
       </span>
     </h2>
     <div>
@@ -17,6 +17,6 @@
 
 <script>
   export default {
-    props: ['heading', 'editing'],
+    props: ['editing'],
   }
 </script>

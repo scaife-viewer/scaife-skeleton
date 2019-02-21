@@ -19,8 +19,8 @@ export default new Vuex.Store({
     leftOpen: true,
     widgetOptions: [...widgets],
     widgets: {
+      mainWidget: null,
       right: [],
-      main: [],
       left: [],
     },
     passageText: '',

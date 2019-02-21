@@ -4,7 +4,7 @@
       <icon slot="open-close-button" name="arrow-left" />
       <icon slot="close-open-button" name="arrow-right" />
     </SidebarLayout>
-    <GridLayout/>
+    <MainLayout />
     <SidebarLayout name="right" class="right" :open="rightOpen" @toggle="onRightToggle">
       <icon slot="open-close-button" name="arrow-right" />
       <icon slot="close-open-button" name="arrow-left" />
@@ -15,11 +15,11 @@
 <script>
   import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
 
-  import GridLayout from "./GridLayout.vue";
+  import MainLayout from "./MainLayout.vue";
   import SidebarLayout from "./SidebarLayout.vue";
 
   export default {
-    components: { GridLayout, SidebarLayout },
+    components: { MainLayout, SidebarLayout },
     methods: {
       onLeftToggle() {
         this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
@@ -47,12 +47,5 @@
     height: 100vh;
     background: $gray-200;
     position: relative;
-
-    .grid-layout {
-      flex: 2;
-      min-width: 600px;
-      display: flex;
-      flex-direction: column;
-    }
   }
 </style>
