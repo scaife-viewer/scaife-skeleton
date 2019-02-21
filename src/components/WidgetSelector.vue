@@ -13,8 +13,16 @@
       widgetOptions() {
         return this.$store.state.widgetOptions.filter(o => {
           const { location } = o.scaifeConfig;
-          console.log(location, this.kind, o);
           return location === this.kind || location === 'both';
+        }).filter(o => {
+          const { singleton } = o.scaifeConfig;
+          if (singleton) {
+            return (this.$store.state.widgets.mainWidget !== o &&
+                    this.$store.state.widgets.left.indexOf(o) === -1 &&
+                    this.$store.state.widgets.right.indexOf(o) === -1)
+          } else {
+            return true;
+          }
         }).map(o => {
           return { text: o.scaifeConfig.displayName, component: o };
         });

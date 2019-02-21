@@ -11,7 +11,6 @@
   export default {
     scaifeConfig: {
       displayName: 'Reader',
-      singleton: false,
       location: 'main',
     },
     computed: {
