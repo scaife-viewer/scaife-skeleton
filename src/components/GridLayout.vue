@@ -6,26 +6,17 @@
       <a href="#" @click="grid = '2x1'">2x1</a> |
       <a href="#" @click="grid = '2x2'">2x2</a>
     </div> -->
-    <div
-      class="grid-container grid-two"
-      :class="grid === '1x2' ? 'grid-vertical': 'grid-horizontal'"
-      v-if="widgetCount === 2"
-    >
-    </div>
-    <div class="grid-container grid-single" v-else-if="widgetCount === 1">
-      <div>
+    <div class="grid-container" :class="gridClass">
         <MainWidget
-          v-if="configuredComponent !== null"
+          v-for="(widget, index) in widgets"
+          :key="index"
+          @remove="removeWidget(index)"
           :editing="editing"
-          @remove="configuredComponent = null">
-          <component slot="body" :is="configuredComponent" />
+          :heading="widget.displayName">
+          <component slot="body" :is="widget" />
         </MainWidget>
-        <div v-else class="instructions">Click Edit to add a component</div>
-      </div>
     </div>
-    <div class="grid-container grid-quad" v-else>
-    </div>
-    <WidgetEditor :editing="editing" :hovering="hovering" @toggle-edit="editing = !editing" @change-widget="changeWidget" />
+    <WidgetEditor :editing="editing" :hovering="hovering" @toggle-edit="editing = !editing" @change-widget="addWidget" />
   </div>
 </template>
 
@@ -33,39 +24,53 @@
   import MainWidget from './MainWidget.vue';
   import WidgetEditor from './WidgetEditor.vue';
 
+  const GRID_CLASSES = {
+    1: 'grid-single',
+    2: 'grid-two grid-horizontal',
+    3: 'grid-triple',
+    4: 'grid-quad',
+  }
+
   export default {
     components: {
       MainWidget,
       WidgetEditor,
-    },
+   },
     computed: {
-      widgetCount() {
-        if (this.grid === "1x1") {
-          return 1;
-        } else if (this.grid === "1x2" || this.grid === "2x1") {
-          return 2;
-        } else {
-          return 4;
-        }
-      }
+      gridClass() {
+        return GRID_CLASSES[this.widgets.length];
+      },
+      widgets() {
+        return this.$store.state.widgets.main;
+      },
     },
     data() {
       return {
         grid: "1x1",
         editing: false,
-        configuredComponent: null,
         hovering: false,
       };
     },
     methods: {
-      changeWidget(component) {
-        this.configuredComponent = component;
+      // These should really dispatch actions
+      addWidget(component) {
+        this.$store.state.widgets.main = [
+          ...this.$store.state.widgets.main,
+          component
+        ];
+      },
+      removeWidget(index) {
+        const widgets = [...this.$store.state.widgets.main];
+        widgets.splice(index, 1);
+        this.$store.state.widgets.main = widgets;
       }
     }
   };
 </script>
 
 <style lang="scss">
+  @import "../variables.scss";
+
   .grid-layout {
     height: 100vh;
     position: relative;
@@ -116,5 +121,9 @@
   .instructions {
     margin-top: 100px;
     text-align: center;
+  }
+
+  .grid-container .widget {
+    border: 1px solid $gray-200;
   }
 </style>

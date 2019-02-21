@@ -20,6 +20,7 @@ export default new Vuex.Store({
     widgetOptions: [...widgets],
     widgets: {
       right: [],
+      main: [],
       left: [],
     },
     passageText: '',

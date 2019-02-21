@@ -45,6 +45,7 @@
       },
     },
     methods: {
+      // These should really dispatch actions
       addWidget(component) {
         this.$store.state.widgets[this.name] = [
           ...this.$store.state.widgets[this.name],
