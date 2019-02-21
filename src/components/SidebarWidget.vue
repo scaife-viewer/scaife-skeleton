@@ -6,7 +6,7 @@
           <span class="open-toggle">
             <Icon :name="open ? 'chevron-down' : 'chevron-right'" />
           </span>
-          <span class="heading">{{ heading }}</span>
+          <slot name="heading" />
         </span>
         <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link"><icon name="minus-circle" /></a>
         <span v-if="open & !editing" class="fixed-toggle" @click.prevent="toggleFix">
@@ -25,7 +25,7 @@
 
 <script>
   export default {
-    props: ['editing', 'heading'],
+    props: ['editing'],
     data() {
       return {
         open: true,

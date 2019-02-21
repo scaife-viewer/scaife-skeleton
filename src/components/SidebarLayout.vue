@@ -10,8 +10,8 @@
           v-for="(widget, index) in widgets"
           :key="index"
           @remove="removeWidget(index)"
-          :editing="editing"
-          :heading="widget.displayName">
+          :editing="editing">
+          <span slot="heading" class="heading">{{ widget.displayName }}</span>
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
