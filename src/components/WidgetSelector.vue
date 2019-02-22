@@ -1,6 +1,6 @@
 <template>
   <div class="add-widgets">
-    <div class="widget-option" v-for="(option, i) in widgetOptions" :key="i" @click.prevent="$emit('select', option.component)">
+    <div class="widget-option" :class="{ selected: selected(option) }" v-for="(option, i) in widgetOptions" :key="i" @click.prevent="$emit('select', option.component)">
       <span><icon :name="iconName(option)" /> {{ option.text }}</span>
     </div>
   </div>
@@ -10,6 +10,9 @@
   export default {
     props: ['kind', 'mainEditor'],
     methods: {
+      selected(option) {
+        return this.mainEditor && this.mainWidget === option.component;
+      },
       iconName(option) {
         if (this.mainEditor) {
           return this.mainWidget === option.component ? 'check-square' : 'square';
@@ -41,7 +44,8 @@
     margin: 0.5rem 0.375rem;
     border: 1px solid $gray-100;
     background: $gray-200;
-    &:hover {
+    &:hover,
+    &.selected {
       background: $gray-300;
       color: $black;
       span svg {
