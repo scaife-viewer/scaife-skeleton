@@ -46,7 +46,9 @@
 
     &.main-widget-editor {
       position: relative;
-
+      width: 80%;
+      max-width: 900px;
+      align-self: center;
     }
   }
 

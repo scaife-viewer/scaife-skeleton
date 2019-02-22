@@ -63,19 +63,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    @media (min-width: 576px) {
-      max-width: 540px;
-    }
-    @media (min-width: 768px) {
-       max-width: 720px;
-    }
-    @media (min-width: 992px) {
-      max-width: 960px;
-    }
-    @media (min-width: 1200px) {
-      max-width: 1140px;
-    }
   }
   .main-layout:hover .main-layout-edit {
     display: inline-block;
