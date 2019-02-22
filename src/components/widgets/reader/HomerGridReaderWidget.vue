@@ -26,10 +26,13 @@
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
     max-height: calc(100vh - 53px);  // 116px when edit widget is hovering
 
     .select-passage-reader {
-        overflow-y: scroll;
+
+      padding: 5px;
+      overflow-y: scroll;
     }
   }
 </style>
