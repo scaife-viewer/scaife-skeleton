@@ -83,6 +83,8 @@
     color: $gray-600;
     outline: none;
     background: transparent;
+    margin: 4px;
+    padding: 3px 2px 1px 2px;
   }
 
   .left.sidebar-wrapper {
