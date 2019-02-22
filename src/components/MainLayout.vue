@@ -11,7 +11,7 @@
         :editing="editing"
         :main-editor="true"
         @change-widget="changeWidget" />
-      <component slot="body" :is="widget" v-else-if="widget !== null" />
+      <component slot="body" :is="widget" v-show="!editing" v-if="widget !== null" />
     </MainWidget>
   </div>
 </template>
