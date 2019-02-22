@@ -66,12 +66,23 @@
 <style lang="scss">
   @import "../../../variables.scss";
   .homer-source-selector {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.25rem 0.375rem;
+    display: flex;
+    justify-content: space-between;
   }
-  .btn-book.active {
-      background: $gray-200;
+  button.btn-book {
+    background: transparent;
+    color: $gray-700;
+    padding: 2px 4px;
+    border: none;
+    font-size: 10px;
+    &:hover {
+      background: $gray-300;
+      color: $black;
+    }
+    &.active {
+      background: $gray-800;
+      color: $gray-300;
+    }
   }
-</style>
 
+</style>
