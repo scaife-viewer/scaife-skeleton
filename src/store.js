@@ -1,8 +1,6 @@
-import axios from 'axios';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import widgets from './components/widgets';
 import {
   SET_PASSAGE_TEXT,
   SET_SELECTED_LEMMAS,
@@ -17,7 +15,6 @@ export default new Vuex.Store({
   state: {
     rightOpen: true,
     leftOpen: true,
-    widgetOptions: [...widgets],
     widgets: {
       mainWidget: null,
       right: [],
@@ -48,5 +45,5 @@ export default new Vuex.Store({
     [SET_TEXT_SIZE]: ({ commit }, { size }) => {
       commit(SET_TEXT_SIZE, size);
     }
-  }
+  },
 })
