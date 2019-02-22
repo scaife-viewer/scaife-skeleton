@@ -29,7 +29,7 @@
     data() {
       return {
         open: true,
-        fixed: true,
+        fixed: false,
       };
     },
     methods: {
