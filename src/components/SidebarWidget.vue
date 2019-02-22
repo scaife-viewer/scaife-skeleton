@@ -75,7 +75,6 @@
       font-size: 16px;
       line-height: 24px;
       font-weight: 400;
-      cursor: pointer;
       > span:first-of-type {
         flex-grow: 2;
         display: flex;
@@ -113,6 +112,9 @@
         overflow-y: auto;
       }
     }
+  }
+  .widget.widget-sidebar h2 {
+    cursor: pointer;
   }
 
   /* <div class="widget-body-blur"></div> */
