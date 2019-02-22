@@ -3,7 +3,7 @@
     <MainWidget>
       <h2 class="main-widget-heading" slot="heading">
         <span>{{ widgetHeader }}</span>
-        <a href @click.prevent="$emit('editToggle')" class="main-layout-edit"><Icon name="cog" /></a>
+        <EditLayoutButton :editing="editing" @editToggle="$emit('editToggle')" />
       </h2>
 
       <WidgetEditor slot="body" v-if="editing" class="main-widget-editor"
@@ -17,12 +17,14 @@
 </template>
 
 <script>
+  import EditLayoutButton from './EditLayoutButton.vue';
   import MainWidget from './MainWidget.vue';
   import WidgetEditor from './WidgetEditor.vue';
 
   export default {
     props: ['editing'],
     components: {
+      EditLayoutButton,
       MainWidget,
       WidgetEditor,
     },
@@ -60,14 +62,6 @@
   }
   .widget h2.main-widget-heading {
     padding: 15px 25px 5px;
-  }
-  .main-layout-edit {
-    color: $gray-300;
-    border: none;
-    font-size: 14px;
-    &:hover {
-      color: $gray-700;
-    }
   }
   .main-layout .widget {
     height: 100vh;
