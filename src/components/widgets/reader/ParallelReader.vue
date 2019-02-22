@@ -23,65 +23,25 @@
 </script>
 
 <style lang="scss">
-  .parallel-reader {
-    max-height: calc(100vh - 53px);
-  }
-  .text {
-    font-family: 'Noto Serif';
-    margin: 1em 1em 6em;
-
-    .line {
-      display: flex;
-      align-items: flex-start;
-      .line-ref {
-        font-family: 'Noto Sans';
-        color: #69C;
-        width: 3.5em;
-        flex-shrink: 0;
-      }
-      .line-text {
-      }
-    }
-
+  .parallel-reader.text {
     &.text-xs {
-      max-width: 500px;
-      line-height: 1.5;
+      max-width: 1000px;
     }
 
     &.text-sm {
-      max-width: 600px;
-      line-height: 1.6;
+      max-width: 1200px;
     }
 
     &.text-md {
-      max-width: 700px;
-      line-height: 1.7;
+      max-width: 1400px;
     }
 
     &.text-lg {
-      max-width: 800px;
-      line-height: 1.8;
+      max-width: 1600px;
     }
 
     &.text-xl {
-      max-width: 900px;
-      line-height: 1.9;
+      max-width: 1800px;
     }
-  }
-
-  .text-xs {
-    font-size: 12px;
-  }
-  .text-sm {
-    font-size: 14px;
-  }
-  .text-md {
-    font-size: 16px;
-  }
-  .text-lg {
-    font-size: 20px;
-  }
-  .text-xl {
-    font-size: 24px;
   }
 </style>

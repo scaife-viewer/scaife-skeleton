@@ -23,9 +23,11 @@
   @import "../../../variables.scss";
 
   .parallel-line {
+    padding: 5px;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
     &:hover {
       background: $gray-100;
     }
