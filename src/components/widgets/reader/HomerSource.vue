@@ -65,24 +65,25 @@
 
 <style lang="scss">
   @import "../../../variables.scss";
+
   .homer-source-selector {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
   }
+
   button.btn-book {
     background: transparent;
     color: $gray-700;
     padding: 2px 4px;
     border: none;
-    font-size: 10px;
+    font-size: 12px;
     &:hover {
       background: $gray-300;
       color: $black;
     }
     &.active {
-      background: $gray-800;
-      color: $gray-300;
+      background: $gray-700;
+      color: $white;
     }
   }
-
 </style>

@@ -12,7 +12,7 @@
   export default {
     scaifeConfig: {
       displayName: 'Homer Reader',
-      location: 'main',
+      location: 'both',
     },
     components: {
       HomerSource,
@@ -25,5 +25,3 @@
     },
   };
 </script>
-
-

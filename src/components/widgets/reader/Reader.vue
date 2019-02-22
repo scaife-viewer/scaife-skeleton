@@ -62,6 +62,11 @@
     }
   }
 
+  .widget-sidebar .text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
   .text-xs {
     font-size: 12px;
   }
