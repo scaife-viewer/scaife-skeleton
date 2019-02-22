@@ -59,7 +59,6 @@
     position: relative;
     margin: 0 auto;
     flex: 2;
-    min-width: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;

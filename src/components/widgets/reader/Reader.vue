@@ -21,7 +21,7 @@
 <style lang="scss">
   .text {
     font-family: 'Noto Serif';
-    margin: 1em 1em 6em;
+    margin: 0.5em 0.5em 1em;
 
     .line {
       display: flex;
