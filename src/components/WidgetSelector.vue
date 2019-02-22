@@ -1,7 +1,7 @@
 <template>
   <div class="add-widgets">
     <div class="widget-option" :class="{ selected: selected(option) }" v-for="(option, i) in widgetOptions" :key="i" @click.prevent="$emit('select', option.component)">
-      <span><icon :name="iconName(option)" /> {{ option.text }}</span>
+      <span><icon :name="iconName(option)" /></span> <span>{{ option.text }}</span>
     </div>
   </div>
 </template>
@@ -38,12 +38,15 @@
 
   .widget-option {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     cursor: pointer;
     padding: 0.75rem 1.25rem;
     margin: 0.5rem 0.375rem;
     border: 1px solid $gray-100;
     background: $gray-200;
+    span:first-of-type {
+      margin-right: 8px;
+    }
     &:hover,
     &.selected {
       background: $gray-300;

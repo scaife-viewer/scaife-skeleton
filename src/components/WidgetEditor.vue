@@ -24,7 +24,6 @@
     right: 0;
     border-top: 1px solid $gray-300;
     background: $gray-100;
-    text-align: center;
     display: block;
     button {
       margin: 15px 0;
