@@ -40,7 +40,9 @@
     }
 
     &.main-widget-editor {
+      border-top: none;
       position: relative;
+      margin-top: 100px;
       width: 80%;
       max-width: 900px;
       align-self: center;

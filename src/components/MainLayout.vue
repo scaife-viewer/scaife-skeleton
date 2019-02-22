@@ -61,7 +61,7 @@
     justify-content: center;
   }
   .widget h2.main-widget-heading {
-    padding: 15px 25px 5px;
+    padding: 15px 24px 15px;
   }
   .main-layout .widget {
     height: 100vh;

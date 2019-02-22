@@ -20,12 +20,13 @@ export default {
       color: $gray-700;
     }
     &.editing {
-      background: $gray-300;
+      background: $gray-200;
       color: $gray-700;
       text-decoration: none;
+      margin-top: -5px; // to make DONE line up with heading
       padding: 5px 10px;
       &:hover {
-        background: $gray-500;
+        background: $gray-400;
       }
     }
   }
