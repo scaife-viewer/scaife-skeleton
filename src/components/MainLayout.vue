@@ -1,19 +1,17 @@
 <template>
-  <div class="main-layout" @mouseover="hovering = true" @mouseout="hovering = false">
-    <WidgetEditor class="main-widget-editor"
-        v-if="editing || widget === null" kind="main"
-        :editing="editing || widget === null"
-        :main-editor="true"
-        @toggle-edit="editing = !editing"
-        @change-widget="changeWidget" />
-
-    <MainWidget :editing="editing" v-else>
+  <div class="main-layout">
+    <MainWidget>
       <h2 class="main-widget-heading" slot="heading">
-        <span>{{ widget.scaifeConfig.displayName }}</span>
-        <a href @click.prevent="editing =! editing" class="main-layout-edit"><Icon name="cog" /></a>
+        <span>{{ widgetHeader }}</span>
+        <a href @click.prevent="$emit('editToggle')" class="main-layout-edit"><Icon name="cog" /></a>
       </h2>
 
-      <component slot="body" :is="widget" />
+      <WidgetEditor slot="body" v-if="editing" class="main-widget-editor"
+        kind="main"
+        :editing="editing"
+        :main-editor="true"
+        @change-widget="changeWidget" />
+      <component slot="body" :is="widget" v-else-if="widget !== null" />
     </MainWidget>
   </div>
 </template>
@@ -23,20 +21,18 @@
   import WidgetEditor from './WidgetEditor.vue';
 
   export default {
+    props: ['editing'],
     components: {
       MainWidget,
       WidgetEditor,
     },
     computed: {
+      widgetHeader() {
+        return this.widget ? this.widget.scaifeConfig.displayName : '';
+      },
       widget() {
         return this.$store.state.widgets.mainWidget;
       },
-    },
-    data() {
-      return {
-        editing: false,
-        hovering: false,
-      };
     },
     methods: {
       // These should really dispatch actions
@@ -45,7 +41,6 @@
           ...this.$store.state.widgets,
           mainWidget,
         };
-        this.editing = false;
       },
     }
   };
@@ -63,14 +58,10 @@
     flex-direction: column;
     justify-content: center;
   }
-  .main-layout:hover .main-layout-edit {
-    display: inline-block;
-  }
   .widget h2.main-widget-heading {
     padding: 15px 25px 5px;
   }
   .main-layout-edit {
-    display: none;
     color: $gray-300;
     border: none;
     font-size: 14px;

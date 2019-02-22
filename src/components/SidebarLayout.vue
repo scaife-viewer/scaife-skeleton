@@ -1,5 +1,5 @@
 <template>
-  <aside @mouseover="hovering = true" @mouseout="hovering = false" class="sidebar-wrapper" :class="{ 'sidebar-left--open': leftOpen, 'sidebar-left--closed': !leftOpen, 'sidebar-right--open': rightOpen, 'sidebar-right--closed': !rightOpen }">
+  <aside class="sidebar-wrapper" :class="{ 'sidebar-left--open': leftOpen, 'sidebar-left--closed': !leftOpen, 'sidebar-right--open': rightOpen, 'sidebar-right--closed': !rightOpen }">
     <div class="button-container">
       <button class="toggle-open" v-if="open" @click="$emit('toggle')"><slot name="open-close-button" /></button>
       <button class="toggle-open" v-else @click="$emit('toggle')"><slot name="close-open-button" /></button>
@@ -15,7 +15,7 @@
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
-      <WidgetEditor kind="sidebar" :editing="editing" :hovering="hovering" @toggle-edit="editing = !editing" @change-widget="addWidget" />
+      <WidgetEditor kind="sidebar" v-if="editing" @change-widget="addWidget" />
     </div>
   </aside>
 </template>
@@ -25,14 +25,8 @@
   import WidgetEditor from './WidgetEditor.vue';
 
   export default {
-    props: ["name", "open"],
+    props: ['name', 'open', 'editing'],
     components: { WidgetEditor, SidebarWidget },
-    data() {
-      return {
-        editing: false,
-        hovering: false,
-      }
-    },
     computed: {
       leftOpen() {
         return this.$store.state.leftOpen;

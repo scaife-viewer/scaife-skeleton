@@ -1,11 +1,11 @@
 <template>
   <div class="skeleton">
-    <SidebarLayout name="left" class="left" :open="leftOpen" @toggle="onLeftToggle">
+    <SidebarLayout name="left" class="left" :open="leftOpen" @toggle="onLeftToggle" @editToggle="editing = !editing" :editing="editing">
       <icon slot="open-close-button" name="arrow-left" />
       <icon slot="close-open-button" name="arrow-right" />
     </SidebarLayout>
-    <MainLayout />
-    <SidebarLayout name="right" class="right" :open="rightOpen" @toggle="onRightToggle">
+    <MainLayout @editToggle="editing = !editing" :editing="editing" />
+    <SidebarLayout name="right" class="right" :open="rightOpen" @toggle="onRightToggle" @editToggle="editing = !editing" :editing="editing">
       <icon slot="open-close-button" name="arrow-right" />
       <icon slot="close-open-button" name="arrow-left" />
     </SidebarLayout>
@@ -20,6 +20,11 @@
 
   export default {
     components: { MainLayout, SidebarLayout },
+    data() {
+      return {
+        editing: false,
+      }
+    },
     methods: {
       onLeftToggle() {
         this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
