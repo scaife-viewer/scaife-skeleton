@@ -1,7 +1,7 @@
 <template>
   <div class="widget-editor" :class="{ editing, hovering }">
-    <WidgetSelector :kind="kind" v-if="editing" @select="widget => $emit('change-widget', widget)" />
-    <button @click="$emit('toggle-edit')">{{ editing ? 'Done' : 'Edit' }}</button>
+    <WidgetSelector :main-editor="mainEditor" :kind="kind" v-if="editing" @select="widget => $emit('change-widget', widget)" />
+    <button v-if="!mainEditor" @click="$emit('toggle-edit')">{{ editing ? 'Done' : 'Edit' }}</button>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
   import WidgetSelector from './WidgetSelector.vue';
 
   export default {
-    props: ['kind', 'editing', 'hovering'],
+    props: ['kind', 'editing', 'hovering', 'mainEditor'],
     components: { WidgetSelector },
   }
 </script>
@@ -43,5 +43,11 @@
         color: $black;
       }
     }
+
+    &.main-widget-editor {
+      position: relative;
+
+    }
   }
+
 </style>

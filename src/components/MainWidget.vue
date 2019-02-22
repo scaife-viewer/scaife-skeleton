@@ -1,11 +1,6 @@
 <template>
   <div class="widget">
-    <h2>
-      <span>
-        <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link"><icon name="minus-circle" /></a>
-        <slot name="heading" />
-      </span>
-    </h2>
+    <slot name="heading" />
     <div>
       <slot name="sticky" />
     </div>

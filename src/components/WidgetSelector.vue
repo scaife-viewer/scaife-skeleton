@@ -1,15 +1,27 @@
 <template>
   <div class="add-widgets">
     <div class="widget-option" v-for="(option, i) in widgetOptions" :key="i" @click.prevent="$emit('select', option.component)">
-      <span><icon name="plus-square" /> {{ option.text }}</span>
+      <span><icon :name="iconName(option)" /> {{ option.text }}</span>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    props: ['kind'],
+    props: ['kind', 'mainEditor'],
+    methods: {
+      iconName(option) {
+        if (this.mainEditor) {
+          return this.mainWidget === option.component ? 'check-square' : 'square';
+        } else {
+          return 'plus-square';
+        }
+      },
+    },
     computed: {
+      mainWidget() {
+        return this.$store.state.widgets.mainWidget;
+      },
       widgetOptions() {
         return this.$store.state.widgetOptions.filter(o => {
           const { location } = o.scaifeConfig;
@@ -17,7 +29,7 @@
         }).filter(o => {
           const { singleton } = o.scaifeConfig;
           if (singleton) {
-            return (this.$store.state.widgets.mainWidget !== o &&
+            return (this.mainWidget !== o &&
                     this.$store.state.widgets.left.indexOf(o) === -1 &&
                     this.$store.state.widgets.right.indexOf(o) === -1)
           } else {
