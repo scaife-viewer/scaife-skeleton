@@ -1,15 +1,19 @@
 <template>
-  <div class="reader" :class="['text', `text-${textSize}`]">
-    <ReaderLine v-for="line in passageText" :key="line[0]" :line-ref="line[0]" :text="line[1]" />
+  <div class="parallel-reader" :class="['text', `text-${textSize}`]">
+    <ParallelLine
+        v-for="(line, index) in passageText" :key="line[0]"
+        :left-line="line"
+        :right-line="rightPassageText[index]"
+    />
   </div>
 </template>
 
 <script>
-  import ReaderLine from './ReaderLine.vue';
+  import ParallelLine from './ParallelLine.vue';
 
   export default {
-    props: ['passage-text'],
-    components: { ReaderLine },
+    props: ['passage-text', 'right-passage-text'],
+    components: { ParallelLine },
     computed: {
       textSize() {
         return this.$store.state.readerTextSize;
@@ -19,6 +23,9 @@
 </script>
 
 <style lang="scss">
+  .parallel-reader {
+    max-height: calc(100vh - 53px);
+  }
   .text {
     font-family: 'Noto Serif';
     margin: 1em 1em 6em;

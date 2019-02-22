@@ -1,47 +1,13 @@
 <template>
   <div class="select-passage-reader">
-    <div class="btn-group">
-      <button class="btn-book" @click.prevent="selectBook(index)" v-for="(bookLength, index) in books" :key="index" :class="{ active: selectedBook === (index + 1)}">
-        {{ index + 1 }}
-      </button>
-    </div>
-    </select>
+    <HomerSource v-model="passageText" />
     <Reader :passage-text="passageText" />
   </div>
 </template>
 
 <script>
-  import axios from "axios";
+  import HomerSource from './HomerSource.vue';
   import Reader from './Reader.vue';
-
-  const TITLE = 'Iliad';
-  const URN = 'urn:cts:greekLit:tlg0012.tlg001.perseus-grc2';
-  const BOOK_LENGTHS = [
-    611,
-    877,
-    461,
-    544,
-    909,
-    529,
-    482,
-    565,
-    713,
-    579,
-    848,
-    471,
-    837,
-    522,
-    746,
-    867,
-    761,
-    616,
-    424,
-    503,
-    611,
-    515,
-    897,
-    804
-  ];
 
   export default {
     scaifeConfig: {
@@ -49,30 +15,14 @@
       location: 'main',
     },
     components: {
+      HomerSource,
       Reader,
     },
     data() {
       return {
         passageText: '',
-        selectedBook: null,
       }
     },
-    methods: {
-      selectBook(index) {
-        this.selectedBook = index + 1;
-        axios
-          .get(`https://homer-api.herokuapp.com/${this.selectedUrn}/`)
-          .then(r => this.passageText = r.data );
-      }
-    },
-    computed: {
-      selectedUrn() {
-        return `${URN}:${this.selectedBook}.1-${this.selectedBook}.${BOOK_LENGTHS[this.selectedBook - 1]}`;
-      },
-      books() {
-        return BOOK_LENGTHS;
-      }
-    }
   };
 </script>
 

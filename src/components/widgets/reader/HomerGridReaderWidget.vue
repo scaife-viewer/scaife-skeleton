@@ -8,7 +8,6 @@
 </template>
 
 <script>
-  import axios from "axios";
   import HomerReaderWidget from './HomerReaderWidget.vue';
 
   export default {

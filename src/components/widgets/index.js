@@ -3,6 +3,7 @@ import MorphologyWidget from './morpheus/MorphologyWidget.vue';
 import ReaderWidget from './reader/ReaderWidget.vue';
 import HomerReaderWidget from './reader/HomerReaderWidget.vue';
 import HomerGridReaderWidget from './reader/HomerGridReaderWidget.vue';
+import HomerParallelReaderWidget from './reader/HomerParallelReaderWidget.vue';
 import TextSizeWidget from './text-size/TextSizeWidget.vue';
 
 export default [
@@ -11,5 +12,6 @@ export default [
   ReaderWidget,
   HomerReaderWidget,
   HomerGridReaderWidget,
+  HomerParallelReaderWidget,
   TextSizeWidget,
 ];
