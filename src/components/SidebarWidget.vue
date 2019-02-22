@@ -10,7 +10,7 @@
         </span>
         <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link"><icon name="minus-circle" /></a>
         <span v-if="open & !editing" class="fixed-toggle" @click.prevent="toggleFix">
-          <Icon :name="fixed ? 'expand' : 'compress'" />
+          <Icon class="fa-flip-horizontal" :name="fixed ? 'expand' : 'compress'" />
         </span>
       </h2>
       <div v-if="open" class="sticky-body">
@@ -90,6 +90,7 @@
       }
       .fixed-toggle {
         opacity: 0;
+        font-size: 0.9rem;
         max-width: 2em;
         color: $gray-400;
         text-align: right;
