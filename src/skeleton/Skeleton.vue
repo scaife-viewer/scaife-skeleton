@@ -41,13 +41,11 @@
 </template>
 
 <script>
-  import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
-
   import MainLayout from "./main/MainLayout.vue";
   import SidebarLayout from "./sidebar/SidebarLayout.vue";
 
   export default {
-    props: ['mainWidget', 'leftWidgets', 'rightWidgets'],
+    props: ['leftOpen', 'rightOpen', 'mainWidget', 'leftWidgets', 'rightWidgets'],
     components: { MainLayout, SidebarLayout },
     data() {
       return {
@@ -56,27 +54,19 @@
     },
     methods: {
       onLeftToggle() {
-        this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
+        this.$emit('leftToggle');
       },
       onRightToggle() {
-        this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR);
+        this.$emit('rightToggle');
       },
       addWidget(name, widget) {
-        this.$store.state.widgets[name] = [
-          ...this.$store.state.widgets[name],
-          widget
-        ];
+        this.$emit('addWidget', name, widget);
       },
       changeWidget(mainWidget) {
-        this.$store.state.widgets = {
-          ...this.$store.state.widgets,
-          mainWidget,
-        };
+        this.$emit('changeWidget', mainWidget);
       },
       removeWidget(name, index)  {
-        const widgets = [...this.$store.state.widgets[name]];
-        widgets.splice(index, 1);
-        this.$store.state.widgets[name] = widgets;
+        this.$emit('removeWidget', name, index);
       }
     },
     computed: {
@@ -91,12 +81,6 @@
       },
       sidebarWidgetOptions() {
         return this.$scaife.skeleton.widgetOptions('sidebar', this.mainWidget, this.leftWidgets, this.rightWidgets);
-      },
-      leftOpen() {
-        return this.$store.state.leftOpen;
-      },
-      rightOpen() {
-        return this.$store.state.rightOpen;
       },
     }
   };
