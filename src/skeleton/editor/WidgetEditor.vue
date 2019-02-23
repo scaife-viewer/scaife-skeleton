@@ -1,6 +1,6 @@
 <template>
   <div class="widget-editor">
-    <WidgetSelector :main-editor="mainEditor" :kind="kind" @select="widget => $emit('change-widget', widget)" />
+    <WidgetSelector :main-widget="mainWidget" :options="options" @select="widget => $emit('change-widget', widget)" />
   </div>
 </template>
 
@@ -8,7 +8,7 @@
   import WidgetSelector from './WidgetSelector.vue';
 
   export default {
-    props: ['kind', 'mainEditor'],
+    props: ['mainWidget', 'options'],
     components: { WidgetSelector },
   }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="add-widgets">
-    <div class="widget-option" :class="{ selected: selected(option) }" v-for="(option, i) in widgetOptions" :key="i" @click.prevent="$emit('select', option.component)">
+    <div class="widget-option" :class="{ selected: selected(option) }" v-for="(option, i) in options" :key="i" @click.prevent="$emit('select', option.component)">
       <span><icon :name="iconName(option)" /></span> <span>{{ option.text }}</span>
     </div>
   </div>
@@ -8,28 +8,19 @@
 
 <script>
   export default {
-    props: ['kind', 'mainEditor'],
+    props: ['options', 'mainWidget'],
     methods: {
       selected(option) {
-        return this.mainEditor && this.mainWidget === option.component;
+        return this.mainWidget && this.mainWidget === option.component;
       },
       iconName(option) {
-        if (this.mainEditor) {
+        if (this.mainWidget) {
           return this.mainWidget === option.component ? 'check-square' : 'square';
         } else {
           return 'plus-square';
         }
       },
     },
-    computed: {
-      mainWidget() {
-        return this.$store.state.widgets.mainWidget;
-      },
-      widgetOptions() {
-        const { mainWidget, left, right } = this.$store.state.widgets;
-        return this.$scaife.skeleton.widgetOptions(this.kind, mainWidget, left, right);
-      }
-    }
   }
 </script>
 

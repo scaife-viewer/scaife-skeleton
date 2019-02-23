@@ -9,7 +9,8 @@
       <WidgetEditor slot="body" v-if="editing" class="main-widget-editor"
         kind="main"
         :editing="editing"
-        :main-editor="true"
+        :main-widget="widget"
+        :options="widgetOptions"
         @change-widget="widget => $emit('changeWidget', widget)" />
       <component slot="body" :is="widget" v-show="!editing" v-if="widget !== null" />
     </MainWidget>
@@ -22,7 +23,7 @@
   import WidgetEditor from '../editor/WidgetEditor.vue';
 
   export default {
-    props: ['editing', 'widget'],
+    props: ['editing', 'widget', 'widgetOptions'],
     components: {
       EditLayoutButton,
       MainWidget,

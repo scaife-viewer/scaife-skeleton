@@ -3,6 +3,7 @@
     <SidebarLayout
       class="left"
       :class="sidebarClasses"
+      :widgetOptions="sidebarWidgetOptions"
       @changeWidget="widget => addWidget('left', widget)"
       @removeWidget="index => removeWidget('left', index)"
       @editToggle="editing = !editing"
@@ -19,11 +20,13 @@
       @editToggle="editing = !editing"
       :editing="editing"
       :widget="mainWidget"
+      :widgetOptions="mainWidgetOptions"
     />
 
     <SidebarLayout
       class="right"
       :class="sidebarClasses"
+      :widgetOptions="sidebarWidgetOptions"
       @changeWidget="widget => addWidget('right', widget)"
       @removeWidget="index => removeWidget('right', index)"
       @editToggle="editing = !editing"
@@ -82,6 +85,12 @@
           this.leftOpen ? 'sidebar-left--open' : 'sidebar-left--closed',
           this.rightOpen ? 'sidebar-right--open' : 'sidebar-right--closed',
         ];
+      },
+      mainWidgetOptions() {
+        return this.$scaife.skeleton.widgetOptions('main', this.mainWidget, this.leftWidgets, this.rightWidgets);
+      },
+      sidebarWidgetOptions() {
+        return this.$scaife.skeleton.widgetOptions('sidebar', this.mainWidget, this.leftWidgets, this.rightWidgets);
       },
       leftOpen() {
         return this.$store.state.leftOpen;
