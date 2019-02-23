@@ -10,7 +10,7 @@
         kind="main"
         :editing="editing"
         :main-editor="true"
-        @change-widget="changeWidget" />
+        @change-widget="widget => $emit('changeWidget', widget)" />
       <component slot="body" :is="widget" v-show="!editing" v-if="widget !== null" />
     </MainWidget>
   </div>
@@ -19,10 +19,10 @@
 <script>
   import EditLayoutButton from './EditLayoutButton.vue';
   import MainWidget from './MainWidget.vue';
-  import WidgetEditor from './WidgetEditor.vue';
+  import WidgetEditor from '../editor/WidgetEditor.vue';
 
   export default {
-    props: ['editing'],
+    props: ['editing', 'widget'],
     components: {
       EditLayoutButton,
       MainWidget,
@@ -32,24 +32,12 @@
       widgetHeader() {
         return this.widget ? this.widget.scaifeConfig.displayName : '';
       },
-      widget() {
-        return this.$store.state.widgets.mainWidget;
-      },
     },
-    methods: {
-      // These should really dispatch actions
-      changeWidget(mainWidget) {
-        this.$store.state.widgets = {
-          ...this.$store.state.widgets,
-          mainWidget,
-        };
-      },
-    }
   };
 </script>
 
 <style lang="scss">
-  @import "../variables.scss";
+  @import "../../variables.scss";
 
   .main-layout {
     height: 100vh;

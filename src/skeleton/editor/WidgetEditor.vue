@@ -14,7 +14,7 @@
 </script>
 
 <style lang="scss">
-  @import "../variables.scss";
+  @import "../../variables.scss";
 
   .widget-editor {
     z-index: 2000;  // has to be more than the widget sticky-block

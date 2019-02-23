@@ -10,7 +10,7 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import "../variables.scss";
+  @import "../../variables.scss";
 
   .edit-layout-button {
     color: $gray-300;

@@ -1,62 +1,34 @@
 <template>
-  <aside class="sidebar-wrapper" :class="{ 'sidebar-left--open': leftOpen, 'sidebar-left--closed': !leftOpen, 'sidebar-right--open': rightOpen, 'sidebar-right--closed': !rightOpen }">
-    <div class="button-container">
-      <button class="toggle-open" v-if="open" @click="$emit('toggle')"><slot name="open-close-button" /></button>
-      <button class="toggle-open" v-else @click="$emit('toggle')"><slot name="close-open-button" /></button>
-    </div>
+  <aside class="sidebar-wrapper">
+    <slot name="button-container" />
     <div class="sidebar">
       <div class="widgets">
         <SidebarWidget
           v-for="(widget, index) in widgets"
           :key="index"
-          @remove="removeWidget(index)"
+          @remove="$emit('removeWidget', index)"
           :editing="editing">
           <span slot="heading" class="heading">{{ widget.scaifeConfig.displayName }}</span>
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
-      <WidgetEditor kind="sidebar" v-if="editing" @change-widget="addWidget" />
+      <WidgetEditor kind="sidebar" v-if="editing" @change-widget="widget => $emit('changeWidget', widget)" />
     </div>
   </aside>
 </template>
 
 <script>
   import SidebarWidget from './SidebarWidget.vue';
-  import WidgetEditor from './WidgetEditor.vue';
+  import WidgetEditor from '../editor/WidgetEditor.vue';
 
   export default {
-    props: ['name', 'open', 'editing'],
+    props: ['open', 'editing', 'widgets'],
     components: { WidgetEditor, SidebarWidget },
-    computed: {
-      leftOpen() {
-        return this.$store.state.leftOpen;
-      },
-      rightOpen() {
-        return this.$store.state.rightOpen;
-      },
-      widgets() {
-        return this.$store.state.widgets[this.name];
-      },
-    },
-    methods: {
-      // These should really dispatch actions
-      addWidget(component) {
-        this.$store.state.widgets[this.name] = [
-          ...this.$store.state.widgets[this.name],
-          component
-        ];
-      },
-      removeWidget(index) {
-        const widgets = [...this.$store.state.widgets[this.name]];
-        widgets.splice(index, 1);
-        this.$store.state.widgets[this.name] = widgets;
-      }
-    }
   };
 </script>
 
 <style lang="scss">
-  @import "../variables.scss";
+  @import "../../variables.scss";
 
   .sidebar-wrapper {
     flex: 1;

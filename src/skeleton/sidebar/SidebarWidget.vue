@@ -44,7 +44,7 @@
 </script>
 
 <style lang="scss">
-  @import "../variables.scss";
+  @import "../../variables.scss";
 
   .remove-link {
     color: red;

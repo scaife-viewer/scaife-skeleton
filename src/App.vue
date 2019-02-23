@@ -1,16 +1,27 @@
 <template>
   <div id="app">
-    <Skeleton />
+    <Skeleton :main-widget="mainWidget" :left-widgets="leftWidgets" :right-widgets="rightWidgets" />
   </div>
 </template>
 
 <script>
-  import Skeleton from './components/Skeleton.vue'
+  import Skeleton from './skeleton/Skeleton.vue'
 
   export default {
     name: 'app',
     components: {
       Skeleton
+    },
+    computed: {
+      mainWidget() {
+        return this.$store.state.widgets.mainWidget;
+      },
+      leftWidgets() {
+        return this.$store.state.widgets.left;
+      },
+      rightWidgets() {
+        return this.$store.state.widgets.right;
+      }
     }
   }
 </script>

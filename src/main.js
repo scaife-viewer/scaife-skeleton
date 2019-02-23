@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import store from './store';
-import SkeletonPlugin from './plugin';
+import SkeletonPlugin from './skeleton/plugin';
 
 import globalComponents from './global-components';
 
