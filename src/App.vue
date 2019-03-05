@@ -1,72 +1,18 @@
 <template>
   <div id="app">
-    <EditableSkeleton
-      @leftToggle="onLeftToggle"
-      @rightToggle="onRightToggle"
-      @addWidget="addWidget"
-      @changeWidget="changeWidget"
-      @removeWidget="removeWidget"
-      :left-open="leftOpen"
-      :right-open="rightOpen"
-      :main-widget="mainWidget"
-      :left-widgets="leftWidgets"
-      :right-widgets="rightWidgets"
-    />
+    <div class="menu" v-if="$route.name === 'home'">
+      <ul>
+        <li><router-link :to="{name: 'editable'}">Editable Skeleton Demo</router-link></li>
+        <li><router-link :to="{name: 'morphgnt'}">MorphGNT Demo</router-link></li>
+      </ul>
+    </div>
+    <router-view v-else />
   </div>
 </template>
 
 <script>
-  import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from './constants';
-
-  import EditableSkeleton from './skeleton/EditableSkeleton.vue'
-
   export default {
     name: 'app',
-    components: {
-      EditableSkeleton
-    },
-    methods: {
-      onLeftToggle() {
-        this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
-      },
-      onRightToggle() {
-        this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR);
-      },
-      addWidget(name, widget) {
-        this.$store.state.widgets[name] = [
-          ...this.$store.state.widgets[name],
-          widget
-        ];
-      },
-      changeWidget(mainWidget) {
-        this.$store.state.widgets = {
-          ...this.$store.state.widgets,
-          mainWidget,
-        };
-      },
-      removeWidget(name, index)  {
-        const widgets = [...this.$store.state.widgets[name]];
-        widgets.splice(index, 1);
-        this.$store.state.widgets[name] = widgets;
-      }
-    },
-    computed: {
-      mainWidget() {
-        return this.$store.state.widgets.mainWidget;
-      },
-      leftWidgets() {
-        return this.$store.state.widgets.left;
-      },
-      rightWidgets() {
-        return this.$store.state.widgets.right;
-      },
-      leftOpen() {
-        return this.$store.state.leftOpen;
-      },
-      rightOpen() {
-        return this.$store.state.rightOpen;
-      },
-    }
   }
 </script>
 
