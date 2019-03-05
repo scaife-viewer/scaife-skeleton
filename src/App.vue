@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Skeleton
+    <EditableSkeleton
       @leftToggle="onLeftToggle"
       @rightToggle="onRightToggle"
       @addWidget="addWidget"
@@ -18,12 +18,12 @@
 <script>
   import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from './constants';
 
-  import Skeleton from './skeleton/Skeleton.vue'
+  import EditableSkeleton from './skeleton/EditableSkeleton.vue'
 
   export default {
     name: 'app',
     components: {
-      Skeleton
+      EditableSkeleton
     },
     methods: {
       onLeftToggle() {
