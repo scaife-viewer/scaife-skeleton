@@ -16,6 +16,7 @@
   import MainLayout from '../skeleton/main/MainLayout.vue';
   import SidebarLayout from '../skeleton/sidebar/SidebarLayout.vue';
 
+  import TextSizeWidget from '../components/widgets/text-size/TextSizeWidget.vue';
   import BookInfoWidget from '../components/widgets/morphgnt/BookInfoWidget.vue';
   import BookSelectWidget from '../components/widgets/morphgnt/BookSelectWidget.vue';
   import Passage from '../components/widgets/morphgnt/Passage.vue';
@@ -57,7 +58,7 @@
         return [BookSelectWidget, BookInfoWidget];
       },
       rightWidgets() {
-        return [];
+        return [TextSizeWidget];
       },
       leftOpen() {
         return this.$store.state.leftOpen;

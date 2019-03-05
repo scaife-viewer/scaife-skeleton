@@ -3,7 +3,7 @@
     <template v-if="passage">
       <Pagination :prev="linker(passage.prev)" :next="linker(passage.next)" :title="passage.title" />
 
-      <div id="text" :class="textClasses" v-fragment="passage.fragment">
+      <div id="text" :class="['text', `text-${textSize}`]" v-fragment="passage.fragment">
         <p>
           <div v-for="word in passage.words" :key="word['@id']" class="word unit">
             <span class="verse-num" v-if="word.id.slice(8, 11) == '001'">{{ parseInt(word.id.slice(5, 8)) }}</span><!--
@@ -79,9 +79,9 @@ export default {
     interlinear() {
       return this.$store.state.interlinear;
     },
-    textClasses() {
-      return this.$store.getters.textClasses;
-    },
+    textSize() {
+      return this.$store.state.readerTextSize;
+    }
   },
   mounted() {
     window.addEventListener('keyup', this.handleKeyUp);
