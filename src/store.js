@@ -7,9 +7,11 @@ import {
   SET_TEXT_SIZE,
   TOGGLE_LEFT_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
-  SET_BOOKS,
-  SET_BOOK,
-  SET_PASSAGE,
+  MORPHGNT_SET_BOOKS,
+  MORPHGNT_SET_BOOK,
+  MORPHGNT_SET_PASSAGE,
+  MORPHGNT_SELECT_WORD,
+  MORPHGNT_TOGGLE_INTERLINEAR,
 } from './constants';
 
 Vue.use(Vuex)
@@ -29,9 +31,11 @@ export default new Vuex.Store({
     selectedLemmas: [],
     readerTextSize: 'md',
 
+    interlinear: false,
     books: [],
     book: null,
     passage: null,
+    word: null,
   },
   mutations: {
     [SET_SELECTED_LEMMAS]: (state, lemmas) => state.selectedLemmas = lemmas,
@@ -39,9 +43,9 @@ export default new Vuex.Store({
     [SET_PASSAGE_TEXT]: (state, lines) => state.passageText = lines,
     [TOGGLE_LEFT_SIDEBAR]: state => state.leftOpen = !state.leftOpen,
     [TOGGLE_RIGHT_SIDEBAR]: state => state.rightOpen = !state.rightOpen,
-    [SET_BOOKS]: (state, books) => state.books = books,
-    [SET_BOOK]: (state, book) => state.book = book,
-    [SET_PASSAGE]: (state, passage) => {
+    [MORPHGNT_SET_BOOKS]: (state, books) => state.books = books,
+    [MORPHGNT_SET_BOOK]: (state, book) => state.book = book,
+    [MORPHGNT_SET_PASSAGE]: (state, passage) => {
       const { prev, next, title, words, ...p } = passage;
       state.passage = {
         prev,
@@ -69,6 +73,8 @@ export default new Vuex.Store({
         })),
       };
     },
+    [MORPHGNT_SELECT_WORD]: (state, word) => state.word = word,
+    [MORPHGNT_TOGGLE_INTERLINEAR]: state => state.interlinear = !state.interlinear,
   },
   actions: {
     [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -82,14 +88,21 @@ export default new Vuex.Store({
     [SET_TEXT_SIZE]: ({ commit }, { size }) => {
       commit(SET_TEXT_SIZE, size);
     },
-    [SET_BOOKS]: ({ commit }, { books }) => {
-      commit(SET_BOOKS, books);
+    [MORPHGNT_SET_BOOKS]: ({ commit }, { books }) => {
+      commit(MORPHGNT_SET_BOOKS, books);
     },
-    [SET_BOOK]: ({ commit }, { book }) => {
-      commit(SET_BOOK, book);
+    [MORPHGNT_SET_BOOK]: ({ commit }, { book }) => {
+      commit(MORPHGNT_SET_BOOK, book);
     },
-    [SET_PASSAGE]: ({ commit }, { passage }) => {
-      commit(SET_PASSAGE, passage);
+    [MORPHGNT_SET_PASSAGE]: ({ commit }, { passage }) => {
+      commit(MORPHGNT_SET_PASSAGE, passage);
+    },
+    [MORPHGNT_SELECT_WORD]: ({ commit }, { word }) => {
+      console.log('action', word);
+      commit(MORPHGNT_SELECT_WORD, word);
+    },
+    [MORPHGNT_TOGGLE_INTERLINEAR]: ({ commit }) => {
+      commit(MORPHGNT_TOGGLE_INTERLINEAR);
     }
   },
 })

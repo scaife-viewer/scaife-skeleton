@@ -94,7 +94,7 @@ export default {
       return {name: 'morphgnt', query: { passage }};
     },
     handleWordSelect(word) {
-      this.$store.commit('setSelectedWord', word);
+      this.$store.dispatch('selectedWord', { word });
     },
     handleKeyUp(e) {
       if (e.key === 'ArrowLeft') {

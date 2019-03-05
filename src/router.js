@@ -12,8 +12,8 @@ const router = new Router({
   base: '',
   routes: [
     { path: '/', component: App, name: 'home' },
-    { path: 'editable-skeleon/', component: EditableSkeletonDemo, name: 'editable' },
-    { path: 'morphgnt/', component: MorphGNTDemo, name: 'morphgnt'},
+    { path: '/editable-skeleon/', component: EditableSkeletonDemo, name: 'editable' },
+    { path: '/morphgnt/', component: MorphGNTDemo, name: 'morphgnt'},
   ],
 });
 

@@ -7,7 +7,6 @@
       :main-widget="mainWidget"
       :left-widgets="leftWidgets"
       :right-widgets="rightWidgets">
-
     </FixedSkeleton>
 </template>
 <script>
@@ -19,9 +18,10 @@
   import TextSizeWidget from '../components/widgets/text-size/TextSizeWidget.vue';
   import BookInfoWidget from '../components/widgets/morphgnt/BookInfoWidget.vue';
   import BookSelectWidget from '../components/widgets/morphgnt/BookSelectWidget.vue';
-  import Passage from '../components/widgets/morphgnt/Passage.vue';
+  import InterlinearWidget from '../components/widgets/morphgnt/InterlinearWidget.vue';
+  import PassageWidget from '../components/widgets/morphgnt/PassageWidget.vue';
 
-  import { SET_BOOKS, SET_BOOK, SET_PASSAGE, TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
+  import { MORPHGNT_SET_BOOKS, MORPHGNT_SET_BOOK, MORPHGNT_SET_PASSAGE, TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR, SET_WORD } from '../constants';
 
   export default {
     components: {
@@ -39,26 +39,26 @@
       fetchData() {
         const apiRoot = 'https://api.morphgnt.org';
         axios.get(`${apiRoot}/v0/root.json`)
-          .then(r => this.$store.dispatch(SET_BOOKS, r.data));
+          .then(r => this.$store.dispatch(MORPHGNT_SET_BOOKS, r.data));
         if (this.$route.query.book) {
           axios.get(`${apiRoot}${this.$route.query.book}`)
-            .then(r => this.$store.dispatch(SET_BOOK, { book: r.data }));
+            .then(r => this.$store.dispatch(MORPHGNT_SET_BOOK, { book: r.data }));
         }
         if (this.$route.query.passage) {
           axios.get(`${apiRoot}${this.$route.query.passage}`)
-            .then(r => this.$store.dispatch(SET_PASSAGE, { passage: r.data }));
+            .then(r => this.$store.dispatch(MORPHGNT_SET_PASSAGE, { passage: r.data }));
         }
       }
     },
     computed: {
       mainWidget() {
-        return Passage;
+        return PassageWidget;
       },
       leftWidgets() {
         return [BookSelectWidget, BookInfoWidget];
       },
       rightWidgets() {
-        return [TextSizeWidget];
+        return [TextSizeWidget, InterlinearWidget];
       },
       leftOpen() {
         return this.$store.state.leftOpen;
