@@ -2,7 +2,7 @@
     <div class="book-select">
       <ul>
         <li v-for="book in books" :key="book['@id']">
-          <router-link class="click" :to="{query: {book: book['@id']}}">{{ book.name }}</router-link>
+          <router-link class="click" :to="{name: 'morphgnt', query: {book: book['@id']}}">{{ book.name }}</router-link>
         </li>
       </ul>
     </div>
@@ -16,6 +16,10 @@
       location: 'sidebar',
       singleton: true,
     },
-    props: ['books']
+    computed: {
+      books() {
+        return this.$store.state.books;
+      }
+    }
   };
 </script>

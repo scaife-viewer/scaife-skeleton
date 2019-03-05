@@ -11,14 +11,16 @@
     </FixedSkeleton>
 </template>
 <script>
+  import axios from 'axios';
   import FixedSkeleton from '../skeleton/FixedSkeleton.vue';
   import MainLayout from '../skeleton/main/MainLayout.vue';
   import SidebarLayout from '../skeleton/sidebar/SidebarLayout.vue';
 
-  import HomerWidget from '../components/widgets/homer/HomerWidget.vue';
-  import TextSizeWidget from '../components/widgets/text-size/TextSizeWidget.vue';
+  import BookInfoWidget from '../components/widgets/morphgnt/BookInfoWidget.vue';
+  import BookSelectWidget from '../components/widgets/morphgnt/BookSelectWidget.vue';
+  import Passage from '../components/widgets/morphgnt/Passage.vue';
 
-  import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
+  import { SET_BOOKS, SET_BOOK, SET_PASSAGE, TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
 
   export default {
     components: {
@@ -33,13 +35,26 @@
       onRightToggle() {
         this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR);
       },
+      fetchData() {
+        const apiRoot = 'https://api.morphgnt.org';
+        axios.get(`${apiRoot}/v0/root.json`)
+          .then(r => this.$store.dispatch(SET_BOOKS, r.data));
+        if (this.$route.query.book) {
+          axios.get(`${apiRoot}${this.$route.query.book}`)
+            .then(r => this.$store.dispatch(SET_BOOK, { book: r.data }));
+        }
+        if (this.$route.query.passage) {
+          axios.get(`${apiRoot}${this.$route.query.passage}`)
+            .then(r => this.$store.dispatch(SET_PASSAGE, { passage: r.data }));
+        }
+      }
     },
     computed: {
       mainWidget() {
-        return HomerWidget;
+        return Passage;
       },
       leftWidgets() {
-        return [TextSizeWidget];
+        return [BookSelectWidget, BookInfoWidget];
       },
       rightWidgets() {
         return [];
@@ -50,6 +65,12 @@
       rightOpen() {
         return this.$store.state.rightOpen;
       },
+    },
+    created() {
+        this.fetchData();
+    },
+    watch: {
+        $route: 'fetchData',
     }
   }
 </script>
