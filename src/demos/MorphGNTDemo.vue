@@ -20,7 +20,8 @@
   import BookInfoWidget from '../components/widgets/morphgnt/BookInfoWidget.vue';
   import BookSelectWidget from '../components/widgets/morphgnt/BookSelectWidget.vue';
   import InterlinearWidget from '../components/widgets/morphgnt/InterlinearWidget.vue';
-  import PassageWidget from '../components/widgets/morphgnt/PassageWidget.vue';
+  import SelectablePassageWidget from '../components/widgets/morphgnt/SelectablePassageWidget.vue';
+  import SelectedWordsWidget from '../components/widgets/morphgnt/SelectedWordsWidget.vue';
 
   import { MORPHGNT_SET_BOOKS, MORPHGNT_SET_BOOK, MORPHGNT_SET_PASSAGE, TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR, SET_WORD } from '../constants';
 
@@ -53,13 +54,13 @@
     },
     computed: {
       mainWidget() {
-        return PassageWidget;
+        return SelectablePassageWidget;
       },
       leftWidgets() {
         return [BookSelectWidget, BookInfoWidget];
       },
       rightWidgets() {
-        return [TextSizeWidget, InterlinearWidget, SelectedTextInfoWidget];
+        return [TextSizeWidget, InterlinearWidget, SelectedTextInfoWidget, SelectedWordsWidget];
       },
       leftOpen() {
         return this.$store.state.leftOpen;

@@ -12,7 +12,9 @@ import {
   MORPHGNT_SET_PASSAGE,
   MORPHGNT_SELECT_WORD,
   MORPHGNT_TOGGLE_INTERLINEAR,
+  MORPHGNT_SET_SELECTED_WORD,
 } from './constants';
+import { stat } from 'fs';
 
 Vue.use(Vuex)
 
@@ -75,6 +77,11 @@ export default new Vuex.Store({
     },
     [MORPHGNT_SELECT_WORD]: (state, word) => state.word = word,
     [MORPHGNT_TOGGLE_INTERLINEAR]: state => state.interlinear = !state.interlinear,
+    [MORPHGNT_SET_SELECTED_WORD]: (state, { word, selected }) => {
+      if (selected) {
+        state.selectedWords = [...state.selectedWords, word]; // clearly wrong but just start get something going
+      }
+    },
   },
   actions: {
     [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -103,6 +110,9 @@ export default new Vuex.Store({
     },
     [MORPHGNT_TOGGLE_INTERLINEAR]: ({ commit }) => {
       commit(MORPHGNT_TOGGLE_INTERLINEAR);
+    },
+    [MORPHGNT_SET_SELECTED_WORD]: ({ commit }, { word, selected }) => {
+      commit(MORPHGNT_SET_SELECTED_WORD, { word, selected });
     }
   },
 })

@@ -11,6 +11,7 @@ import BookInfoWidget from './morphgnt/BookInfoWidget.vue';
 import BookSelectWidget from './morphgnt/BookSelectWidget.vue';
 import InterlinearWidget from './morphgnt/InterlinearWidget.vue';
 import PassageWidget from './morphgnt/PassageWidget.vue';
+import SelectablePassageWidget from './morphgnt/SelectablePassageWidget.vue';
 
 export default [
   HomerWidget,
@@ -26,4 +27,5 @@ export default [
   BookSelectWidget,
   InterlinearWidget,
   PassageWidget,
+  SelectablePassageWidget,
 ];
