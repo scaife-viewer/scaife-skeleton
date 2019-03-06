@@ -4,6 +4,7 @@ import store from './store';
 import SkeletonPlugin from './skeleton/plugin';
 
 import globalComponents from './global-components';
+import router from './router';
 
 Vue.config.productionTip = false;
 
@@ -16,5 +17,6 @@ Vue.use(SkeletonPlugin, { widgets });
 
 new Vue({
   store,
+  router,
   render: h => h(App)
 }).$mount('#app')
