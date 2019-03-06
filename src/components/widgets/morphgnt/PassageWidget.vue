@@ -7,15 +7,8 @@
         <p>
           <div v-for="word in passage.words" :key="word['@id']" class="word unit">
             <span class="verse-num" v-if="word.id.slice(8, 11) == '001'">{{ parseInt(word.id.slice(5, 8)) }}</span><!--
-            --><span :key="word.id" :id="word.id" :class="['txt', ...word.classes]" @click="handleWordSelect(word)">{{ word.text }}</span><br>
-            <template v-if="interlinear">
-              <span class="gls">
-                <span class="pos">{{ word.pos }}</span><!--
-                --><span v-if="word.mood">.{{ word.tense }}{{ word.voice }}{{ word.mood }}</span><!--
-                --><span v-if="word.number">.{{ word.person }}{{ word.case }}{{ word.number }}{{ word.gender }}</span><!--
-                --><br>{{ word.lemma }}<br>
-              </span>
-            </template>
+         --><span :key="word.id" :id="word.id" :class="['txt', ...word.classes]" @click="handleWordSelect(word)">{{ word.text }}</span><br>
+            <Interlinear v-if="interlinear" :word="word" />
           </div>
         </p>
       </div>
@@ -65,6 +58,7 @@
 
 <script>
 import Pagination from '../reader/Pagination';
+import Interlinear from './Interlinear.vue';
 
 export default {
   scaifeConfig: {
@@ -109,6 +103,7 @@ export default {
     },
   },
   components: {
+    Interlinear,
     Pagination,
   },
   directives: {
