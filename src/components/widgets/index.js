@@ -6,6 +6,11 @@ import HomerGridReaderWidget from './reader/HomerGridReaderWidget.vue';
 import HomerParallelReaderWidget from './reader/HomerParallelReaderWidget.vue';
 import TextSizeWidget from './text-size/TextSizeWidget.vue';
 
+import BookInfoWidget from './morphgnt/BookInfoWidget.vue';
+import BookSelectWidget from './morphgnt/BookSelectWidget.vue';
+import InterlinearWidget from './morphgnt/InterlinearWidget.vue';
+import PassageWidget from './morphgnt/PassageWidget.vue';
+
 export default [
   HomerWidget,
   // MorphologyWidget,
@@ -14,4 +19,9 @@ export default [
   HomerGridReaderWidget,
   HomerParallelReaderWidget,
   TextSizeWidget,
+
+  BookInfoWidget,
+  BookSelectWidget,
+  InterlinearWidget,
+  PassageWidget,
 ];
