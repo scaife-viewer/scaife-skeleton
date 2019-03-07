@@ -83,6 +83,7 @@ export default {
   methods: {
     handleMouseUp() {
       const selection = window.getSelection();
+      console.log(selection);
       this.selection = selection.type === 'Caret' ? null : selection;
     },
     linker(passage) {

@@ -78,8 +78,16 @@ export default new Vuex.Store({
     [MORPHGNT_SELECT_WORD]: (state, word) => state.word = word,
     [MORPHGNT_TOGGLE_INTERLINEAR]: state => state.interlinear = !state.interlinear,
     [MORPHGNT_SET_SELECTED_WORD]: (state, { word, selected }) => {
-      if (selected) {
-        state.selectedWords = [...state.selectedWords, word]; // clearly wrong but just start get something going
+      // if selected, then add if it doesn't exist already
+      // if not selected, remove if it does exist
+      const index = state.selectedWords.indexOf(word);
+      console.log(word.text, index);
+      if (selected && index === -1) {
+        state.selectedWords = [...state.selectedWords, word];
+      } else if (!selected && index > -1) {
+        const newSelection = [...state.selectedWords];
+        newSelection.splice(index, 1);
+        state.selectedWords = newSelection;
       }
     },
   },
