@@ -3,7 +3,7 @@
     <template v-if="passage">
       <Pagination :prev="linker(passage.prev)" :next="linker(passage.next)" :title="passage.title" />
 
-      <div id="text" :class="['text', `text-${textSize}`]" v-fragment="passage.fragment">
+      <div id="text" @mouseenter="active = true" @mouseleave="active = false" :class="['text', `text-${textSize}`]" v-fragment="passage.fragment">
         <p>
           <Word v-for="word in passage.words" :key="word['@id']" :word="word" :selection="selection" />
         </p>
@@ -74,6 +74,7 @@ export default {
     }
   },
   mounted() {
+    document.onmousedown = this.handleMouseDown;
     document.onmouseup = this.handleMouseUp;
     window.addEventListener('keyup', this.handleKeyUp);
   },
@@ -81,10 +82,18 @@ export default {
     window.removeEventListener('keyup', this.handleKeyUp);
   },
   methods: {
+    handleMouseDown(e) {
+      if (this.active) {
+        this.selection = null;
+      }
+    },
     handleMouseUp() {
-      const selection = window.getSelection();
-      console.log(selection);
-      this.selection = selection.type === 'Caret' ? null : selection;
+      if (this.active) {
+        const selection = window.getSelection();
+        if (selection.type !== 'Caret') {
+          this.selection = selection;
+        }
+      }
     },
     linker(passage) {
       return {name: 'morphgnt', query: { passage }};
@@ -104,6 +113,7 @@ export default {
   data() {
     return {
       selection: null,
+      active: false,
     }
   },
   components: {

@@ -81,7 +81,6 @@ export default new Vuex.Store({
       // if selected, then add if it doesn't exist already
       // if not selected, remove if it does exist
       const index = state.selectedWords.indexOf(word);
-      console.log(word.text, index);
       if (selected && index === -1) {
         state.selectedWords = [...state.selectedWords, word];
       } else if (!selected && index > -1) {
@@ -113,7 +112,6 @@ export default new Vuex.Store({
       commit(MORPHGNT_SET_PASSAGE, passage);
     },
     [MORPHGNT_SELECT_WORD]: ({ commit }, { word }) => {
-      console.log('action', word);
       commit(MORPHGNT_SELECT_WORD, word);
     },
     [MORPHGNT_TOGGLE_INTERLINEAR]: ({ commit }) => {

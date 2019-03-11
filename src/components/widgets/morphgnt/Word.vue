@@ -10,7 +10,7 @@
   import Interlinear from './Interlinear.vue';
 
   export default {
-    props: ['word', 'interlinear', 'selection'],
+    props: ['word', 'interlinear', 'selection', 'selectedString'],
     components: {
       Interlinear,
     },
@@ -20,7 +20,7 @@
         handler() {
           this.$store.dispatch('setSelectedWord', {word: this.word, selected: this.isSelected});
         }
-      }
+      },
     },
     computed: {
       region() {
