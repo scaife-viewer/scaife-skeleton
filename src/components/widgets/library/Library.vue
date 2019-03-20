@@ -56,7 +56,9 @@ import {
     LIBRARY_LOAD_TEXT_GROUP_LIST,
     LIBRARY_RESET_TEXT_GROUP_WORKS,
     LIBRARY_FILTER_TEXT_GROUPS,
-    LIBRARY_RESET_TEXT_GROUPS
+    LIBRARY_FILTER_TEXT_GROUP_WORKS,
+    LIBRARY_RESET_TEXT_GROUPS,
+    LIBRARY_SET_SORT,
 } from '../../../constants';
 import LibraryTextGroup from './LibraryTextGroup.vue';
 import LibraryWork from './LibraryWork.vue';
@@ -139,7 +141,7 @@ export default {
       });
     },
     sort(kind) {
-      this.$store.commit(constants.SET_LIBRARY_SORT, { kind });
+      this.$store.dispatch(LIBRARY_SET_SORT, { kind });
     },
   },
   components: {

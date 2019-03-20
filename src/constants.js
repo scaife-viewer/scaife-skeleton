@@ -15,4 +15,6 @@ export const LIBRARY_SET_TEXT_GROUP_URNS = 'librarySetTextGroupURNs';
 
 export const LIBRARY_RESET_TEXT_GROUP_WORKS = 'libraryResetTextGroupWorks';
 export const LIBRARY_FILTER_TEXT_GROUPS = 'libraryFilterTextGroups';
+export const LIBRARY_FILTER_TEXT_GROUP_WORKS = 'libraryFilterTextGroupsWorks';
 export const LIBRARY_RESET_TEXT_GROUPS = 'libraryResetTextGroupWorks';
+export const LIBRARY_SET_SORT = 'librarySetSort';

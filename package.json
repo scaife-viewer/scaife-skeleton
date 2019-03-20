@@ -13,6 +13,7 @@
     "axios": "^0.18.0",
     "loaders.css": "^0.1.2",
     "vue": "^2.5.21",
+    "vue-js-popover": "^1.1.8",
     "vue-router": "^3.0.2",
     "vuex": "^3.0.1"
   },

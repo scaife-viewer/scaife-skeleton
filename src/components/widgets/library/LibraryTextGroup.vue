@@ -25,9 +25,13 @@
         </div>
         <div class="versions">
           <template v-for="text in work.texts">
-            <a :key="text.urn" :href="text.reader_url" class="badge badge-light" v-popover:bottom="{title: text.label, content: text.description, trigger: 'hover'}">
+            <a :key="text.urn" href @click.prevent="() => {}" class="badge badge-light" v-popover.bottom="{name: 'text-group', event: 'hover'}">
               {{ text.lang }}
             </a>{{ ' ' }}
+            <popover name="text-group" :key="`${text.urn}-popover`" event="hover">
+              <div>{{ text.label }}</div>
+              <div>{{ text.description }}</div>
+            </popover>
           </template>
         </div>
       </div>

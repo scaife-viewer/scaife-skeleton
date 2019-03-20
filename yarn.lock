@@ -7420,6 +7420,11 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.1.tgz#b2d3d95402a811602380783ea4f566eb875569a2"
   integrity sha512-AA86yKZ5uOKz87/q1UpngEXhbRkaYg1b7HMMVRobNV1IVKqZe8oLIzo6iMocVwZXnYitlGwf2k4ZRLOZlS8oPQ==
 
+vue-js-popover@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/vue-js-popover/-/vue-js-popover-1.1.8.tgz#9578656bbef9033a9373528774753f0520f2e83f"
+  integrity sha512-u2RN08XU3ZhatES48z3C0Yv/+Ft0hXkcKS63DjK9uX7oImQWsuC5xUC74CG0aQV+o8rUwgoikZFo696LTNNF1g==
+
 vue-loader@^15.4.2:
   version "15.5.1"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.5.1.tgz#e005d5fc2481a55a19910f0dcf434206d68acc2a"

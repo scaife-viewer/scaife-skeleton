@@ -16,6 +16,10 @@ import {
   LIBRARY_LOAD_TEXT_GROUP_LIST,
   LIBRARY_SET_TEXT_GROUPS,
   LIBRARY_SET_TEXT_GROUP_URNS,
+  LIBRARY_RESET_TEXT_GROUP_WORKS,
+  LIBRARY_FILTER_TEXT_GROUPS,
+  LIBRARY_FILTER_TEXT_GROUP_WORKS,
+  LIBRARY_SET_SORT,
 } from './constants';
 
 import transformTextGroupList from './transforms';
@@ -171,6 +175,10 @@ export default new Vuex.Store({
     [LIBRARY_SET_TEXT_GROUP_URNS]: (state, { textGroupUrns }) => {
       state.textGroupUrns = textGroupUrns;
     },
+    [LIBRARY_SET_SORT]: (state, { kind }) => {
+      console.log('m set sort', kind);
+      state.sortKind = kind;
+    },
   },
   actions: {
     [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -213,6 +221,48 @@ export default new Vuex.Store({
 
       commit(LIBRARY_SET_TEXT_GROUPS, { textGroups, works, texts });
       commit(LIBRARY_SET_TEXT_GROUP_URNS, { textGroupUrns });
+    },
+    [LIBRARY_RESET_TEXT_GROUP_WORKS]: ({ state, commit }) => {
+      commit(LIBRARY_SET_TEXT_GROUPS, { works: [...state.allTextGroupWorks] });
+    },
+    [LIBRARY_FILTER_TEXT_GROUPS]: ({ state, commit }, query) => {
+      if (state.allTextGroups) {
+        const textGroups = [];
+        state.allTextGroups.forEach((textGroup) => {
+          if (textGroup.label.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+            textGroups.push(textGroup);
+          } else {
+            const works = textGroup.works.filter((work) => {
+              const { label } = state.textGroupUrns[work.urn.toString()];
+              return label.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+            });
+            if (works.length > 0) {
+              textGroups.push({ ...textGroup, works });
+            }
+          }
+        });
+        commit(LIBRARY_SET_TEXT_GROUPS, { textGroups });
+      }
+    },
+    [LIBRARY_FILTER_TEXT_GROUP_WORKS]: ({ state, commit }, query) => {
+      if (state.allTextGroupWorks) {
+        const works = [];
+        state.allTextGroupWorks.forEach((work) => {
+          if (work.label.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+            works.push(work);
+          } else {
+            const { label } = state.textGroupUrns[work.urn.upTo('textGroup')];
+            if (label.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+              works.push(work);
+            }
+          }
+        });
+        commit(LIBRARY_SET_TEXT_GROUPS, { works });
+      }
+    },
+    [LIBRARY_SET_SORT]: ({ commit }, { kind }) => {
+      console.log('a set sort', kind);
+      commit(LIBRARY_SET_SORT, { kind });
     },
   },
 });
