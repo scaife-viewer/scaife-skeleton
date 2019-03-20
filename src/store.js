@@ -13,13 +13,29 @@ import {
   MORPHGNT_SELECT_WORD,
   MORPHGNT_TOGGLE_INTERLINEAR,
   MORPHGNT_SET_SELECTED_WORD,
+  LIBRARY_LOAD_TEXT_GROUP_LIST,
+  LIBRARY_SET_TEXT_GROUPS,
+  LIBRARY_SET_TEXT_GROUP_URNS,
 } from './constants';
-import { stat } from 'fs';
+
+import transformTextGroupList from './transforms';
+import library from './demos/medium.json';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    // Library
+    textGroups: [],
+    textGroupWorks: [],
+    textGroupTexts: [],
+    textGroupUrns: {},
+    allTextGroups: null,
+    allTextGroupWorks: null,
+    allTextGroupTexts: null,
+    sortKind: 'text-group',
+
+    // Reader
     rightOpen: true,
     leftOpen: true,
     widgets: {
@@ -38,6 +54,48 @@ export default new Vuex.Store({
     book: null,
     passage: null,
     word: null,
+  },
+  getters: {
+    sortedByURN(state, getters) {
+      const tmp = [...getters.hydratedTextGroups];
+      tmp.sort((a, b) => a.urn.localeCompare(b.urn));
+      return tmp;
+    },
+    sortedByTextGroup(state, getters) {
+      const tmp = [...getters.hydratedTextGroups];
+      tmp.sort((a, b) => a.label.localeCompare(b.label));
+      return tmp;
+    },
+    sortedByWork(state, getters) {
+      const tmp = [...getters.hydratedWorks];
+      tmp.sort((a, b) => a.label.localeCompare(b.label));
+      return tmp;
+    },
+    hydratedTextGroups(state) {
+      return state.textGroups.map(textGroup => ({
+        ...textGroup,
+        urn: textGroup.urn.toString(),
+        works: textGroup.works.map(work => ({
+          ...state.textGroupUrns[work.urn.toString()],
+          urn: work.urn.toString(),
+          texts: work.texts.map(text => ({
+            ...state.textGroupUrns[text.urn.toString()],
+            urn: text.urn.toString(),
+          })),
+        })),
+      }));
+    },
+    hydratedWorks(state) {
+      return state.textGroupWorks.map(work => ({
+        ...state.textGroupUrns[work.urn.toString()],
+        urn: work.urn.toString(),
+        textGroup: state.textGroupUrns[work.urn.upTo('textGroup')],
+        texts: work.texts.map(text => ({
+          ...state.textGroupUrns[text.urn.toString()],
+          urn: text.urn.toString(),
+        })),
+      }));
+    },
   },
   mutations: {
     [SET_SELECTED_LEMMAS]: (state, lemmas) => state.selectedLemmas = lemmas,
@@ -89,6 +147,30 @@ export default new Vuex.Store({
         state.selectedWords = newSelection;
       }
     },
+    [LIBRARY_SET_TEXT_GROUPS]: (state, { textGroups, works, texts }) => {
+      if (textGroups !== undefined) {
+        if (!state.allTextGroups) {
+          state.allTextGroups = [...textGroups];
+        }
+        state.textGroups = textGroups;
+      }
+      if (works !== undefined) {
+        if (!state.allTextGroupWorks) {
+          state.allTextGroupWorks = [...works];
+        }
+        state.textGroupWorks = works;
+      }
+      if (texts !== undefined) {
+        if (!state.allTextGroupTexts) {
+          state.allTextGroupTexts = [...texts];
+        }
+        state.textGroupTexts = texts;
+      }
+    },
+
+    [LIBRARY_SET_TEXT_GROUP_URNS]: (state, { textGroupUrns }) => {
+      state.textGroupUrns = textGroupUrns;
+    },
   },
   actions: {
     [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -119,6 +201,18 @@ export default new Vuex.Store({
     },
     [MORPHGNT_SET_SELECTED_WORD]: ({ commit }, { word, selected }) => {
       commit(MORPHGNT_SET_SELECTED_WORD, { word, selected });
-    }
+    },
+    [LIBRARY_LOAD_TEXT_GROUP_LIST]: ({ commit }) => {
+      // eventually call an API getting `library`
+      const {
+        textGroups,
+        works,
+        texts,
+        textGroupUrns,
+      } = transformTextGroupList(library);
+
+      commit(LIBRARY_SET_TEXT_GROUPS, { textGroups, works, texts });
+      commit(LIBRARY_SET_TEXT_GROUP_URNS, { textGroupUrns });
+    },
   },
-})
+});

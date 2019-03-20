@@ -4,6 +4,7 @@
       <ul>
         <li><router-link :to="{name: 'editable'}">Editable Skeleton Demo</router-link></li>
         <li><router-link :to="{name: 'morphgnt'}">MorphGNT Demo</router-link></li>
+        <li><router-link :to="{name: 'library'}">Library Demo</router-link></li>
       </ul>
     </div>
     <router-view v-else />
@@ -12,10 +13,7 @@
 
 <script>
   export default {
-    name: 'app',
-    created() {
-      console.log(this.$route);
-    }
+    name: 'app'
   }
 </script>
 

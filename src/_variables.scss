@@ -9,3 +9,16 @@ $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
 $black:  #000;
+
+$perseus-red: #b45141;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+$link-color: theme-color("primary") !default;
+$text-muted: $gray-600 !default;
