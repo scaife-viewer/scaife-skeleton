@@ -62,17 +62,17 @@ export default new Vuex.Store({
   getters: {
     sortedByURN(state, getters) {
       const tmp = [...getters.hydratedTextGroups];
-      tmp.sort((a, b) => a.urn.localeCompare(b.urn));
+      tmp.sort((a, b) => a.urn && a.urn.localeCompare(b.urn));
       return tmp;
     },
     sortedByTextGroup(state, getters) {
       const tmp = [...getters.hydratedTextGroups];
-      tmp.sort((a, b) => a.label.localeCompare(b.label));
+      tmp.sort((a, b) => a.label && a.label.localeCompare(b.label));
       return tmp;
     },
     sortedByWork(state, getters) {
       const tmp = [...getters.hydratedWorks];
-      tmp.sort((a, b) => a.label.localeCompare(b.label));
+      tmp.sort((a, b) => a.label && a.label.localeCompare(b.label));
       return tmp;
     },
     hydratedTextGroups(state) {
@@ -176,7 +176,6 @@ export default new Vuex.Store({
       state.textGroupUrns = textGroupUrns;
     },
     [LIBRARY_SET_SORT]: (state, { kind }) => {
-      console.log('m set sort', kind);
       state.sortKind = kind;
     },
   },
@@ -261,7 +260,6 @@ export default new Vuex.Store({
       }
     },
     [LIBRARY_SET_SORT]: ({ commit }, { kind }) => {
-      console.log('a set sort', kind);
       commit(LIBRARY_SET_SORT, { kind });
     },
   },

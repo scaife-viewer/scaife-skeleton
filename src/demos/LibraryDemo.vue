@@ -1,17 +1,51 @@
 <template>
-  <section class="main">
-    <div class="container">
-      <Library />
-    </div>
-  </section>
+    <FixedSkeleton
+      @leftToggle="onLeftToggle"
+      @rightToggle="onRightToggle"
+      :left-open="leftOpen"
+      :right-open="rightOpen"
+      :main-widget="mainWidget"
+      :left-widgets="leftWidgets"
+      :right-widgets="rightWidgets">
+    </FixedSkeleton>
 </template>
-
 <script>
-import Library from '../components/widgets/library/Library.vue';
+  import FixedSkeleton from '../skeleton/FixedSkeleton.vue';
 
-export default {
-  components: { Library },
-}
+  import LibraryWidget from '../components/widgets/library/LibraryWidget.vue';
+
+  import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
+
+  export default {
+    components: {
+      FixedSkeleton,
+    },
+    methods: {
+      onLeftToggle() {
+        this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
+      },
+      onRightToggle() {
+        this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR);
+      },
+    },
+    computed: {
+      mainWidget() {
+        return null;
+      },
+      leftWidgets() {
+        return [LibraryWidget];
+      },
+      rightWidgets() {
+        return [];
+      },
+      leftOpen() {
+        return this.$store.state.leftOpen;
+      },
+      rightOpen() {
+        return this.$store.state.rightOpen;
+      },
+    },
+  }
 </script>
 
 <style lang="scss">
@@ -19,14 +53,6 @@ export default {
 @import "../breakpoints.scss";
 
 // borrowed from bootstrap
-.container {
-  max-width: 1140px;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
 .form-control {
     display: block;
     width: 100%;
@@ -151,7 +177,7 @@ button, input, optgroup, select, textarea {
   }
 }
 
-body.library section.main {
+.widget-sidebar {
   h2 {
     font-size: 18px;
     color: $gray-600;
@@ -322,30 +348,6 @@ body.library section.main {
           }
         }
       }
-    }
-  }
-}
-
-body.library {
-  .popover-header {
-    background: white;
-    font-family: 'Noto Serif';
-    padding: 6px 8px;
-  }
-  .popover-body {
-    font-size: 12px;
-    line-height: 14px;
-    color: $gray-800;
-    padding: 4px 8px;
-  }
-}
-
-body.cts_text {
-  .toc {
-    margin: 10px 0;
-    h3 {
-      font-size: 18px;
-      font-family: 'Noto Serif';
     }
   }
 }
