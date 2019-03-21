@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import App from './App.vue';
 import EditableSkeletonDemo from './demos/EditableSkeletonDemo.vue';
 import MorphGNTDemo from './demos/MorphGNTDemo.vue';
+import LibraryDemo from './demos/LibraryDemo.vue';
 
 Vue.use(Router);
 
@@ -14,6 +15,7 @@ const router = new Router({
     { path: '/', component: App, name: 'home' },
     { path: '/editable-skeleon/', component: EditableSkeletonDemo, name: 'editable' },
     { path: '/morphgnt/', component: MorphGNTDemo, name: 'morphgnt'},
+    { path: '/library/', component: LibraryDemo, name: 'library' },
   ],
 });
 

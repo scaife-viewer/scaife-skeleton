@@ -13,13 +13,39 @@ import {
   MORPHGNT_SELECT_WORD,
   MORPHGNT_TOGGLE_INTERLINEAR,
   MORPHGNT_SET_SELECTED_WORD,
+  LIBRARY_LOAD_TEXT_GROUP_LIST,
+  LIBRARY_SET_TEXT_GROUPS,
+  LIBRARY_SET_TEXT_GROUP_URNS,
+  LIBRARY_RESET_TEXT_GROUP_WORKS,
+  LIBRARY_FILTER_TEXT_GROUPS,
+  LIBRARY_FILTER_TEXT_GROUP_WORKS,
+  LIBRARY_SET_SORT,
+  LIBRARY_SELECT_TEXT_GROUP,
+  LIBRARY_SELECT_WORK,
+  LIBRARY_SELECT_TEXT,
 } from './constants';
-import { stat } from 'fs';
+
+import transformTextGroupList from './transforms';
+import library from './demos/medium.json';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    // Library
+    textGroups: [],
+    textGroupWorks: [],
+    textGroupTexts: [],
+    textGroupUrns: {},
+    allTextGroups: null,
+    allTextGroupWorks: null,
+    allTextGroupTexts: null,
+    sortKind: 'text-group',
+    selectedTextGroup: null,
+    selectedWork: null,
+    selectedText: null,
+
+    // Reader
     rightOpen: true,
     leftOpen: true,
     widgets: {
@@ -38,6 +64,48 @@ export default new Vuex.Store({
     book: null,
     passage: null,
     word: null,
+  },
+  getters: {
+    sortedByURN(state, getters) {
+      const tmp = [...getters.hydratedTextGroups];
+      tmp.sort((a, b) => a.urn && a.urn.localeCompare(b.urn));
+      return tmp;
+    },
+    sortedByTextGroup(state, getters) {
+      const tmp = [...getters.hydratedTextGroups];
+      tmp.sort((a, b) => a.label && a.label.localeCompare(b.label));
+      return tmp;
+    },
+    sortedByWork(state, getters) {
+      const tmp = [...getters.hydratedWorks];
+      tmp.sort((a, b) => a.label && a.label.localeCompare(b.label));
+      return tmp;
+    },
+    hydratedTextGroups(state) {
+      return state.textGroups.map(textGroup => ({
+        ...textGroup,
+        urn: textGroup.urn.toString(),
+        works: textGroup.works.map(work => ({
+          ...state.textGroupUrns[work.urn.toString()],
+          urn: work.urn.toString(),
+          texts: work.texts.map(text => ({
+            ...state.textGroupUrns[text.urn.toString()],
+            urn: text.urn.toString(),
+          })),
+        })),
+      }));
+    },
+    hydratedWorks(state) {
+      return state.textGroupWorks.map(work => ({
+        ...state.textGroupUrns[work.urn.toString()],
+        urn: work.urn.toString(),
+        textGroup: state.textGroupUrns[work.urn.upTo('textGroup')],
+        texts: work.texts.map(text => ({
+          ...state.textGroupUrns[text.urn.toString()],
+          urn: text.urn.toString(),
+        })),
+      }));
+    },
   },
   mutations: {
     [SET_SELECTED_LEMMAS]: (state, lemmas) => state.selectedLemmas = lemmas,
@@ -89,6 +157,48 @@ export default new Vuex.Store({
         state.selectedWords = newSelection;
       }
     },
+    [LIBRARY_SET_TEXT_GROUPS]: (state, { textGroups, works, texts }) => {
+      if (textGroups !== undefined) {
+        if (!state.allTextGroups) {
+          state.allTextGroups = [...textGroups];
+        }
+        state.textGroups = textGroups;
+      }
+      if (works !== undefined) {
+        if (!state.allTextGroupWorks) {
+          state.allTextGroupWorks = [...works];
+        }
+        state.textGroupWorks = works;
+      }
+      if (texts !== undefined) {
+        if (!state.allTextGroupTexts) {
+          state.allTextGroupTexts = [...texts];
+        }
+        state.textGroupTexts = texts;
+      }
+    },
+
+    [LIBRARY_SET_TEXT_GROUP_URNS]: (state, { textGroupUrns }) => {
+      state.textGroupUrns = textGroupUrns;
+    },
+    [LIBRARY_SET_SORT]: (state, { kind }) => {
+      state.sortKind = kind;
+    },
+    [LIBRARY_SELECT_TEXT_GROUP]: (state, { textGroup }) => {
+      state.selectedTextGroup = textGroup;
+      state.selectedWork = null;
+      state.selectedText = null;
+    },
+    [LIBRARY_SELECT_WORK]: (state, { work }) => {
+      state.selectedTextGroup = null;
+      state.selectedWork = work;
+      state.selectedText = null;
+    },
+    [LIBRARY_SELECT_TEXT]: (state, { text }) => {
+      state.selectedTextGroup = null;
+      state.selectedWork = null;
+      state.selectedText = text;
+    }
   },
   actions: {
     [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -119,6 +229,68 @@ export default new Vuex.Store({
     },
     [MORPHGNT_SET_SELECTED_WORD]: ({ commit }, { word, selected }) => {
       commit(MORPHGNT_SET_SELECTED_WORD, { word, selected });
+    },
+    [LIBRARY_LOAD_TEXT_GROUP_LIST]: ({ commit }) => {
+      // eventually call an API getting `library`
+      const {
+        textGroups,
+        works,
+        texts,
+        textGroupUrns,
+      } = transformTextGroupList(library);
+
+      commit(LIBRARY_SET_TEXT_GROUPS, { textGroups, works, texts });
+      commit(LIBRARY_SET_TEXT_GROUP_URNS, { textGroupUrns });
+    },
+    [LIBRARY_RESET_TEXT_GROUP_WORKS]: ({ state, commit }) => {
+      commit(LIBRARY_SET_TEXT_GROUPS, { works: [...state.allTextGroupWorks] });
+    },
+    [LIBRARY_FILTER_TEXT_GROUPS]: ({ state, commit }, query) => {
+      if (state.allTextGroups) {
+        const textGroups = [];
+        state.allTextGroups.forEach((textGroup) => {
+          if (textGroup.label.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+            textGroups.push(textGroup);
+          } else {
+            const works = textGroup.works.filter((work) => {
+              const { label } = state.textGroupUrns[work.urn.toString()];
+              return label.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+            });
+            if (works.length > 0) {
+              textGroups.push({ ...textGroup, works });
+            }
+          }
+        });
+        commit(LIBRARY_SET_TEXT_GROUPS, { textGroups });
+      }
+    },
+    [LIBRARY_FILTER_TEXT_GROUP_WORKS]: ({ state, commit }, query) => {
+      if (state.allTextGroupWorks) {
+        const works = [];
+        state.allTextGroupWorks.forEach((work) => {
+          if (work.label.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+            works.push(work);
+          } else {
+            const { label } = state.textGroupUrns[work.urn.upTo('textGroup')];
+            if (label.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+              works.push(work);
+            }
+          }
+        });
+        commit(LIBRARY_SET_TEXT_GROUPS, { works });
+      }
+    },
+    [LIBRARY_SET_SORT]: ({ commit }, { kind }) => {
+      commit(LIBRARY_SET_SORT, { kind });
+    },
+    [LIBRARY_SELECT_TEXT_GROUP]: ({ commit }, { textGroup }) => {
+      commit(LIBRARY_SELECT_TEXT_GROUP, { textGroup });
+    },
+    [LIBRARY_SELECT_WORK]: ({ commit }, { work }) => {
+      commit(LIBRARY_SELECT_WORK, { work });
+    },
+    [LIBRARY_SELECT_TEXT]: ({ commit }, { text }) => {
+      commit(LIBRARY_SELECT_TEXT, { text });
     }
   },
-})
+});

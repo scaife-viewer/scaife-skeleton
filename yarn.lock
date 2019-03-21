@@ -4420,6 +4420,11 @@ loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0:
     emojis-list "^2.0.0"
     json5 "^1.0.1"
 
+loaders.css@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/loaders.css/-/loaders.css-0.1.2.tgz#3a9fb43726c73334a38142af9d0629019b658743"
+  integrity sha1-Op+0NybHMzSjgUKvnQYpAZtlh0M=
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -7414,6 +7419,11 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.1.tgz#b2d3d95402a811602380783ea4f566eb875569a2"
   integrity sha512-AA86yKZ5uOKz87/q1UpngEXhbRkaYg1b7HMMVRobNV1IVKqZe8oLIzo6iMocVwZXnYitlGwf2k4ZRLOZlS8oPQ==
+
+vue-js-popover@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/vue-js-popover/-/vue-js-popover-1.1.8.tgz#9578656bbef9033a9373528774753f0520f2e83f"
+  integrity sha512-u2RN08XU3ZhatES48z3C0Yv/+Ft0hXkcKS63DjK9uX7oImQWsuC5xUC74CG0aQV+o8rUwgoikZFo696LTNNF1g==
 
 vue-loader@^15.4.2:
   version "15.5.1"

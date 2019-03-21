@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import Popover  from 'vue-js-popover';
+
 import App from './App.vue';
 import store from './store';
 import SkeletonPlugin from './skeleton/plugin';
@@ -14,6 +16,8 @@ globalComponents.forEach(component => {
 
 import widgets from './components/widgets';
 Vue.use(SkeletonPlugin, { widgets });
+
+Vue.use(Popover);
 
 new Vue({
   store,
