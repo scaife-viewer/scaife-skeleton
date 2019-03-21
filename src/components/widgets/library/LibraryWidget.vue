@@ -19,10 +19,8 @@
         </div>
       </div>
       <div class="controls">
-        <div class="toggle-all">
-          <template v-if="!filtered && collapsible">
+        <div class="toggle-all" v-if="!filtered && collapsible">
           <span @click="expandAll">expand all</span> | <span @click="collapseAll">collapse all</span>
-          </template>
         </div>
         <div class="sort">
           sort by:
@@ -33,18 +31,10 @@
       </div>
       <div :class="['text-groups', { filtered }]">
         <template v-if="sortKind === 'cts-urn' || sortKind === 'text-group'">
-          <template v-for="textGroup in textGroups">
-            <keep-alive>
-              <LibraryTextGroup ref="collapsible" :textGroup="textGroup" :filtered="filtered" :key="textGroup.urn" />
-            </keep-alive>
-          </template>
+          <LibraryTextGroup v-for="textGroup in textGroups" ref="collapsible" :textGroup="textGroup" :filtered="filtered" :key="textGroup.urn" />
         </template>
         <div v-else-if="sortKind === 'work'" class="flat-work-list">
-          <template v-for="work in works">
-            <keep-alive>
-              <LibraryWork :work="work" :filtered="filtered" :key="work.urn" />
-            </keep-alive>
-          </template>
+          <LibraryWork v-for="work in works" :work="work" :filtered="filtered" :key="work.urn" />
         </div>
       </div>
     </template>
