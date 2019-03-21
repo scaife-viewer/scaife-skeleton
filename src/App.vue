@@ -4,6 +4,7 @@
       <ul>
         <li><router-link :to="{name: 'editable'}">Editable Skeleton Demo</router-link></li>
         <li><router-link :to="{name: 'morphgnt'}">MorphGNT Demo</router-link></li>
+        <li><router-link :to="{name: 'pagination'}">Pagination Demo</router-link></li>
       </ul>
     </div>
     <router-view v-else />
