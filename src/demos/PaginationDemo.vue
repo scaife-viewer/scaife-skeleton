@@ -14,7 +14,7 @@
   import MainLayout from '../skeleton/main/MainLayout.vue';
   import SidebarLayout from '../skeleton/sidebar/SidebarLayout.vue';
 
-  import HomerWidget from '../components/widgets/homer/HomerWidget.vue';
+  import HomerCardsWidget from '../components/widgets/homer/HomerCardsWidget.vue';
   import CardReaderWidget from '../components/widgets/reader/CardReaderWidget.vue';
 
   import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
@@ -38,7 +38,7 @@
         return CardReaderWidget;
       },
       leftWidgets() {
-        return [HomerWidget];
+        return [HomerCardsWidget];
       },
       rightWidgets() {
         return [];
