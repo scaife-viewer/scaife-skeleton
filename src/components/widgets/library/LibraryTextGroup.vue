@@ -8,7 +8,7 @@
           </span>
       </div>
       <div class="label">
-        <a :href="textGroup.url">{{ textGroup.label }}</a>
+        <a href @click.prevent="$emit('selectTextGroup', textGroup)">{{ textGroup.label }}</a>
       </div>
       <div class="urn">
         <span>{{ textGroup.urn }}</span>
@@ -18,14 +18,14 @@
       <div v-for="work in textGroup.works" class="work" :key="work.urn">
         <div class="filler">&nbsp;</div>
         <div class="label">
-          <a :href="work.url">{{ work.label }}</a>
+          <a href @click.prevent="$emit('selectWork', work)">{{ work.label }}</a>
         </div>
         <div class="urn">
           {{ work.urn }}
         </div>
         <div class="versions">
           <template v-for="text in work.texts">
-            <a :key="text.urn" href @click.prevent="() => {}" class="badge badge-light" v-popover.bottom="{name: 'text-group', event: 'hover'}">
+            <a :key="text.urn" href @click.prevent="$emit('selectText', text)" class="badge badge-light" v-popover.bottom="{name: 'text-group', event: 'hover'}">
               {{ text.lang }}
             </a>{{ ' ' }}
             <popover name="text-group" :key="`${text.urn}-popover`" event="hover">

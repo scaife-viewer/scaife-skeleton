@@ -20,6 +20,9 @@ import {
   LIBRARY_FILTER_TEXT_GROUPS,
   LIBRARY_FILTER_TEXT_GROUP_WORKS,
   LIBRARY_SET_SORT,
+  LIBRARY_SELECT_TEXT_GROUP,
+  LIBRARY_SELECT_WORK,
+  LIBRARY_SELECT_TEXT,
 } from './constants';
 
 import transformTextGroupList from './transforms';
@@ -38,6 +41,9 @@ export default new Vuex.Store({
     allTextGroupWorks: null,
     allTextGroupTexts: null,
     sortKind: 'text-group',
+    selectedTextGroup: null,
+    selectedWork: null,
+    selectedText: null,
 
     // Reader
     rightOpen: true,
@@ -178,6 +184,21 @@ export default new Vuex.Store({
     [LIBRARY_SET_SORT]: (state, { kind }) => {
       state.sortKind = kind;
     },
+    [LIBRARY_SELECT_TEXT_GROUP]: (state, { textGroup }) => {
+      state.selectedTextGroup = textGroup;
+      state.selectedWork = null;
+      state.selectedText = null;
+    },
+    [LIBRARY_SELECT_WORK]: (state, { work }) => {
+      state.selectedTextGroup = null;
+      state.selectedWork = work;
+      state.selectedText = null;
+    },
+    [LIBRARY_SELECT_TEXT]: (state, { text }) => {
+      state.selectedTextGroup = null;
+      state.selectedWork = null;
+      state.selectedText = text;
+    }
   },
   actions: {
     [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -262,5 +283,14 @@ export default new Vuex.Store({
     [LIBRARY_SET_SORT]: ({ commit }, { kind }) => {
       commit(LIBRARY_SET_SORT, { kind });
     },
+    [LIBRARY_SELECT_TEXT_GROUP]: ({ commit }, { textGroup }) => {
+      commit(LIBRARY_SELECT_TEXT_GROUP, { textGroup });
+    },
+    [LIBRARY_SELECT_WORK]: ({ commit }, { work }) => {
+      commit(LIBRARY_SELECT_WORK, { work });
+    },
+    [LIBRARY_SELECT_TEXT]: ({ commit }, { text }) => {
+      commit(LIBRARY_SELECT_TEXT, { text });
+    }
   },
 });

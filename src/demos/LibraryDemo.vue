@@ -13,6 +13,8 @@
   import FixedSkeleton from '../skeleton/FixedSkeleton.vue';
 
   import LibraryWidget from '../components/widgets/library/LibraryWidget.vue';
+  import WorkListWidget from '../components/widgets/library/WorkListWidget.vue';
+  import WorkWidget from '../components/widgets/library/WorkWidget.vue';
 
   import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
 
@@ -29,7 +31,16 @@
       },
     },
     computed: {
+      selectedTextGroup() {
+        return this.$store.state.selectedTextGroup;
+      },
       mainWidget() {
+        if (this.selectedTextGroup !== null) {
+          return WorkListWidget;
+        }
+        if (this.selectedWork !== null) {
+          return WorkWidget;
+        }
         return null;
       },
       leftWidgets() {

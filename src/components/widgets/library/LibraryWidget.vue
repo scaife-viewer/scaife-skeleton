@@ -30,11 +30,25 @@
         </div>
       </div>
       <div :class="['text-groups', { filtered }]">
-        <template v-if="sortKind === 'cts-urn' || sortKind === 'text-group'">
-          <LibraryTextGroup v-for="textGroup in textGroups" ref="collapsible" :textGroup="textGroup" :filtered="filtered" :key="textGroup.urn" />
+        <template v-if="sortKind === 'cts-urn' || sortKind === 'text-group'"  >
+          <LibraryTextGroup
+            v-for="textGroup in textGroups" :key="textGroup.urn"
+            ref="collapsible"
+            :textGroup="textGroup"
+            :filtered="filtered"
+            @selectTextGroup="onSelectTextGroup"
+            @selectWork="onSelectWork"
+            @selectText="onSelectText"
+          />
         </template>
         <div v-else-if="sortKind === 'work'" class="flat-work-list">
-          <LibraryWork v-for="work in works" :work="work" :filtered="filtered" :key="work.urn" />
+          <LibraryWork
+            v-for="work in works" :key="work.urn"
+            :work="work"
+            :filtered="filtered"
+            @selectWork="onSelectWork"
+            @selectText="onSelectText"
+           />
         </div>
       </div>
     </template>
@@ -49,6 +63,9 @@ import {
     LIBRARY_FILTER_TEXT_GROUP_WORKS,
     LIBRARY_RESET_TEXT_GROUPS,
     LIBRARY_SET_SORT,
+LIBRARY_SELECT_TEXT_GROUP,
+LIBRARY_SELECT_WORK,
+LIBRARY_SELECT_TEXT,
 } from '../../../constants';
 import LibraryTextGroup from './LibraryTextGroup.vue';
 import LibraryWork from './LibraryWork.vue';
@@ -108,6 +125,15 @@ export default {
     },
   },
   methods: {
+    onSelectTextGroup(textGroup) {
+      this.$store.dispatch(LIBRARY_SELECT_TEXT_GROUP, { textGroup });
+    },
+    onSelectWork(work) {
+      this.$store.dispatch(LIBRARY_SELECT_WORK, { work });
+    },
+    onSelectText(text) {
+      this.$store.dispatch(LIBRARY_SELECT_TEXT, { text });
+    },
     clearQuery() {
       this.query = '';
     },
