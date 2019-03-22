@@ -19,21 +19,27 @@
     },
     methods: {
       onPreviousCard() {
-
+          this.$store.dispatch('previousCard');
       },
       onNextCard() {
-
+          this.$store.dispatch('nextCard');
       }
     },
     computed: {
       currentCard() {
-        return 2;
+        return this.$store.state.selectedCard;
       },
       previousCard() {
-        return 1;
+        if (this.currentCard === null || this.$store.state.cards.indexOf(this.currentCard) === 0) {
+            return this.$store.state.cards[this.$store.state.cards.length - 1];
+        }
+        return this.$store.state.cards[this.$store.state.cards.indexOf(this.currentCard) - 1];
       },
       nextCard() {
-          return 3;
+        if (this.currentCard === null || this.$store.state.cards.indexOf(this.currentCard) === this.$store.state.cards.length - 1) {
+            return this.$store.state.cards[0];
+        }
+        return this.$store.state.cards[this.$store.state.cards.indexOf(this.currentCard) + 1];
       },
       passageText() {
         return this.$store.state.passageText;
