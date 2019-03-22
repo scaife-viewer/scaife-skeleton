@@ -5,7 +5,7 @@
         class="card"
         v-for="card in cards"
         :key="card"
-        :class="{ selected: selectedCard === card }"
+        :class="{ selected: selectedCard(card) }"
       >
         <a
           href
@@ -28,11 +28,20 @@ export default {
     methods: {
       selectCard(card) {
         this.$store.dispatch('homerSelectCard', { card });
-      }
+      },
+      selectedCard(card) {
+        return this.selectedCards.indexOf(card) > -1;
+      },
     },
     computed: {
-        selectedCard() {
-            return this.$store.state.selectedCard;
+        passageStart() {
+            return this.$store.state.passageText && this.$store.state.passageText[0][0];
+        },
+        passageEnd() {
+            return this.$store.state.passageText && this.$store.state.passageText[this.$store.state.passageText.length - 1][0];
+        },
+        selectedCards() {
+            return this.$store.getters.getChunks(this.passageStart, this.passageEnd);
         },
         cards() {
             return this.$store.state.cards;
