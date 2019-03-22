@@ -16,6 +16,7 @@
 
   import HomerCardsWidget from '../components/widgets/homer/HomerCardsWidget.vue';
   import CardReaderWidget from '../components/widgets/reader/CardReaderWidget.vue';
+  import HomerReferenceInputWidget from '../components/widgets/homer/HomerReferenceInputWidget.vue';
 
   import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
 
@@ -41,7 +42,7 @@
         return [HomerCardsWidget];
       },
       rightWidgets() {
-        return [];
+        return [HomerReferenceInputWidget];
       },
       leftOpen() {
         return this.$store.state.leftOpen;
