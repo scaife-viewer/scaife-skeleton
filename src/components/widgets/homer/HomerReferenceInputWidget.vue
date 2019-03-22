@@ -1,7 +1,6 @@
 <template>
   <div class="homer-input-widget">
     <div class="input-group">
-        <label>Homer Reference</label>
         <input v-model="reference" />
     </div>
     <button @click.prevent="lookup">Lookup</button>
