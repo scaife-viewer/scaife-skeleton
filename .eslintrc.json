@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:vue/recommended",
+    "airbnb-base"
+  ],
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "html"
+  ],
+  "rules": {
+    "no-param-reassign": 0,
+    "generator-star-spacing": 0,
+    "import/extensions": ["error", "always", {
+      "js": "never",
+      "vue": "never"
+    }]
+  }
+}
