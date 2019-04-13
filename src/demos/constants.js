@@ -14,3 +14,4 @@ export const MORPHGNT_TOGGLE_INTERLINEAR = 'toggleInterlinear';
 export const MORPHGNT_SET_SELECTED_WORD = 'setSelectedWord';
 export const HOMER_SELECT_CARD = 'homerSelectCard';
 export const HOMER_LOOKUP_REFERENCE = 'homerLookupReference';
+export const SET_IMAGE_URL = 'setImageURL';
