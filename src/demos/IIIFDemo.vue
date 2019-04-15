@@ -11,7 +11,6 @@
 </template>
 
 <script>
-  import axios from 'axios';
   import FixedSkeleton from '../skeleton/FixedSkeleton.vue';
   import MainLayout from '../skeleton/main/MainLayout.vue';
   import SidebarLayout from '../skeleton/sidebar/SidebarLayout.vue';
