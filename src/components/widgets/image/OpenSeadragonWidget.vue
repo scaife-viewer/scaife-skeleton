@@ -8,7 +8,7 @@
       </ul>
     </small>
     <div class="search-input">
-      <input type="text" :value="imageURL" @input="updateImageURL" class="form-control form-control-sm" />
+      <input type="text" :value="imageURL" @input="updateImageURL" class="form-control form-control-sm" placeholder="Enter an image URL..."/>
     </div>
     <div id="image-toolbar" class="toolbar">
       <span><small>
@@ -139,8 +139,8 @@
     }
 
     .viewer {
-      width: 800px;
-      height: 600px;
+      width: 100%;
+      height: 100%;
       background-color: black;
     }
   }
