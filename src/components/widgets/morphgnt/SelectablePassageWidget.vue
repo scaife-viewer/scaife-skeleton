@@ -3,7 +3,13 @@
     <template v-if="passage">
       <Pagination :prev="linker(passage.prev)" :next="linker(passage.next)" :title="passage.title" />
 
-      <div id="text" @mouseenter="active = true" @mouseleave="active = false" :class="['text', `text-${textSize}`]" v-fragment="passage.fragment">
+      <div
+        id="text"
+        @mouseenter="active = true"
+        @mouseleave="active = false"
+        :class="['text', `text-${textSize}`, `text-width-${textWidth}`]"
+        v-fragment="passage.fragment"
+      >
         <p>
           <Word v-for="word in passage.words" :key="word['@id']" :word="word" :selection="selection" />
         </p>
@@ -12,7 +18,7 @@
       <Pagination :prev="linker(passage.prev)" :next="linker(passage.next)" :title="passage.title" />
 
     </template>
-    <div v-else>
+    <div v-else  id="text" :class="['text', `text-${textSize}`, `text-width-${textWidth}`]">
       <p>
         DeepReader is a highly modular, Vue.js-based online reading
         environment designed for deep reading of texts with integrated
@@ -71,6 +77,9 @@ export default {
     },
     textSize() {
       return this.$store.state.readerTextSize;
+    },
+    textWidth() {
+      return this.$store.state.readerTextWidth;
     }
   },
   mounted() {
@@ -159,5 +168,17 @@ export default {
       font-size: 75%;
       color: orangered;
     }
+  }
+
+  .text-width-normal {
+    max-width: 90%;
+  }
+
+  .text-width-narrow {
+    max-width: 80%;
+  }
+
+  .text-width-wide {
+    max-width: 100%;
   }
 </style>

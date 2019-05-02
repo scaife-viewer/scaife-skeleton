@@ -17,6 +17,7 @@
 
   import SelectedTextInfoWidget from '../components/widgets/reader/SelectedTextInfoWidget.vue';
   import TextSizeWidget from '../components/widgets/text-size/TextSizeWidget.vue';
+  import TextWidthWidget from '../components/widgets/text-width/TextWidthWidget.vue';
   import BookInfoWidget from '../components/widgets/morphgnt/BookInfoWidget.vue';
   import BookSelectWidget from '../components/widgets/morphgnt/BookSelectWidget.vue';
   import InterlinearWidget from '../components/widgets/morphgnt/InterlinearWidget.vue';
@@ -60,7 +61,7 @@
         return [BookSelectWidget, BookInfoWidget];
       },
       rightWidgets() {
-        return [TextSizeWidget, InterlinearWidget, SelectedTextInfoWidget, SelectedWordsWidget];
+        return [TextSizeWidget, TextWidthWidget, InterlinearWidget, SelectedTextInfoWidget, SelectedWordsWidget];
       },
       leftOpen() {
         return this.$store.state.leftOpen;

@@ -6,6 +6,7 @@ import HomerGridReaderWidget from './reader/HomerGridReaderWidget.vue';
 import HomerParallelReaderWidget from './reader/HomerParallelReaderWidget.vue';
 import TextSizeWidget from './text-size/TextSizeWidget.vue';
 import SelectedTextInfoWidget from './reader/SelectedTextInfoWidget.vue';
+import TextWidthWidget from './text-width/TextWidthWidget.vue';
 
 import BookInfoWidget from './morphgnt/BookInfoWidget.vue';
 import BookSelectWidget from './morphgnt/BookSelectWidget.vue';
@@ -22,6 +23,7 @@ export default [
   HomerParallelReaderWidget,
   TextSizeWidget,
   SelectedTextInfoWidget,
+  TextWidthWidget,
 
   BookInfoWidget,
   BookSelectWidget,

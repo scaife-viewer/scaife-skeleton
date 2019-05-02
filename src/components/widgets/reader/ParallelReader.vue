@@ -1,5 +1,5 @@
 <template>
-  <div class="parallel-reader" :class="['text', `text-${textSize}`]">
+  <div class="parallel-reader" :class="['text', `text-${textSize}`, `text-width-${textWidth}`]">
     <ParallelLine
         v-for="(line, index) in passageText" :key="line[0]"
         :left-line="line"
@@ -17,6 +17,9 @@
     computed: {
       textSize() {
         return this.$store.state.readerTextSize;
+      },
+      textWidth() {
+        return this.$store.state.readerTextWidth;
       }
     }
   };

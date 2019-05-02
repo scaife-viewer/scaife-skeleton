@@ -25,6 +25,8 @@
     methods: {
       changeTextSize(size) {
         this.$store.dispatch('setTextSize', { size });
+        // on text size change, reset width to normal
+        this.$store.dispatch('setTextWidth', { width: 'normal' });
       },
     },
     components: { TextSize },
