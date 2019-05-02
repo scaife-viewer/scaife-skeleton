@@ -66,6 +66,10 @@ import {
 } from './constants';
 
 export default {
+  props: [
+      'leftVisible', 'leftOpen', 'rightVisible', 'rightOpen',
+      'mainWidget', 'leftWidgets', 'rightWidgets'
+  ],
   components: { MainLayout, SidebarLayout },
   data() {
     return {
