@@ -21,6 +21,7 @@
       :editing="editing"
       :widget="mainWidget"
       :widgetOptions="mainWidgetOptions"
+      :isEditable="isEditable"
     />
 
     <SidebarLayout
@@ -50,6 +51,7 @@
     data() {
       return {
         editing: false,
+        isEditable: true,
       }
     },
     methods: {
