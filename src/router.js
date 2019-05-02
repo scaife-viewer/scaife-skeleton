@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import App from './App.vue';
 import EditableSkeletonDemo from './demos/EditableSkeletonDemo.vue';
+import SingleSidePaneSkeleton from './demos/SingleSidePaneSkeleton.vue';
 import MorphGNTDemo from './demos/MorphGNTDemo.vue';
 import PaginationDemo from './demos/PaginationDemo.vue';
 import IIIFDemo from './demos/IIIFDemo.vue';
@@ -19,6 +20,8 @@ const router = new Router({
       component: EditableSkeletonDemo,
       name: 'editable',
     },
+    { path: '/editable-skeleon/', component: EditableSkeletonDemo, name: 'editable' },
+    { path: '/single-side/', component: SingleSidePaneSkeleton, name: 'single' },
     { path: '/morphgnt/', component: MorphGNTDemo, name: 'morphgnt' },
     { path: '/pagination/', component: PaginationDemo, name: 'pagination' },
     { path: '/iiif/', component: IIIFDemo, name: 'iiif' },

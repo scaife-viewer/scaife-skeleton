@@ -6,6 +6,8 @@ import {
   REMOVE_RIGHT_WIDGET,
   TOGGLE_LEFT_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
+  TOGGLE_LEFT_SIDEBAR_VISIBILITY,
+  TOGGLE_RIGHT_SIDEBAR_VISIBILITY,
 } from './constants';
 
 export default function createStore() {
@@ -58,6 +60,8 @@ export default function createStore() {
             mainWidget: widget.scaifeConfig.displayName,
           };
         },
+        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: (state) => { state.leftVisible = !state.leftVisible; },
+        [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: (state) => { state.rightVisible = !state.rightVisible; },
       },
       actions: {
         [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => {
@@ -81,6 +85,8 @@ export default function createStore() {
         [CHANGE_MAIN_WIDGET]: ({ commit }, { widget }) => {
           commit(CHANGE_MAIN_WIDGET, widget);
         },
+        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR_VISIBILITY),
+        [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: ({ commit }) => commit(TOGGLE_RIGHT_SIDEBAR_VISIBILITY),
       },
     },
   };

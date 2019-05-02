@@ -1,8 +1,15 @@
 <template>
     <FixedSkeleton
+      @leftToggle="onLeftToggle"
+      @rightToggle="onRightToggle"
+      :left-visible="leftVisible"
+      :left-open="leftOpen"
+      :right-visible="rightVisible"
+      :right-open="rightOpen"
       :main-widget="mainWidget"
       :left-widgets="leftWidgets"
-      :right-widgets="rightWidgets">
+      :right-widgets="rightWidgets"
+    >
     </FixedSkeleton>
 </template>
 <script>
@@ -23,6 +30,12 @@
   export default {
     components: {
       FixedSkeleton
+    },
+    data() {
+      return {
+        leftVisible: true,
+        rightVisible: true,
+      }
     },
     methods: {
       fetchData() {

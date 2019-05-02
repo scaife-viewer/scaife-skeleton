@@ -1,6 +1,7 @@
 <template>
   <div class="skeleton">
     <SidebarLayout
+      v-if="leftVisible"
       class="left"
       :class="sidebarClasses"
       :widgetOptions="sidebarWidgetOptions"
@@ -29,6 +30,7 @@
     />
 
     <SidebarLayout
+      v-if="rightVisible"
       class="right"
       :class="sidebarClasses"
       :widgetOptions="sidebarWidgetOptions"
@@ -64,6 +66,10 @@ import {
 } from './constants';
 
 export default {
+  props: [
+      'leftVisible', 'leftOpen', 'rightVisible', 'rightOpen',
+      'mainWidget', 'leftWidgets', 'rightWidgets'
+  ],
   components: { MainLayout, SidebarLayout },
   data() {
     return {

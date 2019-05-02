@@ -1,6 +1,6 @@
 <template>
   <div class="skeleton">
-    <SidebarLayout class="left" :class="sidebarClasses" :widgets="leftWidgets">
+    <SidebarLayout v-if="leftVisible" class="left" :class="sidebarClasses" :widgets="leftWidgets">
       <div slot="button-container" class="button-container">
         <button class="toggle-open" v-if="leftOpen" @click="onLeftToggle">
           <Icon name="arrow-left" />
@@ -13,7 +13,7 @@
 
     <MainLayout :widget="mainWidget" :isEditable="isEditable" />
 
-    <SidebarLayout class="right" :class="sidebarClasses" :widgets="rightWidgets">
+    <SidebarLayout v-if="rightVisible" class="right" :class="sidebarClasses" :widgets="rightWidgets">
       <div slot="button-container" class="button-container">
         <button class="toggle-open" v-if="rightOpen" @click="onRightToggle">
           <Icon name="arrow-right" />
@@ -36,7 +36,10 @@ import {
 } from './constants';
 
 export default {
-  props: ['mainWidget', 'leftWidgets', 'rightWidgets'],
+  props: [
+      'leftVisible', 'leftOpen', 'rightVisible', 'rightOpen',
+      'mainWidget', 'leftWidgets', 'rightWidgets'
+  ],
   components: { MainLayout, SidebarLayout },
   data() {
     return {
