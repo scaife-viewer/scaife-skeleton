@@ -1,16 +1,20 @@
 <template>
   <div class="widget-editor">
-    <WidgetSelector :main-widget="mainWidget" :options="options" @select="widget => $emit('change-widget', widget)" />
+    <WidgetSelector
+      :main-widget="mainWidget"
+      :options="options"
+      @select="widget => $emit('change-widget', widget)"
+    />
   </div>
 </template>
 
 <script>
-  import WidgetSelector from './WidgetSelector.vue';
+import WidgetSelector from './WidgetSelector.vue';
 
-  export default {
-    props: ['mainWidget', 'options'],
-    components: { WidgetSelector },
-  }
+export default {
+  props: ['mainWidget', 'options'],
+  components: { WidgetSelector },
+};
 </script>
 
 <style lang="scss">

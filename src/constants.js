@@ -1,3 +1,5 @@
+export const PREVIOUS_CARD = 'previousCard';
+export const NEXT_CARD = 'nextCard';
 export const SET_PASSAGE_TEXT = 'setPassageText';
 export const SET_SELECTED_LEMMAS = 'setSelectedLemmas';
 export const SET_TEXT_SIZE = 'setTextSize';
@@ -9,3 +11,5 @@ export const MORPHGNT_SET_PASSAGE = 'setPassage';
 export const MORPHGNT_SELECT_WORD = 'selectedWord';
 export const MORPHGNT_TOGGLE_INTERLINEAR = 'toggleInterlinear';
 export const MORPHGNT_SET_SELECTED_WORD = 'setSelectedWord';
+export const HOMER_SELECT_CARD = 'homerSelectCard';
+export const HOMER_LOOKUP_REFERENCE = 'homerLookupReference';

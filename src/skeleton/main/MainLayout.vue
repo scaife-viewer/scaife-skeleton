@@ -3,7 +3,7 @@
     <MainWidget>
       <h2 class="main-widget-heading" slot="heading">
         <span>{{ widgetHeader }}</span>
-        <EditLayoutButton v-if="isEditable" :editing="editing" @editToggle="$emit('editToggle')" />
+        <EditLayoutButton v-if="isEditable && editing !== undefined" :editing="editing" @editToggle="$emit('editToggle')" />
       </h2>
 
       <WidgetEditor slot="body" v-if="editing" class="main-widget-editor"
@@ -18,23 +18,23 @@
 </template>
 
 <script>
-  import EditLayoutButton from './EditLayoutButton.vue';
-  import MainWidget from './MainWidget.vue';
-  import WidgetEditor from '../editor/WidgetEditor.vue';
+import EditLayoutButton from './EditLayoutButton.vue';
+import MainWidget from './MainWidget.vue';
+import WidgetEditor from '../editor/WidgetEditor.vue';
 
-  export default {
-    props: ['editing', 'widget', 'widgetOptions', 'isEditable'],
-    components: {
-      EditLayoutButton,
-      MainWidget,
-      WidgetEditor,
+export default {
+  props: ['editing', 'widget', 'widgetOptions', 'fixed', 'isEditable'],
+  components: {
+    EditLayoutButton,
+    MainWidget,
+    WidgetEditor,
+  },
+  computed: {
+    widgetHeader() {
+      return this.widget ? this.widget.scaifeConfig.displayName : '';
     },
-    computed: {
-      widgetHeader() {
-        return this.widget ? this.widget.scaifeConfig.displayName : '';
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style lang="scss">

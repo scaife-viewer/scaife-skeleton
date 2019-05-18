@@ -1,4 +1,8 @@
+import axios from 'axios';
+
 import {
+  PREVIOUS_CARD,
+  NEXT_CARD,
   SET_PASSAGE_TEXT,
   SET_SELECTED_LEMMAS,
   SET_TEXT_SIZE,
@@ -10,7 +14,20 @@ import {
   MORPHGNT_SELECT_WORD,
   MORPHGNT_TOGGLE_INTERLINEAR,
   MORPHGNT_SET_SELECTED_WORD,
+  HOMER_SELECT_CARD,
+  HOMER_LOOKUP_REFERENCE,
 } from './constants';
+
+import cards from './homer';
+
+const parseHomerReference = ref => {
+  const parts = ref.split('.');
+  return {
+    book: parseInt(parts[0]),
+    line: parseInt(parts[1]),
+  }
+}
+
 
 export default function createStore() {
   return {
@@ -33,6 +50,38 @@ export default function createStore() {
       book: null,
       passage: null,
       word: null,
+      selectedCard: null,
+      cards,
+    },
+    getters: {
+      getChunks: state => (start, end) => {
+        const parsedStart = parseHomerReference(start);
+        const parsedEnd = parseHomerReference(end);
+
+        const cards = [];
+        let startFound = false;
+        let endFound = false;
+        state.cards.forEach(c => {
+          const _parts = c.split('-');
+          const cardStart = parseHomerReference(_parts[0]);
+          const cardEnd = parseHomerReference(_parts[1]);
+
+          if (parsedStart.book === cardStart.book && parsedStart.line >= cardStart.line) {
+            startFound = true;
+          }
+          if (parsedEnd.book === cardEnd.book && parsedEnd.line <= cardEnd.line) {
+            if (!endFound) {
+              cards.push(c);
+            }
+            endFound = true;
+          }
+          if (startFound && !endFound) {
+            cards.push(c);
+          }
+        });
+
+        return cards;
+      }
     },
     mutations: {
       [SET_SELECTED_LEMMAS]: (state, lemmas) => { state.selectedLemmas = lemmas; },
@@ -86,6 +135,9 @@ export default function createStore() {
           state.selectedWords = newSelection;
         }
       },
+      [HOMER_SELECT_CARD]: (state, { card }) => {
+        state.selectedCard = card;
+      },
     },
     actions: {
       [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -116,6 +168,45 @@ export default function createStore() {
       },
       [MORPHGNT_SET_SELECTED_WORD]: ({ commit }, { word, selected }) => {
         commit(MORPHGNT_SET_SELECTED_WORD, { word, selected });
+      },
+      [HOMER_SELECT_CARD]: ({ commit, dispatch }, { card }) => {
+        axios
+          .get(`https://homer-api.herokuapp.com/urn:cts:greekLit:tlg0012.tlg001.perseus-grc2:${card}/`)
+          .then(r => {
+            dispatch(SET_PASSAGE_TEXT, { lines: r.data });
+            commit(HOMER_SELECT_CARD, { card });
+          });
+      },
+      [PREVIOUS_CARD]: ({ dispatch, state }) => {
+        let index;
+        if (state.selectedCard === null) {
+          index = state.cards.length - 1;
+        } else {
+          const currentIndex = state.cards.indexOf(state.selectedCard);
+          if (currentIndex === 0) {
+            index = state.cards.length - 1;
+          } else {
+            index = currentIndex - 1;
+          }
+        }
+        dispatch(HOMER_SELECT_CARD, { card: state.cards[index] });
+      },
+      [NEXT_CARD]: ({ dispatch, state }) => {
+        let index;
+        if (state.selectedCard === null) {
+          index = 0;
+        } else {
+          const currentIndex = state.cards.indexOf(state.selectedCard);
+          if (currentIndex === state.cards.length - 1) {
+            index = 0;
+          } else {
+            index = currentIndex + 1;
+          }
+        }
+        dispatch(HOMER_SELECT_CARD, { card: state.cards[index] });
+      },
+      [HOMER_LOOKUP_REFERENCE]: ({ dispatch }, { reference }) => {
+        dispatch(HOMER_SELECT_CARD, { card: reference });
       },
     },
   };

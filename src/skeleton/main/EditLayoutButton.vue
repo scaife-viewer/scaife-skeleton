@@ -6,8 +6,8 @@
 </template>
 <script>
 export default {
-    props: ['editing'],
-}
+  props: ['editing'],
+};
 </script>
 <style lang="scss">
   @import "../../variables.scss";
