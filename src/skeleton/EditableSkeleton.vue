@@ -25,6 +25,7 @@
       :editing="editing"
       :widget="mainWidget"
       :widgetOptions="mainWidgetOptions"
+      :isEditable="isEditable"
     />
 
     <SidebarLayout
@@ -58,6 +59,7 @@ export default {
   data() {
     return {
       editing: false,
+      isEditable: true,
     };
   },
   methods: {

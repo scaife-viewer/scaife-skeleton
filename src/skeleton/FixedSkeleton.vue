@@ -11,7 +11,7 @@
       </div>
     </SidebarLayout>
 
-    <MainLayout :widget="mainWidget" />
+    <MainLayout :widget="mainWidget" :isEditable="isEditable" />
 
     <SidebarLayout class="right" :class="sidebarClasses" :widgets="rightWidgets">
       <div slot="button-container" class="button-container">
@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       editing: false,
+        isEditable: false,
     };
   },
   methods: {
