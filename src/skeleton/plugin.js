@@ -4,27 +4,34 @@ class Skeleton {
   }
 
   widgetOptions(location, mainWidget, leftWidgets, rightWidgets) {
-    return this.widgets
-      // only show widgets designated for matching location (sidebar|main|both)
-      .filter(o => o.scaifeConfig.location === location || o.scaifeConfig.location === 'both')
-      .filter((o) => {
+    return Object.keys(this.widgets)
+      .filter((name) => {
+        const config = this.widgets[name].scaifeConfig;
+        return config.location === location || config.location === 'both';
+      })
+      .filter((name) => {
+        const config = this.widgets[name].scaifeConfig;
         // only show widgets if they haven't already been used in the case of it
         // being marked a singleton, unless the location is main.
-        if (o.scaifeConfig.singleton) {
-          const notInMain = mainWidget !== o;
-          const notInLeft = leftWidgets.indexOf(o) === -1;
-          const notInRight = rightWidgets.indexOf(o) === -1;
+        if (config.singleton) {
+          const notInMain = mainWidget !== name;
+          const notInLeft = leftWidgets[name] === undefined;
+          const notInRight = rightWidgets[name] === undefined;
           return (location === 'main' && notInLeft && notInRight) || (notInMain && notInLeft && notInRight);
         }
         return true;
       })
-      // return a list of options that can be used for menu selection
-      .map(o => ({ text: o.scaifeConfig.displayName, component: o }));
+      .map(name => ({
+        text: this.widgets[name].scaifeConfig.displayName,
+        component: this.widgets[name],
+      }));
   }
 }
 
 const install = (Vue, options) => {
+  // eslint-disable-next-line no-param-reassign
   Vue.prototype.$scaife = Vue.prototype.$scaife || {};
+  // eslint-disable-next-line no-param-reassign
   Vue.prototype.$scaife = {
     ...Vue.prototype.$scaife,
     skeleton: new Skeleton(options.widgets),

@@ -1,0 +1,56 @@
+<template>
+    <FixedSkeleton
+      @leftToggle="onLeftToggle"
+      @rightToggle="onRightToggle"
+      :left-open="leftOpen"
+      :right-open="rightOpen"
+      :main-widget="mainWidget"
+      :left-widgets="leftWidgets"
+      :right-widgets="rightWidgets">
+    </FixedSkeleton>
+</template>
+<script>
+  import FixedSkeleton from '../skeleton/FixedSkeleton.vue';
+  import MainLayout from '../skeleton/main/MainLayout.vue';
+  import SidebarLayout from '../skeleton/sidebar/SidebarLayout.vue';
+
+  import HomerCardsWidget from '../components/widgets/homer/HomerCardsWidget.vue';
+  import CardReaderWidget from '../components/widgets/reader/CardReaderWidget.vue';
+  import HomerReferenceInputWidget from '../components/widgets/homer/HomerReferenceInputWidget.vue';
+  import HomerCurrentCardsWidget from '../components/widgets/homer/HomerCurrentCardsWidget.vue';
+
+  import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
+
+  export default {
+    components: {
+      FixedSkeleton,
+      MainLayout,
+      SidebarLayout,
+    },
+    methods: {
+      onLeftToggle() {
+        this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
+      },
+      onRightToggle() {
+        this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR);
+      },
+    },
+    computed: {
+      mainWidget() {
+        return CardReaderWidget;
+      },
+      leftWidgets() {
+        return [HomerCardsWidget];
+      },
+      rightWidgets() {
+        return [HomerReferenceInputWidget, HomerCurrentCardsWidget];
+      },
+      leftOpen() {
+        return this.$store.state.leftOpen;
+      },
+      rightOpen() {
+        return this.$store.state.rightOpen;
+      },
+    },
+  }
+</script>
