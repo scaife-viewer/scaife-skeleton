@@ -12,19 +12,23 @@
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
-      <WidgetEditor :options="widgetOptions" v-if="editing" @change-widget="widget => $emit('changeWidget', widget)" />
+      <WidgetEditor
+        :options="widgetOptions"
+        v-if="editing"
+        @change-widget="widget => $emit('changeWidget', widget)"
+      />
     </div>
   </aside>
 </template>
 
 <script>
-  import SidebarWidget from './SidebarWidget.vue';
-  import WidgetEditor from '../editor/WidgetEditor.vue';
+import SidebarWidget from './SidebarWidget.vue';
+import WidgetEditor from '../editor/WidgetEditor.vue';
 
-  export default {
-    props: ['open', 'editing', 'widgets', 'widgetOptions'],
-    components: { WidgetEditor, SidebarWidget },
-  };
+export default {
+  props: ['open', 'editing', 'widgets', 'widgetOptions'],
+  components: { WidgetEditor, SidebarWidget },
+};
 </script>
 
 <style lang="scss">

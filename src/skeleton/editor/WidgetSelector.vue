@@ -1,27 +1,28 @@
 <template>
   <div class="add-widgets">
-    <div class="widget-option" :class="{ selected: selected(option) }" v-for="(option, i) in options" :key="i" @click.prevent="$emit('select', option.component)">
+    <div v-for="(option, i) in options" :key="i" class="widget-option"
+      :class="{ selected: selected(option) }"
+      @click.prevent="$emit('select', option.component)">
       <span><icon :name="iconName(option)" /></span> <span>{{ option.text }}</span>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    props: ['options', 'mainWidget'],
-    methods: {
-      selected(option) {
-        return this.mainWidget && this.mainWidget === option.component;
-      },
-      iconName(option) {
-        if (this.mainWidget) {
-          return this.mainWidget === option.component ? 'check-square' : 'square';
-        } else {
-          return 'plus-square';
-        }
-      },
+export default {
+  props: ['options', 'mainWidget'],
+  methods: {
+    selected(option) {
+      return this.mainWidget && this.mainWidget === option.component;
     },
-  }
+    iconName(option) {
+      if (this.mainWidget) {
+        return this.mainWidget === option.component ? 'check-square' : 'square';
+      }
+      return 'plus-square';
+    },
+  },
+};
 </script>
 
 <style lang="scss">

@@ -8,7 +8,9 @@
           </span>
           <slot name="heading" />
         </span>
-        <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link"><icon name="minus-circle" /></a>
+        <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link">
+          <icon name="minus-circle" />
+        </a>
         <span v-if="open & !editing" class="fixed-toggle" @click.prevent="toggleFix">
           <Icon class="fa-flip-horizontal" :name="fixed ? 'expand' : 'compress'" />
         </span>
@@ -24,23 +26,23 @@
 </template>
 
 <script>
-  export default {
-    props: ['editing'],
-    data() {
-      return {
-        open: true,
-        fixed: false,
-      };
+export default {
+  props: ['editing'],
+  data() {
+    return {
+      open: true,
+      fixed: false,
+    };
+  },
+  methods: {
+    toggle() {
+      this.open = !this.open;
     },
-    methods: {
-      toggle() {
-        this.open = !this.open;
-      },
-      toggleFix() {
-        this.fixed = !this.fixed;
-      }
-    }
-  }
+    toggleFix() {
+      this.fixed = !this.fixed;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
