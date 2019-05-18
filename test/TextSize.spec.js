@@ -15,10 +15,10 @@ describe('TextSize.vue', () => {
     const wrapper = shallowMount(TextSize, {
       store,
       localVue,
-      stubs: { BaseWidget: true },
+      stubs: { },
     });
 
     expect(wrapper.text()).toBe('Αα');
-    expect(wrapper.html()).toBe('<span class="text-size-control text-undefined selected">Αα</span>');
+    expect(store.state.readerTextSize).toBe('md');
   });
 });
