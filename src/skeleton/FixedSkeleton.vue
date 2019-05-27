@@ -30,8 +30,13 @@
 import MainLayout from './main/MainLayout.vue';
 import SidebarLayout from './sidebar/SidebarLayout.vue';
 
+import {
+  TOGGLE_LEFT_SIDEBAR,
+  TOGGLE_RIGHT_SIDEBAR,
+} from './constants';
+
 export default {
-  props: ['leftOpen', 'rightOpen', 'mainWidget', 'leftWidgets', 'rightWidgets'],
+  props: ['mainWidget', 'leftWidgets', 'rightWidgets'],
   components: { MainLayout, SidebarLayout },
   data() {
     return {
@@ -42,21 +47,20 @@ export default {
   methods: {
     onLeftToggle() {
       this.$emit('leftToggle');
+      this.$store.dispatch(`scaife/${TOGGLE_LEFT_SIDEBAR}`);
     },
     onRightToggle() {
       this.$emit('rightToggle');
-    },
-    addWidget(name, widget) {
-      this.$emit('addWidget', name, widget);
-    },
-    changeWidget(mainWidget) {
-      this.$emit('changeWidget', mainWidget);
-    },
-    removeWidget(name, index) {
-      this.$emit('removeWidget', name, index);
+      this.$store.dispatch(`scaife/${TOGGLE_RIGHT_SIDEBAR}`);
     },
   },
   computed: {
+    leftOpen() {
+      return this.$store.state.scaife.leftOpen;
+    },
+    rightOpen() {
+      return this.$store.state.scaife.rightOpen;
+    },
     sidebarClasses() {
       return [
         this.leftOpen ? 'sidebar-left--open' : 'sidebar-left--closed',
