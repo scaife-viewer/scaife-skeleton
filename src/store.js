@@ -6,11 +6,11 @@ import skeletonCreateStore from './skeleton/store';
 
 Vue.use(Vuex);
 
-const scaife = skeletonCreateStore();
+const skeletonStore = skeletonCreateStore();
 
 export default new Vuex.Store({
   ...createStore(),
   modules: {
-    scaife,
+    [skeletonStore.namespace]: skeletonStore.store,
   }
 });
