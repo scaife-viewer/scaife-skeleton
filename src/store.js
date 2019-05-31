@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import createStore from './config';
-import skeletonCreateStore from './skeleton/store';
+import skeletonCreateStore from './skeleton/config';
 
 Vue.use(Vuex);
 
