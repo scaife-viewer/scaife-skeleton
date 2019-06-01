@@ -48,8 +48,8 @@ const install = (Vue, options) => {
     skeleton: new Skeleton(options.widgets, options.iconMap || {}),
   };
 
-  Vue.component('Icon', Icon);
-  Vue.component('TextLoader', TextLoader);
+  Vue.component(Icon);
+  Vue.component(TextLoader);
 };
 
 const SkeletonPlugin = { install };
