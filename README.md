@@ -52,7 +52,7 @@ The use of the skeleton components is intended to be within components that are
 full screen, perhaps in one that has a navbar at top.  Often this means a top
 level `App.vue` component.
 
-```vuejs
+```vue
 <template>
   <div id="app">
     <FixedSkeleton
@@ -105,7 +105,7 @@ level `App.vue` component.
 For editable skeletons, the process is a bit different.  Your top level
 component is really simple:
 
-```vuejs
+```vue
 <template>
     <EditableSkeleton />
 </template>
