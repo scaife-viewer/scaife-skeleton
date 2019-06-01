@@ -4,6 +4,7 @@ import EditableSkeleton from './skeleton/EditableSkeleton.vue';
 import TextLoader from './skeleton/TextLoader.vue';
 import Icon from './skeleton/icons/Icon.vue';
 import createStore from './skeleton/config';
+import SkeletonPlugin from './skeleton/plugin';
 
 // Declare install function executed by Vue.use()
 export function install(Vue) {
