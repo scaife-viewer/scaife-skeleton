@@ -32,7 +32,4 @@ const widgets = [
   SelectablePassageWidget,
 ];
 
-export default widgets.reduce((map, obj) => {
-  map[obj.scaifeConfig.displayName] = obj;
-  return map;
-}, {});
+export default widgets;
