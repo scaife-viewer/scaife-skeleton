@@ -11,7 +11,8 @@
   "files": [
     "dist/*",
     "src/skeleton/**/*.vue",
-    "src/skeleton/**/*.js"
+    "src/skeleton/**/*.js",
+    "README.md"
   ],
   "scripts": {
     "package": "NODE_ENV=production rollup --config build/rollup.config.js",
