@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import createStore from './config';
+import createStore from './demos/config';
 import skeletonCreateStore from './skeleton/config';
 
 Vue.use(Vuex);

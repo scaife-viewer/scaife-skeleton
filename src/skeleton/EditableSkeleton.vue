@@ -120,6 +120,9 @@ export default {
     state() {
       return this.$store.state;
     },
+    scaifeSkeleton() {
+      return this.$scaife.skeleton;
+    },
     leftWidgets() {
       return this.widgets.left.map(name => this.$scaife.skeleton.widgets[name]);
     },

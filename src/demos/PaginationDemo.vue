@@ -6,7 +6,7 @@
     </FixedSkeleton>
 </template>
 <script>
-  import FixedSkeleton from '../skeleton/FixedSkeleton.vue';
+  import FixedSkeleton from '../skeleton';
 
   import HomerCardsWidget from '../components/widgets/homer/HomerCardsWidget.vue';
   import CardReaderWidget from '../components/widgets/reader/CardReaderWidget.vue';

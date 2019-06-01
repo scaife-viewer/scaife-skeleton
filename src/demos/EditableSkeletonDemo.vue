@@ -2,7 +2,7 @@
     <EditableSkeleton />
 </template>
 <script>
-  import EditableSkeleton from '../skeleton/EditableSkeleton.vue'
+  import { EditableSkeleton } from '../skeleton/';
 
   export default {
     components: {

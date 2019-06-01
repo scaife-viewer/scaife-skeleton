@@ -7,7 +7,7 @@
 </template>
 <script>
   import axios from 'axios';
-  import FixedSkeleton from '../skeleton/FixedSkeleton.vue';
+  import FixedSkeleton from '../skeleton';
 
   import SelectedTextInfoWidget from '../components/widgets/reader/SelectedTextInfoWidget.vue';
   import TextSizeWidget from '../components/widgets/text-size/TextSizeWidget.vue';
@@ -18,7 +18,7 @@
   import SelectablePassageWidget from '../components/widgets/morphgnt/SelectablePassageWidget.vue';
   import SelectedWordsWidget from '../components/widgets/morphgnt/SelectedWordsWidget.vue';
 
-  import { MORPHGNT_SET_BOOKS, MORPHGNT_SET_BOOK, MORPHGNT_SET_PASSAGE, SET_WORD } from '../constants';
+  import { MORPHGNT_SET_BOOKS, MORPHGNT_SET_BOOK, MORPHGNT_SET_PASSAGE, SET_WORD } from './constants';
 
   export default {
     components: {
