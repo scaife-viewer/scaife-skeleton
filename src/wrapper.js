@@ -24,5 +24,7 @@ if (GlobalVue) {
   GlobalVue.use(plugin);
 }
 
+component.install = install;
+
 // To allow use as module (npm/webpack/etc.) export component
 export default component;
