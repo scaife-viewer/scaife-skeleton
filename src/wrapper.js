@@ -1,17 +1,16 @@
 // Import vue component
-import FixedSkeleton, {
-  createStore,
-  EditableSkeleton,
-  SkeletonPlugin,
-} from './skeleton';
-
+import FixedSkeleton from './skeleton/FixedSkeleton.vue';
+import EditableSkeleton from './skeleton/EditableSkeleton.vue';
 import TextLoader from './skeleton/TextLoader.vue';
 import Icon from './skeleton/icons/Icon.vue';
+import createStore from './skeleton/config';
 
 // Declare install function executed by Vue.use()
 export function install(Vue) {
   if (install.installed) return;
   install.installed = true;
+
+  console.log('Installing', FixedSkeleton);
   Vue.component('FixedSkeleton', FixedSkeleton);
   Vue.component('EditableSkeleton', EditableSkeleton);
   Vue.component('Icon', Icon);
