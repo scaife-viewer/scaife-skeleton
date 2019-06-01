@@ -11,10 +11,10 @@
       :editing="editing">
       <div slot="button-container" class="button-container">
         <button class="toggle-open" v-if="leftOpen" @click="onLeftToggle">
-          <icon name="arrow-left" />
+          <Icon name="arrow-left" />
         </button>
         <button class="toggle-open" v-else @click="onLeftToggle">
-          <icon name="arrow-right" />
+          <Icon name="arrow-right" />
         </button>
       </div>
     </SidebarLayout>
@@ -39,10 +39,10 @@
       :editing="editing">
       <div slot="button-container" class="button-container">
         <button class="toggle-open" v-if="rightOpen" @click="onRightToggle">
-          <icon name="arrow-right" />
+          <Icon name="arrow-right" />
         </button>
         <button class="toggle-open" v-else @click="onRightToggle">
-          <icon name="arrow-left" />
+          <Icon name="arrow-left" />
         </button>
       </div>
     </SidebarLayout>

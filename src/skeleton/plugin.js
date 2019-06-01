@@ -1,6 +1,4 @@
 import iconMap from './icons';
-import TextLoader from './TextLoader.vue';
-import Icon from './icons/Icon.vue';
 
 class Skeleton {
   constructor(widgets, additionIconMap) {
@@ -47,9 +45,6 @@ const install = (Vue, options) => {
     ...Vue.prototype.$scaife,
     skeleton: new Skeleton(options.widgets, options.iconMap || {}),
   };
-
-  Vue.component(Icon.name, Icon);
-  Vue.component(TextLoader.name, TextLoader);
 };
 
 const SkeletonPlugin = { install };

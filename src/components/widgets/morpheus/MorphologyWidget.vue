@@ -1,6 +1,6 @@
 <template>
   <div class="morphology-widget" v-if="enabled">
-    <text-loader v-if="loading" size="7px" margin="1px"/>
+    <TextLoader v-if="loading" size="7px" margin="1px"/>
     <div v-else-if="morphBody">
       <div class="group" v-for="group in morphBody" :key="group.uri">
         <div class="head">

@@ -4,15 +4,15 @@
       <h2>
         <span @click.prevent="toggle">
           <span class="open-toggle">
-            <icon :name="open ? 'chevron-down' : 'chevron-right'" />
+            <Icon :name="open ? 'chevron-down' : 'chevron-right'" />
           </span>
           <slot name="heading" />
         </span>
         <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link">
-          <icon name="minus-circle" />
+          <Icon name="minus-circle" />
         </a>
         <span v-if="open & !editing" class="fixed-toggle" @click.prevent="toggleFix">
-          <icon class="fa-flip-horizontal" :name="fixed ? 'expand' : 'compress'" />
+          <Icon class="fa-flip-horizontal" :name="fixed ? 'expand' : 'compress'" />
         </span>
       </h2>
       <div v-if="open" class="sticky-body">

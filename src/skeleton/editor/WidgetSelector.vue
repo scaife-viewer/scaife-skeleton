@@ -3,7 +3,7 @@
     <div v-for="(option, i) in options" :key="i" class="widget-option"
       :class="{ selected: selected(option) }"
       @click.prevent="$emit('select', option.component)">
-      <span><icon :name="iconName(option)" /></span> <span>{{ option.text }}</span>
+      <span><Icon :name="iconName(option)" /></span> <span>{{ option.text }}</span>
     </div>
   </div>
 </template>

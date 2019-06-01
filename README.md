@@ -29,7 +29,7 @@ In your `store.js` (or wherever you are setting up your store):
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import createStore from 'scaife-skeleton/src/skeleton/config';  // packaging issue
+import createStore from 'scaife-skeleton';  // packaging issue
 
 Vue.use(Vuex);
 
@@ -60,8 +60,6 @@ level `App.vue` component.
 </template>
 
 <script>
-  import FixedSkeleton from 'scaife-skeleton';
-
   // import widgets that you want in your project
   import TextSelectionWidget from './morphgnt/widgets/TextSelectionWidget.vue';
   import AnalysisWidget from './morphgnt/widgets/AnalysisWidget.vue';
@@ -105,15 +103,6 @@ component is really simple:
 <template>
     <EditableSkeleton />
 </template>
-<script>
-  import { EditableSkeleton } from 'scaife-skeleton/src/skeleton';
-
-  export default {
-    components: {
-      EditableSkeleton
-    },
-  }
-</script>
 ```
 
 To tell `scaife-skeleton` about the available widgets, you pass in a list at
@@ -121,10 +110,10 @@ Vue startup time in your main js file:
 
 ```js
 import Vue from 'vue';
+import SkeletonPlugin from 'scaife-skeleton';
+
 import App from './App.vue';
 import store from './store';
-import SkeletonPlugin from './skeleton/plugin';
-
 import widgets from './widgets';
 
 Vue.config.productionTip = false;
@@ -182,10 +171,10 @@ const iconMap = [ faAddressBook ].reduce((map, obj) => {
 Vue.use(SkeletonPlugin, { widgets, iconMap });
 ```
 
-Then you can use the globally installed `<icon>` component:
+Then you can use the globally installed `<Icon>` component:
 
 ```html
-  <icon name="address-book" />
+  <Icon name="address-book" />
 ```
 
 In your widget.

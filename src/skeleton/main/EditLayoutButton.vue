@@ -1,7 +1,7 @@
 <template>
     <a href @click.prevent="$emit('editToggle')" class="edit-layout-button" :class="{ editing }">
         <template v-if="editing">Done</template>
-        <icon v-else name="cog" />
+        <Icon v-else name="cog" />
     </a>
 </template>
 <script>
