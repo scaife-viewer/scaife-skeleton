@@ -10,7 +10,8 @@
   "unpkg": "dist/scaife-skeleton.min.js",
   "files": [
     "dist/*",
-    "src/skeleton/**/*.vue"
+    "src/skeleton/**/*.vue",
+    "src/skeleton/**/*.js"
   ],
   "scripts": {
     "package": "NODE_ENV=production rollup --config build/rollup.config.js",
