@@ -7,5 +7,7 @@
 </template>
 
 <script>
-  export default {};
+  export default {
+    name: 'text-loader'
+  };
 </script>
