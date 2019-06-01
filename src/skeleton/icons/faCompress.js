@@ -1,6 +1,4 @@
 // The Octicon Fold icon
-// Object.defineProperty(exports, '__esModule', { value: true });
-
 const prefix = 'fas';
 const iconName = 'compress';
 const width = 320;
@@ -21,11 +19,3 @@ export default {
   ],
 };
 
-// exports.faCompress = exports.definition;
-// exports.prefix = prefix;
-// exports.iconName = iconName;
-// exports.width = width;
-// exports.height = height;
-// exports.ligatures = ligatures;
-// exports.unicode = unicode;
-// exports.svgPathData = svgPathData;

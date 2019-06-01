@@ -14,10 +14,6 @@ yarn add scaife-skeleton
 npm install scaife-skeleton
 ```
 
-At the current time, you also need to copy in the `global-components` found in
-this repo to you project, and register `Icon` and `TextLoader` as global
-components.
-
 ## Requirements
 
 Your project should be using [Vuex](https://vuex.vuejs.org) even if your reader
@@ -169,6 +165,30 @@ const widgets = [
 
 export default widgets;
 ```
+
+### Adding Additional Icons
+
+You can provide your own icons by passing in an `iconMap` option when adding
+the plugin:
+
+```js
+import { faAddressBook } from '@fortawesome/free-solid-svg-icons/faAddressBook';
+
+const iconMap = [ faAddressBook ].reduce((map, obj) => {
+  map[obj.iconName] = obj;
+  return map;
+}, {});
+
+Vue.use(SkeletonPlugin, { widgets, iconMap });
+```
+
+Then you can use the globally installed `<icon>` component:
+
+```html
+  <icon name="address-book" />
+```
+
+In your widget.
 
 ## Development
 

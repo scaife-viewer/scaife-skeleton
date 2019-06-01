@@ -1,9 +1,17 @@
+import iconMap from './icons';
+import TextLoader from './TextLoader.vue';
+import Icon from './icons/Icon.vue';
+
 class Skeleton {
-  constructor(widgets) {
+  constructor(widgets, additionIconMap) {
     this.widgets = widgets.reduce((map, obj) => {
       map[obj.scaifeConfig.displayName] = obj;
       return map;
     }, {});
+    this.iconMap = {
+      ...iconMap,
+      ...additionIconMap,
+    };
   }
 
   widgetOptions(location, mainWidget, leftWidgets, rightWidgets) {
@@ -37,8 +45,11 @@ const install = (Vue, options) => {
   // eslint-disable-next-line no-param-reassign
   Vue.prototype.$scaife = {
     ...Vue.prototype.$scaife,
-    skeleton: new Skeleton(options.widgets),
+    skeleton: new Skeleton(options.widgets, options.iconMap || {}),
   };
+
+  Vue.component('Icon', Icon);
+  Vue.component('TextLoader', TextLoader);
 };
 
 const SkeletonPlugin = { install };

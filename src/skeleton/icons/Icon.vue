@@ -5,7 +5,6 @@
 
 <script>
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-  import iconMap from './icons';
 
   export default {
     name: 'icon',
@@ -15,7 +14,7 @@
     },
     computed: {
       icon() {
-        return iconMap[this.name];
+        return this.$scaife.skeleton.iconMap[this.name];
       }
     }
   }

@@ -1,11 +1,14 @@
 // Import vue component
-import component from './skeleton/FixedSkeleton.vue';
+import FixedSkeleton, {
+  createStore,
+  EditableSkeleton,
+} from './skeleton';
 
 // Declare install function executed by Vue.use()
 export function install(Vue) {
   if (install.installed) return;
   install.installed = true;
-  Vue.component('FixedSkeleton', component);
+  Vue.component('FixedSkeleton', FixedSkeleton);
 }
 
 // Create module definition for Vue.use()
@@ -24,10 +27,9 @@ if (GlobalVue) {
   GlobalVue.use(plugin);
 }
 
-component.install = install;
+FixedSkeleton.install = install;
 
 // To allow use as module (npm/webpack/etc.) export component
-export default component;
+export default FixedSkeleton;
 
-export { default as createStore } from './skeleton/config';
-export { default as EditableSkeleton } from './skeleton/EditableSkeleton.vue';
+export { createStore, EditableSkeleton };
