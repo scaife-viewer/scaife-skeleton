@@ -3,10 +3,10 @@
     <SidebarLayout class="left" :class="sidebarClasses" :widgets="leftWidgets">
       <div slot="button-container" class="button-container">
         <button class="toggle-open" v-if="leftOpen" @click="onLeftToggle">
-          <Icon name="arrow-left" />
+          <icon name="arrow-left" />
         </button>
         <button class="toggle-open" v-else @click="onLeftToggle">
-          <Icon name="arrow-right" />
+          <icon name="arrow-right" />
         </button>
       </div>
     </SidebarLayout>
@@ -16,10 +16,10 @@
     <SidebarLayout class="right" :class="sidebarClasses" :widgets="rightWidgets">
       <div slot="button-container" class="button-container">
         <button class="toggle-open" v-if="rightOpen" @click="onRightToggle">
-          <Icon name="arrow-right" />
+          <icon name="arrow-right" />
         </button>
         <button class="toggle-open" v-else @click="onRightToggle">
-          <Icon name="arrow-left" />
+          <icon name="arrow-left" />
         </button>
       </div>
     </SidebarLayout>

@@ -4,7 +4,7 @@
       <h2>
         <span @click.prevent="toggle">
           <span class="open-toggle">
-            <Icon :name="open ? 'chevron-down' : 'chevron-right'" />
+            <icon :name="open ? 'chevron-down' : 'chevron-right'" />
           </span>
           <slot name="heading" />
         </span>
@@ -12,7 +12,7 @@
           <icon name="minus-circle" />
         </a>
         <span v-if="open & !editing" class="fixed-toggle" @click.prevent="toggleFix">
-          <Icon class="fa-flip-horizontal" :name="fixed ? 'expand' : 'compress'" />
+          <icon class="fa-flip-horizontal" :name="fixed ? 'expand' : 'compress'" />
         </span>
       </h2>
       <div v-if="open" class="sticky-body">
