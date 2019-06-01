@@ -1,3 +1,8 @@
+import FixedSkeleton from './FixedSkeleton.vue';
+import EditableSkeleton from './EditableSkeleton.vue';
+import TextLoader from './TextLoader.vue';
+import Icon from './icons/Icon.vue';
+
 import iconMap from './icons';
 
 class Skeleton {
@@ -38,13 +43,21 @@ class Skeleton {
 }
 
 const install = (Vue, options) => {
+  if (install.installed) return;
+  install.installed = true;
+
   // eslint-disable-next-line no-param-reassign
   Vue.prototype.$scaife = Vue.prototype.$scaife || {};
   // eslint-disable-next-line no-param-reassign
   Vue.prototype.$scaife = {
     ...Vue.prototype.$scaife,
-    skeleton: new Skeleton(options.widgets, options.iconMap || {}),
+    skeleton: new Skeleton(options.widgets || [], options.iconMap || {}),
   };
+
+  Vue.component('FixedSkeleton', FixedSkeleton);
+  Vue.component('EditableSkeleton', EditableSkeleton);
+  Vue.component('Icon', Icon);
+  Vue.component('TextLoader', TextLoader);
 };
 
 const SkeletonPlugin = { install };
