@@ -2,7 +2,17 @@
   "name": "scaife-skeleton",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/scaife-skeleton.umd.js",
+  "module": "dist/scaife-skeleton.esm.js",
+  "unpkg": "dist/scaife-skeleton.min.js",
+  "browser": {
+    "./sfc": "src/skeleton/FixedSkeleton.vue"
+  },
   "scripts": {
+    "package": "npm run package:umd & npm run package:es & npm run package:unpkg",
+    "package:umd": "rollup --config build/rollup.config.js --format umd --file dist/scaife-skeleton.umd.js",
+    "package:es": "rollup --config build/rollup.config.js --format es --file dist/scaife-skeleton.esm.js",
+    "package:unpkg": "rollup --config build/rollup.config.js --format iife --file dist/scaife-skeleton.min.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "eslint .",
@@ -18,11 +28,11 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.3.1",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
     "@vue/test-utils": "^1.0.0-beta.29",
-    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
     "eslint": "^5.16.0",
@@ -32,6 +42,9 @@
     "eslint-plugin-vue": "^5.2.2",
     "jest": "^24.5.0",
     "node-sass": "^4.9.0",
+    "rollup": "^0.57.1",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-vue": "^3.0.0",
     "sass-loader": "^7.0.1",
     "vue-jest": "^3.0.4",
     "vue-template-compiler": "^2.5.21"
