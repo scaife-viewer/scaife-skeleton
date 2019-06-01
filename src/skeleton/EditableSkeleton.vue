@@ -53,8 +53,17 @@
 import MainLayout from './main/MainLayout.vue';
 import SidebarLayout from './sidebar/SidebarLayout.vue';
 
+import {
+  TOGGLE_LEFT_SIDEBAR,
+  TOGGLE_RIGHT_SIDEBAR,
+  ADD_LEFT_WIDGET,
+  ADD_RIGHT_WIDGET,
+  REMOVE_LEFT_WIDGET,
+  REMOVE_RIGHT_WIDGET,
+  CHANGE_MAIN_WIDGET,
+} from './constants';
+
 export default {
-  props: ['leftOpen', 'rightOpen', 'mainWidget', 'leftWidgets', 'rightWidgets'],
   components: { MainLayout, SidebarLayout },
   data() {
     return {
@@ -65,21 +74,64 @@ export default {
   methods: {
     onLeftToggle() {
       this.$emit('leftToggle');
+      this.$store.dispatch(`scaifeSkeleton/${TOGGLE_LEFT_SIDEBAR}`);
     },
     onRightToggle() {
       this.$emit('rightToggle');
+      this.$store.dispatch(`scaifeSkeleton/${TOGGLE_RIGHT_SIDEBAR}`);
     },
     addWidget(name, widget) {
       this.$emit('addWidget', name, widget);
+      switch (name) {
+        case 'left':
+          this.$store.dispatch(`scaifeSkeleton/${ADD_LEFT_WIDGET}`, { widget });
+          break;
+        case 'right':
+          this.$store.dispatch(`scaifeSkeleton/${ADD_RIGHT_WIDGET}`, { widget });
+          break;
+      }
     },
     changeWidget(mainWidget) {
       this.$emit('changeWidget', mainWidget);
+      this.$store.dispatch(`scaifeSkeleton/${CHANGE_MAIN_WIDGET}`, { widget: mainWidget });
     },
     removeWidget(name, index) {
       this.$emit('removeWidget', name, index);
+      switch (name) {
+        case 'left':
+          this.$store.dispatch(`scaifeSkeleton/${REMOVE_LEFT_WIDGET}`, { index });
+          break;
+        case 'right':
+          this.$store.dispatch(`scaifeSkeleton/${REMOVE_RIGHT_WIDGET}`, { index });
+          break;
+      }
     },
   },
   computed: {
+    leftOpen() {
+      return this.$store.state.scaifeSkeleton.leftOpen;
+    },
+    rightOpen() {
+      return this.$store.state.scaifeSkeleton.rightOpen;
+    },
+    widgets() {
+      return this.$store.state.scaifeSkeleton.widgets;
+    },
+    state() {
+      return this.$store.state;
+    },
+    scaifeSkeleton() {
+      return this.$scaife.skeleton;
+    },
+    leftWidgets() {
+      return this.widgets.left.map(name => this.$scaife.skeleton.widgets[name]);
+    },
+    rightWidgets() {
+      return this.widgets.right.map(name => this.$scaife.skeleton.widgets[name]);
+    },
+    mainWidget() {
+      return this.widgets.mainWidget && this.$scaife.skeleton.widgets[this.widgets.mainWidget];
+    },
     sidebarClasses() {
       return [
         this.leftOpen ? 'sidebar-left--open' : 'sidebar-left--closed',

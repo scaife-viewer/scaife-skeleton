@@ -1,8 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import createStore from './config';
+import createStore from './demos/config';
+import skeletonCreateStore from './skeleton/config';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store(createStore());
+const skeletonStore = skeletonCreateStore();
+
+export default new Vuex.Store({
+  ...createStore(),
+  modules: {
+    [skeletonStore.namespace]: skeletonStore.store,
+  }
+});

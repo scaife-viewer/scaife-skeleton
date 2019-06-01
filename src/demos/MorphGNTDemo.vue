@@ -1,9 +1,5 @@
 <template>
     <FixedSkeleton
-      @leftToggle="onLeftToggle"
-      @rightToggle="onRightToggle"
-      :left-open="leftOpen"
-      :right-open="rightOpen"
       :main-widget="mainWidget"
       :left-widgets="leftWidgets"
       :right-widgets="rightWidgets">
@@ -11,9 +7,7 @@
 </template>
 <script>
   import axios from 'axios';
-  import FixedSkeleton from '../skeleton/FixedSkeleton.vue';
-  import MainLayout from '../skeleton/main/MainLayout.vue';
-  import SidebarLayout from '../skeleton/sidebar/SidebarLayout.vue';
+  import FixedSkeleton from '../skeleton';
 
   import SelectedTextInfoWidget from '../components/widgets/reader/SelectedTextInfoWidget.vue';
   import TextSizeWidget from '../components/widgets/text-size/TextSizeWidget.vue';
@@ -24,21 +18,13 @@
   import SelectablePassageWidget from '../components/widgets/morphgnt/SelectablePassageWidget.vue';
   import SelectedWordsWidget from '../components/widgets/morphgnt/SelectedWordsWidget.vue';
 
-  import { MORPHGNT_SET_BOOKS, MORPHGNT_SET_BOOK, MORPHGNT_SET_PASSAGE, TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR, SET_WORD } from '../constants';
+  import { MORPHGNT_SET_BOOKS, MORPHGNT_SET_BOOK, MORPHGNT_SET_PASSAGE, SET_WORD } from './constants';
 
   export default {
     components: {
-      FixedSkeleton,
-      MainLayout,
-      SidebarLayout,
+      FixedSkeleton
     },
     methods: {
-      onLeftToggle() {
-        this.$store.dispatch(TOGGLE_LEFT_SIDEBAR);
-      },
-      onRightToggle() {
-        this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR);
-      },
       fetchData() {
         const apiRoot = 'https://api.morphgnt.org';
         axios.get(`${apiRoot}/v0/root.json`)
@@ -62,12 +48,6 @@
       },
       rightWidgets() {
         return [TextSizeWidget, TextWidthWidget, InterlinearWidget, SelectedTextInfoWidget, SelectedWordsWidget];
-      },
-      leftOpen() {
-        return this.$store.state.leftOpen;
-      },
-      rightOpen() {
-        return this.$store.state.rightOpen;
       },
     },
     created() {

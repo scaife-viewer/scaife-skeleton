@@ -1,6 +1,9 @@
 class Skeleton {
   constructor(widgets) {
-    this.widgets = widgets;
+    this.widgets = widgets.reduce((map, obj) => {
+      map[obj.scaifeConfig.displayName] = obj;
+      return map;
+    }, {});
   }
 
   widgetOptions(location, mainWidget, leftWidgets, rightWidgets) {

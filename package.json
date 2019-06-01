@@ -1,8 +1,22 @@
 {
-  "name": "skeleton",
+  "name": "scaife-skeleton",
   "version": "0.1.0",
-  "private": true,
+  "description": "Quickly build Scaife reading environments",
+  "author": "Eldarion",
+  "homepage": "https://github.com/eldarion/scaife-skeleton/",
+  "license": "MIT",
+  "main": "dist/scaife-skeleton.ssr.js",
+  "module": "dist/scaife-skeleton.esm.js",
+  "unpkg": "dist/scaife-skeleton.min.js",
+  "files": [
+    "dist/*",
+    "src/skeleton/**/*.vue"
+  ],
   "scripts": {
+    "package": "NODE_ENV=production rollup --config build/rollup.config.js",
+    "package:ssr": "NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "package:es": "NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "package:unpkg": "NODE_ENV=production rollup --config build/rollup.config.js --format iife",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "eslint .",
@@ -13,16 +27,16 @@
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/vue-fontawesome": "^0.1.5",
     "axios": "^0.18.0",
-    "vue": "^2.5.21",
+    "vue": "^2.6.10",
     "vue-router": "^3.0.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.3.1",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
     "@vue/test-utils": "^1.0.0-beta.29",
-    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
     "eslint": "^5.16.0",
@@ -31,10 +45,17 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-vue": "^5.2.2",
     "jest": "^24.5.0",
+    "minimist": "^1.2.0",
     "node-sass": "^4.9.0",
+    "rollup": "^1.12.1",
+    "rollup-plugin-buble": "^0.19.6",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-vue": "^5.0.0",
     "sass-loader": "^7.0.1",
     "vue-jest": "^3.0.4",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.6.10"
   },
   "postcss": {
     "plugins": {

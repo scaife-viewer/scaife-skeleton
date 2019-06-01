@@ -14,7 +14,7 @@ import InterlinearWidget from './morphgnt/InterlinearWidget.vue';
 import PassageWidget from './morphgnt/PassageWidget.vue';
 import SelectablePassageWidget from './morphgnt/SelectablePassageWidget.vue';
 
-export default [
+const widgets = [
   HomerWidget,
   // MorphologyWidget,
   ReaderWidget,
@@ -31,3 +31,5 @@ export default [
   PassageWidget,
   SelectablePassageWidget,
 ];
+
+export default widgets;
