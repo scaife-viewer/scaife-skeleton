@@ -1,18 +1,20 @@
 {
   "root": true,
+  "parser": "vue-eslint-parser",
   "extends": [
-    "plugin:vue/recommended",
+    "plugin:vue/essential",
     "airbnb-base"
   ],
   "parserOptions": {
     "parser": "babel-eslint",
+    "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "env": {
     "browser": true
   },
   "plugins": [
-    "html"
+    "vue"
   ],
   "rules": {
     "no-param-reassign": 0,

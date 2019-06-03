@@ -24,8 +24,12 @@ export default function createStore() {
       },
       getters: {},
       mutations: {
-        [TOGGLE_LEFT_SIDEBAR]: (state) => { state.leftOpen = !state.leftOpen; },
-        [TOGGLE_RIGHT_SIDEBAR]: (state) => { state.rightOpen = !state.rightOpen; },
+        [TOGGLE_LEFT_SIDEBAR]: (state) => {
+          state.leftOpen = !state.leftOpen;
+        },
+        [TOGGLE_RIGHT_SIDEBAR]: (state) => {
+          state.rightOpen = !state.rightOpen;
+        },
         [ADD_LEFT_WIDGET]: (state, widget) => {
           state.widgets.left = [
             ...state.widgets.left,
@@ -56,13 +60,27 @@ export default function createStore() {
         },
       },
       actions: {
-        [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => { commit(TOGGLE_LEFT_SIDEBAR) },
-        [TOGGLE_RIGHT_SIDEBAR]: ({ commit }) => { commit(TOGGLE_RIGHT_SIDEBAR) },
-        [ADD_LEFT_WIDGET]: ({ commit }, { widget }) => { commit(ADD_LEFT_WIDGET, widget) },
-        [ADD_RIGHT_WIDGET]: ({ commit }, { widget }) => { commit(ADD_RIGHT_WIDGET, widget) },
-        [REMOVE_LEFT_WIDGET]: ({ commit }, { index }) => { commit(REMOVE_LEFT_WIDGET, index) },
-        [REMOVE_RIGHT_WIDGET]: ({ commit }, { index }) => { commit(REMOVE_RIGHT_WIDGET, index) },
-        [CHANGE_MAIN_WIDGET]: ({ commit }, { widget }) => { commit(CHANGE_MAIN_WIDGET, widget) },
+        [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => {
+          commit(TOGGLE_LEFT_SIDEBAR);
+        },
+        [TOGGLE_RIGHT_SIDEBAR]: ({ commit }) => {
+          commit(TOGGLE_RIGHT_SIDEBAR);
+        },
+        [ADD_LEFT_WIDGET]: ({ commit }, { widget }) => {
+          commit(ADD_LEFT_WIDGET, widget);
+        },
+        [ADD_RIGHT_WIDGET]: ({ commit }, { widget }) => {
+          commit(ADD_RIGHT_WIDGET, widget);
+        },
+        [REMOVE_LEFT_WIDGET]: ({ commit }, { index }) => {
+          commit(REMOVE_LEFT_WIDGET, index);
+        },
+        [REMOVE_RIGHT_WIDGET]: ({ commit }, { index }) => {
+          commit(REMOVE_RIGHT_WIDGET, index);
+        },
+        [CHANGE_MAIN_WIDGET]: ({ commit }, { widget }) => {
+          commit(CHANGE_MAIN_WIDGET, widget);
+        },
       },
     },
   };

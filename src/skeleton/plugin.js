@@ -18,27 +18,34 @@ class Skeleton {
   }
 
   widgetOptions(location, mainWidget, leftWidgets, rightWidgets) {
-    return Object.keys(this.widgets)
-      .filter((name) => {
-        const config = this.widgets[name].scaifeConfig;
-        return config.location === location || config.location === 'both';
-      })
-      .filter((name) => {
-        const config = this.widgets[name].scaifeConfig;
-        // only show widgets if they haven't already been used in the case of it
-        // being marked a singleton, unless the location is main.
-        if (config.singleton) {
-          const notInMain = mainWidget !== name;
-          const notInLeft = leftWidgets[name] === undefined;
-          const notInRight = rightWidgets[name] === undefined;
-          return (location === 'main' && notInLeft && notInRight) || (notInMain && notInLeft && notInRight);
-        }
-        return true;
-      })
-      .map(name => ({
-        text: this.widgets[name].scaifeConfig.displayName,
-        component: this.widgets[name],
-      }));
+    return (
+      Object.keys(this.widgets)
+        .filter((name) => {
+          const config = this.widgets[name].scaifeConfig;
+          return config.location === location || config.location === 'both';
+        })
+        .filter((name) => {
+          const config = this.widgets[name].scaifeConfig;
+          // only show widgets if they haven't already been used in the case of it
+          // being marked a singleton, unless the location is main.
+          if (config.singleton) {
+            const notInMain = mainWidget !== name;
+            const notInLeft = leftWidgets[name] === undefined;
+            const notInRight = rightWidgets[name] === undefined;
+            return (
+              // eslint-disable-next-line operator-linebreak
+              (location === 'main' && notInLeft && notInRight) ||
+              (notInMain && notInLeft && notInRight)
+            );
+          }
+          return true;
+        })
+        // eslint-disable-next-line arrow-parens
+        .map((name) => ({
+          text: this.widgets[name].scaifeConfig.displayName,
+          component: this.widgets[name],
+        }))
+    );
   }
 }
 

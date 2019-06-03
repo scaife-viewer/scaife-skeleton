@@ -12,5 +12,5 @@ export default new Vuex.Store({
   ...createStore(),
   modules: {
     [skeletonStore.namespace]: skeletonStore.store,
-  }
+  },
 });

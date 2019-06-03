@@ -2,13 +2,18 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 
-import TextSize from '../src/components/widgets/text-size/TextSize.vue';
+import SkeletonPlugin from '../src/skeleton/plugin';
+import createStore from '../src/demos/config';
 import TextSizeWidget from '../src/components/widgets/text-size/TextSizeWidget.vue';
-import TextWidthWidget from '../src/components/widgets/text-width/TextWidthWidget.vue';
-import createStore from '../src/config';
 
 const localVue = createLocalVue();
+
+const widgets = [
+  TextSizeWidget,
+];
+localVue.use(SkeletonPlugin, { widgets });
 localVue.use(Vuex);
+
 
 describe('TextSizeWidget.vue', () => {
   const store = new Vuex.Store(createStore());

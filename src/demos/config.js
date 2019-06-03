@@ -21,14 +21,13 @@ import {
 
 import cards from './homer';
 
-const parseHomerReference = ref => {
+const parseHomerReference = (ref) => {
   const parts = ref.split('.');
   return {
-    book: parseInt(parts[0]),
-    line: parseInt(parts[1]),
-  }
-}
-
+    book: parseInt(parts[0], 10),
+    line: parseInt(parts[1], 10),
+  };
+};
 
 export default function createStore() {
   return {
@@ -56,58 +55,80 @@ export default function createStore() {
       cards,
     },
     getters: {
-      getChunks: state => (start, end) => {
+      // eslint-disable-next-line arrow-parens
+      getChunks: (state) => (start, end) => {
         const parsedStart = parseHomerReference(start);
         const parsedEnd = parseHomerReference(end);
 
-        const cards = [];
+        const newCards = [];
         let startFound = false;
         let endFound = false;
-        state.cards.forEach(c => {
-          const _parts = c.split('-');
-          const cardStart = parseHomerReference(_parts[0]);
-          const cardEnd = parseHomerReference(_parts[1]);
+        state.cards.forEach((c) => {
+          const parts = c.split('-');
+          const cardStart = parseHomerReference(parts[0]);
+          const cardEnd = parseHomerReference(parts[1]);
 
-          if (parsedStart.book === cardStart.book && parsedStart.line >= cardStart.line) {
+          if (
+            // eslint-disable-next-line operator-linebreak
+            parsedStart.book === cardStart.book &&
+            parsedStart.line >= cardStart.line
+          ) {
             startFound = true;
           }
-          if (parsedEnd.book === cardEnd.book && parsedEnd.line <= cardEnd.line) {
+          if (
+            // eslint-disable-next-line operator-linebreak
+            parsedEnd.book === cardEnd.book &&
+            parsedEnd.line <= cardEnd.line
+          ) {
             if (!endFound) {
-              cards.push(c);
+              newCards.push(c);
             }
             endFound = true;
           }
           if (startFound && !endFound) {
-            cards.push(c);
+            newCards.push(c);
           }
         });
 
-        return cards;
-      }
+        return newCards;
+      },
     },
     mutations: {
-      [SET_SELECTED_LEMMAS]: (state, lemmas) => { state.selectedLemmas = lemmas; },
-      [SET_TEXT_SIZE]: (state, size) => { state.readerTextSize = size; },
-      [SET_TEXT_WIDTH]: (state, width) => { state.readerTextWidth = width; },
-      [SET_PASSAGE_TEXT]: (state, lines) => { state.passageText = lines; },
-      [TOGGLE_LEFT_SIDEBAR]: (state) => { state.leftOpen = !state.leftOpen; },
-      [TOGGLE_RIGHT_SIDEBAR]: (state) => { state.rightOpen = !state.rightOpen; },
-      [MORPHGNT_SET_BOOKS]: (state, books) => { state.books = books; },
-      [MORPHGNT_SET_BOOK]: (state, book) => { state.book = book; },
+      [SET_SELECTED_LEMMAS]: (state, lemmas) => {
+        state.selectedLemmas = lemmas;
+      },
+      [SET_TEXT_SIZE]: (state, size) => {
+        state.readerTextSize = size;
+      },
+      [SET_TEXT_WIDTH]: (state, width) => {
+        state.readerTextWidth = width;
+      },
+      [SET_PASSAGE_TEXT]: (state, lines) => {
+        state.passageText = lines;
+      },
+      [TOGGLE_LEFT_SIDEBAR]: (state) => {
+        state.leftOpen = !state.leftOpen;
+      },
+      [TOGGLE_RIGHT_SIDEBAR]: (state) => {
+        state.rightOpen = !state.rightOpen;
+      },
+      [MORPHGNT_SET_BOOKS]: (state, books) => {
+        state.books = books;
+      },
+      [MORPHGNT_SET_BOOK]: (state, book) => {
+        state.book = book;
+      },
       [MORPHGNT_SET_PASSAGE]: (state, passage) => {
-        const {
-          prev, next, title, words,
-        } = passage;
+        // eslint-disable-next-line object-curly-newline
+        const { prev, next, title, words } = passage;
         state.passage = {
           prev,
           next,
           title,
-          words: words.map(word => ({
+          // eslint-disable-next-line arrow-parens
+          words: words.map((word) => ({
             id: word['@id'].slice(-16, -5),
-            classes: [
-              `pos-${word.pos}`,
-              `case-${word.case}`,
-            ],
+            classes: [`pos-${word.pos}`, `case-${word.case}`],
             text: word.text,
             // @@@ move to annotations API
             norm: word.norm,
@@ -124,8 +145,12 @@ export default function createStore() {
           })),
         };
       },
-      [MORPHGNT_SELECT_WORD]: (state, word) => { state.word = word; },
-      [MORPHGNT_TOGGLE_INTERLINEAR]: (state) => { state.interlinear = !state.interlinear; },
+      [MORPHGNT_SELECT_WORD]: (state, word) => {
+        state.word = word;
+      },
+      [MORPHGNT_TOGGLE_INTERLINEAR]: (state) => {
+        state.interlinear = !state.interlinear;
+      },
       [MORPHGNT_SET_SELECTED_WORD]: (state, { word, selected }) => {
         // if selected, then add if it doesn't exist already
         // if not selected, remove if it does exist
@@ -177,8 +202,11 @@ export default function createStore() {
       },
       [HOMER_SELECT_CARD]: ({ commit, dispatch }, { card }) => {
         axios
-          .get(`https://homer-api.herokuapp.com/urn:cts:greekLit:tlg0012.tlg001.perseus-grc2:${card}/`)
-          .then(r => {
+          .get(
+            // eslint-disable-next-line comma-dangle
+            `https://homer-api.herokuapp.com/urn:cts:greekLit:tlg0012.tlg001.perseus-grc2:${card}/`
+          )
+          .then((r) => {
             dispatch(SET_PASSAGE_TEXT, { lines: r.data });
             commit(HOMER_SELECT_CARD, { card });
           });
