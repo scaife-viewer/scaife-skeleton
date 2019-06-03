@@ -1,23 +1,26 @@
 # Scaife Skeleton
 
-This is the foundation for any Scaife reader.  It consists of two main skeleton
-types, `FixedSkeleton` and `EditableSkeleton`.  In the `FixedSkeleton` case, you
-the site developer pre-determine and decide what widgets will belong to the
-layout.  With the `EditableSkeleton`, you, as the site developer, only provide
-the options of possible widgets and the user of the reader selects the layout
-at runtime.
+[![CircleCI](https://circleci.com/gh/eldarion/scaife-skeleton.svg?style=svg)](https://circleci.com/gh/eldarion/scaife-skeleton)
+
+This is the foundation for any Scaife reader.  It consists of two main skeleton types, `FixedSkeleton` and `EditableSkeleton`.
+
+1. In the `FixedSkeleton` case, you the site developer, pre-determine and decide what widgets will belong to the
+layout.
+1. With the `EditableSkeleton`, you, as the site developer, only provide the options of possible widgets and the user of the reader selects the layout at runtime.
 
 ## Installation
 
 ```
 yarn add scaife-skeleton
+
+or
+
 npm install scaife-skeleton
 ```
 
 ## Requirements
 
-Your project should be using [Vuex](https://vuex.vuejs.org) even if your reader
-doesn't require a store directly, the skeleton does.
+Your project must be using [Vuex](https://vuex.vuejs.org) even if your reader doesn't require a store directly since the skeleton uses it.
 
 ## Usage
 
@@ -44,17 +47,15 @@ export default new Vuex.Store({
 
 ### Using the `FixedSkeleton`
 
-The use of the skeleton components is intended to be within components that are
-full screen, perhaps in one that has a navbar at top.  Often this means a top
-level `App.vue` component.
+The use of the skeleton components is intended to be within components that are full screen, perhaps in one that has a navbar at top.  Often this means a top level `App.vue` component.
 
 ```vue
 <template>
   <div id="app">
     <FixedSkeleton
-        :main-widget="mainWidget"
-        :left-widgets="leftWidgets"
-        :right-widgets="rightWidgets"
+      :main-widget="mainWidget"
+      :left-widgets="leftWidgets"
+      :right-widgets="rightWidgets"
     />
   </div>
 </template>
@@ -96,17 +97,15 @@ level `App.vue` component.
 
 ### Using the `EditableSkeleton`
 
-For editable skeletons, the process is a bit different.  Your top level
-component is really simple:
+For editable skeletons, the process is a bit different.  Your top level component is really simple:
 
 ```vue
 <template>
-    <EditableSkeleton />
+  <EditableSkeleton />
 </template>
 ```
 
-To tell `scaife-skeleton` about the available widgets, you pass in a list at
-Vue startup time in your main js file:
+To tell `scaife-skeleton` about the available widgets, you pass in a list at Vue startup time in your `main.js` file:
 
 ```js
 import Vue from 'vue';
@@ -114,6 +113,7 @@ import SkeletonPlugin from 'scaife-skeleton';
 
 import App from './App.vue';
 import store from './store';
+import router from './router';
 import widgets from './widgets';
 
 Vue.config.productionTip = false;
@@ -157,8 +157,7 @@ export default widgets;
 
 ### Adding Additional Icons
 
-You can provide your own icons by passing in an `iconMap` option when adding
-the plugin:
+You can provide your own icons by passing in an `iconMap` option when adding the plugin:
 
 ```js
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons/faAddressBook';
@@ -171,13 +170,11 @@ const iconMap = [ faAddressBook ].reduce((map, obj) => {
 Vue.use(SkeletonPlugin, { widgets, iconMap });
 ```
 
-Then you can use the globally installed `<Icon>` component:
+Then you can use the globally installed `<Icon>` component in your widget:
 
 ```html
-  <Icon name="address-book" />
+<Icon name="address-book" />
 ```
-
-In your widget.
 
 ## Development
 
@@ -187,10 +184,40 @@ This repo has a series of demos to facilitate the development of `scaife-skeleto
 
 ```
 yarn run serve
+
+or
+
+npm run serve
 ```
+
+### Linting and testing
+
+```
+yarn run lint
+yarn run test
+
+or
+
+npm run lint
+npm run test
+```
+
+### Prettier
+
+yarn run prettier:check
+yarn run prettier:fix
+
+or
+
+npm run prettier:check
+npm run prettier:fix
 
 ### Packaging
 
 ```
 yarn run package
+
+or
+
+npm run package
 ```
