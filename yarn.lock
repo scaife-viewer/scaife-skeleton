@@ -3285,12 +3285,6 @@ eslint-config-airbnb-base@^13.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-config-prettier@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-4.3.0.tgz#c55c1fcac8ce4518aeb77906984e134d9eb5a4f0"
-  dependencies:
-    get-stdin "^6.0.0"
-
 eslint-import-resolver-node@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.3.2.tgz#58f15fb839b8d0576ca980413476aab2472db66a"
@@ -3908,10 +3902,6 @@ get-caller-file@^1.0.1:
 get-stdin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
-
-get-stdin@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-6.0.0.tgz#9e09bf712b360ab9225e812048f71fde9c89657b"
 
 get-stream@^3.0.0:
   version "3.0.0"
@@ -6201,6 +6191,11 @@ onetime@^2.0.0:
 opener@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.1.tgz#6d2f0e77f1a0af0032aca716c2c1fbb8e7e8abed"
+
+openseadragon@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/openseadragon/-/openseadragon-2.4.0.tgz#d0b28b37a953602c82432a0dbd8a3779dadf756f"
+  integrity sha512-e2fsoEiCDkmwc3vyrv396lkYu4c9CGlpbSX4kYE07eW0ZlEF5DnLbeY2PhqPTskkC1jlsPu2TGZwaZ9VhaAn/w==
 
 opn@^5.1.0, opn@^5.3.0:
   version "5.5.0"
