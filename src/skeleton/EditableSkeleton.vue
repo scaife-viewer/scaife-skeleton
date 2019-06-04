@@ -66,10 +66,6 @@ import {
 } from './constants';
 
 export default {
-  props: [
-      'leftVisible', 'leftOpen', 'rightVisible', 'rightOpen',
-      'mainWidget', 'leftWidgets', 'rightWidgets'
-  ],
   components: { MainLayout, SidebarLayout },
   data() {
     return {
@@ -119,6 +115,12 @@ export default {
     },
     rightOpen() {
       return this.$store.state.scaifeSkeleton.rightOpen;
+    },
+    leftVisible() {
+      return this.$store.state.leftVisible;
+    },
+    rightVisible() {
+      return this.$store.state.rightVisible;
     },
     widgets() {
       return this.$store.state.scaifeSkeleton.widgets;

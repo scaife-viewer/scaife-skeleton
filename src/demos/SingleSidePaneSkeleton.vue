@@ -20,7 +20,7 @@
   import {
     TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR,
     TOGGLE_RIGHT_SIDEBAR_VISIBILITY
-  } from '../constants';
+  } from './constants';
 
   export default {
     components: {

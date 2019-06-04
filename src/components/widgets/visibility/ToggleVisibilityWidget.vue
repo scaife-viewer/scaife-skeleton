@@ -18,8 +18,6 @@
 </template>
 
 <script>
-  import { TOGGLE_LEFT_SIDEBAR_VISIBILITY, TOGGLE_RIGHT_SIDEBAR_VISIBILITY } from "../../../constants";
-
   export default {
     scaifeConfig: {
       displayName: 'Toggle Sidebar Visibility',
@@ -32,7 +30,7 @@
           return this.$store.state.leftVisible;
         },
         set() {
-          this.$store.dispatch(TOGGLE_LEFT_SIDEBAR_VISIBILITY);
+          this.$store.dispatch('toggleLeftSidebarVisibility');
         }
       },
       rightVisible: {
@@ -40,13 +38,8 @@
           return this.$store.state.rightVisible;
         },
         set() {
-          this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR_VISIBILITY);
+          this.$store.dispatch('toggleRightSidebarVisibility');
         }
-      },
-    },
-    methods: {
-      changeTextSize(size) {
-        this.$store.dispatch('setTextSize', { size });
       },
     },
   };

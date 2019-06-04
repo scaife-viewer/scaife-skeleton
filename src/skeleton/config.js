@@ -18,6 +18,8 @@ export default function createStore() {
       state: {
         rightOpen: true,
         leftOpen: true,
+        leftVisible: true,
+        rightVisible: true,
         widgets: {
           mainWidget: null,
           right: [],
@@ -60,7 +62,7 @@ export default function createStore() {
             mainWidget: widget.scaifeConfig.displayName,
           };
         },
-        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: (state) => { state.leftVisible = !state.leftVisible; },
+        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: (state) => { console.log('here');state.leftVisible = !state.leftVisible; },
         [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: (state) => { state.rightVisible = !state.rightVisible; },
       },
       actions: {

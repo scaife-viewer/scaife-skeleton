@@ -35,6 +35,8 @@ export default function createStore() {
     state: {
       rightOpen: true,
       leftOpen: true,
+      leftVisible: true,
+      rightVisible: true,
       widgets: {
         mainWidget: null,
         right: [],
