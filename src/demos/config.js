@@ -175,8 +175,12 @@ export default function createStore() {
       [SET_IMAGE_URL]: (state, url) => {
         state.imageURL = url;
       },
-      [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: (state) => { state.leftVisible = !state.leftVisible; },
-      [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: (state) => { state.rightVisible = !state.rightVisible; },
+      [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: (state) => {
+        state.leftVisible = !state.leftVisible;
+      },
+      [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: (state) => {
+        state.rightVisible = !state.rightVisible;
+      },
     },
     actions: {
       [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -256,8 +260,12 @@ export default function createStore() {
       [SET_IMAGE_URL]: ({ commit }, { url }) => {
         commit(SET_IMAGE_URL, url);
       },
-      [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR_VISIBILITY),
-      [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: ({ commit }) => commit(TOGGLE_RIGHT_SIDEBAR_VISIBILITY),
+      [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: ({ commit }) => {
+        commit(TOGGLE_LEFT_SIDEBAR_VISIBILITY);
+      },
+      [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: ({ commit }) => {
+        commit(TOGGLE_RIGHT_SIDEBAR_VISIBILITY);
+      },
     },
   };
 }
