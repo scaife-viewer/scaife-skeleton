@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import OpenSeadragon from '../../../../node_modules/openseadragon/build/openseadragon/openseadragon.js';
+  import OpenSeadragon from 'openseadragon';
 
   export default {
     scaifeConfig: {
