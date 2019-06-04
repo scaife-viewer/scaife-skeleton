@@ -14,6 +14,8 @@ import InterlinearWidget from './morphgnt/InterlinearWidget.vue';
 import PassageWidget from './morphgnt/PassageWidget.vue';
 import SelectablePassageWidget from './morphgnt/SelectablePassageWidget.vue';
 
+import OpenSeadragonWidget from './image/OpenSeadragonWidget.vue';
+
 const widgets = [
   HomerWidget,
   // MorphologyWidget,
@@ -30,6 +32,8 @@ const widgets = [
   InterlinearWidget,
   PassageWidget,
   SelectablePassageWidget,
+
+  OpenSeadragonWidget,
 ];
 
 export default widgets;
