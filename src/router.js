@@ -15,8 +15,16 @@ const router = new Router({
   base: '',
   routes: [
     { path: '/', component: App, name: 'home' },
-    { path: '/editable-skeleon/', component: EditableSkeletonDemo, name: 'editable' },
-    { path: '/single-side/', component: SingleSidePaneSkeleton, name: 'single' },
+    {
+      path: '/editable-skeleon/',
+      component: EditableSkeletonDemo,
+      name: 'editable',
+    },
+    {
+      path: '/single-side/',
+      component: SingleSidePaneSkeleton,
+      name: 'single',
+    },
     { path: '/morphgnt/', component: MorphGNTDemo, name: 'morphgnt' },
     { path: '/pagination/', component: PaginationDemo, name: 'pagination' },
     { path: '/iiif/', component: IIIFDemo, name: 'iiif' },

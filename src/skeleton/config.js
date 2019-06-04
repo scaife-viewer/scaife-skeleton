@@ -62,8 +62,12 @@ export default function createStore() {
             mainWidget: widget.scaifeConfig.displayName,
           };
         },
-        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: (state) => { console.log('here');state.leftVisible = !state.leftVisible; },
-        [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: (state) => { state.rightVisible = !state.rightVisible; },
+        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: (state) => {
+          state.leftVisible = !state.leftVisible;
+        },
+        [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: (state) => {
+          state.rightVisible = !state.rightVisible;
+        },
       },
       actions: {
         [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => {
@@ -87,8 +91,12 @@ export default function createStore() {
         [CHANGE_MAIN_WIDGET]: ({ commit }, { widget }) => {
           commit(CHANGE_MAIN_WIDGET, widget);
         },
-        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR_VISIBILITY),
-        [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: ({ commit }) => commit(TOGGLE_RIGHT_SIDEBAR_VISIBILITY),
+        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: ({ commit }) => {
+          commit(TOGGLE_LEFT_SIDEBAR_VISIBILITY);
+        },
+        [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: ({ commit }) => {
+          commit(TOGGLE_RIGHT_SIDEBAR_VISIBILITY);
+        },
       },
     },
   };
