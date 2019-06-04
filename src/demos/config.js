@@ -17,6 +17,7 @@ import {
   MORPHGNT_SET_SELECTED_WORD,
   HOMER_SELECT_CARD,
   HOMER_LOOKUP_REFERENCE,
+  SET_IMAGE_URL,
 } from './constants';
 
 import cards from './homer';
@@ -166,6 +167,9 @@ export default function createStore() {
       [HOMER_SELECT_CARD]: (state, { card }) => {
         state.selectedCard = card;
       },
+      [SET_IMAGE_URL]: (state, url) => {
+        state.imageURL = url;
+      },
     },
     actions: {
       [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -241,6 +245,9 @@ export default function createStore() {
       },
       [HOMER_LOOKUP_REFERENCE]: ({ dispatch }, { reference }) => {
         dispatch(HOMER_SELECT_CARD, { card: reference });
+      },
+      [SET_IMAGE_URL]: ({ commit }, { url }) => {
+        commit(SET_IMAGE_URL, url);
       },
     },
   };

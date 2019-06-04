@@ -17,7 +17,7 @@
 
   import OpenSeadragonWidget from '../components/widgets/image/OpenSeadragonWidget.vue';
 
-  import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from '../constants';
+  import { TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR } from './constants';
 
   export default {
     components: {

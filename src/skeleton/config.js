@@ -6,6 +6,7 @@ import {
   REMOVE_RIGHT_WIDGET,
   TOGGLE_LEFT_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
+  SET_IMAGE_URL,
 } from './constants';
 
 export default function createStore() {
@@ -58,6 +59,9 @@ export default function createStore() {
             mainWidget: widget.scaifeConfig.displayName,
           };
         },
+        [SET_IMAGE_URL]: (state, url) => {
+          state.imageURL = url;
+        },
       },
       actions: {
         [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => {
@@ -80,6 +84,9 @@ export default function createStore() {
         },
         [CHANGE_MAIN_WIDGET]: ({ commit }, { widget }) => {
           commit(CHANGE_MAIN_WIDGET, widget);
+        },
+        [SET_IMAGE_URL]: ({ commit }, { url }) => {
+          commit(SET_IMAGE_URL, url);
         },
       },
     },
