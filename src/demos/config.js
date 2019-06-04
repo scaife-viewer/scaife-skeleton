@@ -54,6 +54,7 @@ export default function createStore() {
       word: null,
       selectedCard: null,
       cards,
+      imageURL: '',
     },
     getters: {
       // eslint-disable-next-line arrow-parens
