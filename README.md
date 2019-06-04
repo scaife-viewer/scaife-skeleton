@@ -32,7 +32,7 @@ In your `store.js` (or wherever you are setting up your store):
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import createStore from 'scaife-skeleton';  // packaging issue
+import createStore from 'scaife-skeleton';
 
 Vue.use(Vuex);
 
