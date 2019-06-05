@@ -16,7 +16,6 @@
 </template>
 <script>
   import EditableSkeleton from '../skeleton/EditableSkeleton.vue'
-  import ToggleVisibilityWidget from '../skeleton/visibility/ToggleVisibilityWidget.vue';
   import {
     TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR,
     CHANGE_SIDEBAR_VISIBILITY,
@@ -56,7 +55,7 @@
     },
     computed: {
       mainWidget() {
-        return ToggleVisibilityWidget;
+        return this.$store.state.widgets.main;
       },
       leftWidgets() {
         return this.$store.state.widgets.left;

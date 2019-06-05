@@ -23,34 +23,32 @@ import {
 
 import cards from './homer';
 
-const getDefaultState = () => {
-  return {
-    rightOpen: true,
-    leftOpen: true,
-    leftVisible: true,
-    rightVisible: true,
-    widgets: {
-      mainWidget: null,
-      right: [],
-      left: [],
-    },
-    passageText: '',
-    selectedWords: [],
-    readerText: {},
-    selectedLemmas: [],
-    readerTextSize: 'md',
-    readerTextWidth: 'normal',
+const getDefaultState = () => ({
+  rightOpen: true,
+  leftOpen: true,
+  leftVisible: true,
+  rightVisible: true,
+  widgets: {
+    mainWidget: null,
+    right: [],
+    left: [],
+  },
+  passageText: '',
+  selectedWords: [],
+  readerText: {},
+  selectedLemmas: [],
+  readerTextSize: 'md',
+  readerTextWidth: 'normal',
 
-    interlinear: false,
-    books: [],
-    book: null,
-    passage: null,
-    word: null,
-    selectedCard: null,
-    cards,
-    imageURL: '',
-  };
-};
+  interlinear: false,
+  books: [],
+  book: null,
+  passage: null,
+  word: null,
+  selectedCard: null,
+  cards,
+  imageURL: '',
+});
 
 const parseHomerReference = (ref) => {
   const parts = ref.split('.');

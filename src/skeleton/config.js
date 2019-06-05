@@ -6,22 +6,20 @@ import {
   REMOVE_RIGHT_WIDGET,
   TOGGLE_LEFT_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
-  CHANGE_SIDEBAR_VISIBILITY
+  CHANGE_SIDEBAR_VISIBILITY,
 } from './constants';
 
-const getDefaultState = () => {
-  return {
-    rightOpen: true,
-    leftOpen: true,
-    leftVisible: true,
-    rightVisible: true,
-    widgets: {
-      mainWidget: null,
-      right: [],
-      left: [],
-    },
-  };
-};
+const getDefaultState = () => ({
+  rightOpen: true,
+  leftOpen: true,
+  leftVisible: true,
+  rightVisible: true,
+  widgets: {
+    mainWidget: null,
+    right: [],
+    left: [],
+  },
+});
 
 export default function createStore() {
   return {
