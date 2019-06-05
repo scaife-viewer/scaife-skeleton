@@ -30,7 +30,7 @@
           return this.$store.state.leftVisible;
         },
         set() {
-          this.$store.dispatch('toggleLeftSidebarVisibility');
+          this.$store.dispatch('changeSidebarVisibility', { side: 'left', bool: !this.leftVisible });
         }
       },
       rightVisible: {
@@ -38,7 +38,7 @@
           return this.$store.state.rightVisible;
         },
         set() {
-          this.$store.dispatch('toggleRightSidebarVisibility');
+          this.$store.dispatch('changeSidebarVisibility', { side: 'right', bool: !this.rightVisible });
         }
       },
     },
@@ -46,7 +46,7 @@
 </script>
 
 <style lang="scss">
-  @import "../../../variables.scss";
+  @import "../../variables.scss";
 
   .toggle-visibility-widget {
     text-align: left;

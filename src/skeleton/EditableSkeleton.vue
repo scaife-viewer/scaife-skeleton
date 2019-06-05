@@ -63,6 +63,7 @@ import {
   REMOVE_LEFT_WIDGET,
   REMOVE_RIGHT_WIDGET,
   CHANGE_MAIN_WIDGET,
+  CHANGE_SIDEBAR_VISIBILITY
 } from './constants';
 
 export default {

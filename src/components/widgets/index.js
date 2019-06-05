@@ -7,7 +7,6 @@ import HomerParallelReaderWidget from './reader/HomerParallelReaderWidget.vue';
 import TextSizeWidget from './text-size/TextSizeWidget.vue';
 import SelectedTextInfoWidget from './reader/SelectedTextInfoWidget.vue';
 import TextWidthWidget from './text-width/TextWidthWidget.vue';
-import ToggleVisibilityWidget from './visibility/ToggleVisibilityWidget.vue';
 
 import BookInfoWidget from './morphgnt/BookInfoWidget.vue';
 import BookSelectWidget from './morphgnt/BookSelectWidget.vue';
@@ -16,6 +15,8 @@ import PassageWidget from './morphgnt/PassageWidget.vue';
 import SelectablePassageWidget from './morphgnt/SelectablePassageWidget.vue';
 
 import OpenSeadragonWidget from './image/OpenSeadragonWidget.vue';
+
+import ToggleVisibilityWidget from '../../demos/visibility/ToggleVisibilityWidget';
 
 const widgets = [
   HomerWidget,
@@ -27,7 +28,6 @@ const widgets = [
   TextSizeWidget,
   SelectedTextInfoWidget,
   TextWidthWidget,
-  ToggleVisibilityWidget,
 
   BookInfoWidget,
   BookSelectWidget,
@@ -36,6 +36,8 @@ const widgets = [
   SelectablePassageWidget,
 
   OpenSeadragonWidget,
+
+  ToggleVisibilityWidget,
 ];
 
 export default widgets;

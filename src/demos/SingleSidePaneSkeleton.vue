@@ -16,10 +16,10 @@
 </template>
 <script>
   import EditableSkeleton from '../skeleton/EditableSkeleton.vue'
-  import ToggleVisibilityWidget from '../components/widgets/visibility/ToggleVisibilityWidget.vue';
+  import ToggleVisibilityWidget from '../skeleton/visibility/ToggleVisibilityWidget.vue';
   import {
     TOGGLE_RIGHT_SIDEBAR, TOGGLE_LEFT_SIDEBAR,
-    TOGGLE_RIGHT_SIDEBAR_VISIBILITY
+    CHANGE_SIDEBAR_VISIBILITY,
   } from './constants';
 
   export default {
@@ -52,7 +52,7 @@
       }
     },
     created() {
-      this.$store.dispatch(TOGGLE_RIGHT_SIDEBAR_VISIBILITY);
+      this.$store.dispatch(CHANGE_SIDEBAR_VISIBILITY, { side: 'right', bool: false });
     },
     computed: {
       mainWidget() {

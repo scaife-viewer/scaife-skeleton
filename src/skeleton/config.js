@@ -6,26 +6,29 @@ import {
   REMOVE_RIGHT_WIDGET,
   TOGGLE_LEFT_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
-  TOGGLE_LEFT_SIDEBAR_VISIBILITY,
-  TOGGLE_RIGHT_SIDEBAR_VISIBILITY,
+  CHANGE_SIDEBAR_VISIBILITY
 } from './constants';
+
+const getDefaultState = () => {
+  return {
+    rightOpen: true,
+    leftOpen: true,
+    leftVisible: true,
+    rightVisible: true,
+    widgets: {
+      mainWidget: null,
+      right: [],
+      left: [],
+    },
+  };
+};
 
 export default function createStore() {
   return {
     namespace: 'scaifeSkeleton',
     store: {
       namespaced: true, // expects to be namespaced under `scaife`
-      state: {
-        rightOpen: true,
-        leftOpen: true,
-        leftVisible: true,
-        rightVisible: true,
-        widgets: {
-          mainWidget: null,
-          right: [],
-          left: [],
-        },
-      },
+      state: getDefaultState,
       getters: {},
       mutations: {
         [TOGGLE_LEFT_SIDEBAR]: (state) => {
@@ -62,11 +65,13 @@ export default function createStore() {
             mainWidget: widget.scaifeConfig.displayName,
           };
         },
-        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: (state) => {
-          state.leftVisible = !state.leftVisible;
-        },
-        [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: (state) => {
-          state.rightVisible = !state.rightVisible;
+        [CHANGE_SIDEBAR_VISIBILITY]: (state, { side, bool }) => {
+          if (side === 'left') {
+            state.leftVisible = bool;
+          }
+          if (side === 'right') {
+            state.rightVisible = bool;
+          }
         },
       },
       actions: {
@@ -91,11 +96,8 @@ export default function createStore() {
         [CHANGE_MAIN_WIDGET]: ({ commit }, { widget }) => {
           commit(CHANGE_MAIN_WIDGET, widget);
         },
-        [TOGGLE_LEFT_SIDEBAR_VISIBILITY]: ({ commit }) => {
-          commit(TOGGLE_LEFT_SIDEBAR_VISIBILITY);
-        },
-        [TOGGLE_RIGHT_SIDEBAR_VISIBILITY]: ({ commit }) => {
-          commit(TOGGLE_RIGHT_SIDEBAR_VISIBILITY);
+        [CHANGE_SIDEBAR_VISIBILITY]: ({ commit }, { side, bool }) => {
+          commit(CHANGE_SIDEBAR_VISIBILITY, { side, bool });
         },
       },
     },
