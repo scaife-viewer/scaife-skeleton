@@ -1,0 +1,85 @@
+<template>
+  <div class="birds-eye">
+    <svg width="100%" height="510">
+      <rect width="200" height="510" x="0" y="0" />
+      <template v-for="(collection, offsetIndex) in offsetCollection">
+        <line
+          v-for="(line, lineIndex) in lines(collection)" :key="`${offsetIndex}-${lineIndex}`"
+          :x1="line.x1" :y1="line.y1" :x2="line.x2" :y2="line.y2"
+        />
+      </template>
+    </svg>
+  </div>
+</template>
+
+<script>
+import utils from './utils';
+
+export default {
+  props: {
+    offsetCollection: {
+      type: Array,
+      required: true,
+      validator: function(value) {
+        console.log('validate', value);
+        value.forEach(item => {
+          if (item.offsets === undefined) {
+            return false;
+          }
+        });
+        return true;
+      }
+    },
+    wordsPerLine: {
+      type: Number,
+      default: 10,
+    },
+    wordLength: {
+      type: Number,
+      default: 20,
+    }
+  },
+  computed: {
+    lineLength() {
+      return this.wordLength * this.wordsPerLine;
+    }
+  },
+  methods: {
+    lines(collection) {
+      const lines = [];
+      collection.offsets.forEach(offset => {
+          const [start, end] = offset;
+          const [startLine, startOffset] = utils.divmod(start, this.wordsPerLine);
+          const [endLine, endOffset] = utils.divmod(end, this.wordsPerLine);
+
+          for (let line = startLine; line <= endLine; line += 1) {
+            const y = line;
+            lines.push({
+              x1: line === startLine ? (startOffset * this.wordLength) : 0,
+              x2: line === endLine ? ((1 + endOffset) * this.wordLength) : this.lineLength,
+              y1: y,
+              y2: y,
+            });
+          }
+      });
+      return lines;
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+  .birds-eye rect {
+    fill: #EEE;
+    &.not-selected {
+      fill: transparent;
+    }
+  }
+  .birds-eye line {
+    stroke-width: 1px;
+    stroke: #999;
+  }
+  .birds-eye {
+    padding: 0 1em;
+  }
+</style>
