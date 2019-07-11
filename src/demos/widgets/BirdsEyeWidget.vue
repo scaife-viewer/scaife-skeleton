@@ -1,6 +1,11 @@
 <template>
   <div class="birds-eye-widget">
-    <BirdsEye :offset-collection="offsetCollection" />
+    <template v-if="selected">
+      <h2>{{ selected }}</h2>
+      <p>{{ offsets }}</p>
+      <BirdsEye :offset-collection="offsetCollection" />
+    </template>
+    <p v-else>Select a token to see it in context</p>
   </div>
 </template>
 
@@ -15,13 +20,14 @@ export default {
   },
   components: { BirdsEye },
   computed: {
+    selected() {
+      return this.$store.state.selectedToken;
+    },
+    offsets() {
+      return this.$store.getters.iliadHeatMap[this.selected].indexes.map(i => [i, i]);
+    },
     offsetCollection() {
-      const heatMap = this.$store.getters.iliadHeatMap;
-      return Object.keys(heatMap).filter(token => heatMap[token].count > 5).map(token => {
-        return {
-          offsets: heatMap[token].indexes.map(index => [index, index]),
-        }
-      });
+      return [{ offsets: this.offsets }];
     },
   }
 }

@@ -18,6 +18,7 @@ import {
   HOMER_SELECT_CARD,
   HOMER_LOOKUP_REFERENCE,
   SET_IMAGE_URL,
+  SELECT_TOKEN,
 } from './constants';
 
 import cards, { iliad } from './homer';
@@ -47,6 +48,7 @@ export default function createStore() {
       readerTextSize: 'md',
       readerTextWidth: 'normal',
 
+      selectedToken: null,
       iliad: [...iliad],
       interlinear: false,
       books: [],
@@ -107,6 +109,9 @@ export default function createStore() {
       }, {}),
     },
     mutations: {
+      [SELECT_TOKEN]: (state, token) => {
+        state.selectedToken = token;
+      },
       [SET_SELECTED_LEMMAS]: (state, lemmas) => {
         state.selectedLemmas = lemmas;
       },
@@ -184,6 +189,7 @@ export default function createStore() {
       },
     },
     actions: {
+      [SELECT_TOKEN]: ({ commit }, { token }) => commit(SELECT_TOKEN, token),
       [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
       [TOGGLE_RIGHT_SIDEBAR]: ({ commit }) => commit(TOGGLE_RIGHT_SIDEBAR),
       [SET_PASSAGE_TEXT]: ({ commit }, { lines }) => {

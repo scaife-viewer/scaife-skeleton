@@ -1,21 +1,21 @@
 <template>
-  <Reader :passage-text="passageText" />
+  <TokenSelectionReader :tokens="tokens" />
 </template>
 
 <script>
-  import Reader from '../../components/widgets/reader/Reader.vue';
+  import TokenSelectionReader from './TokenSelectionReader.vue';
 
   export default {
     scaifeConfig: {
-      displayName: 'Reader',
+      displayName: 'Token Selection Reader',
       location: 'main',
     },
     components: {
-      Reader,
+      TokenSelectionReader,
     },
     computed: {
-      passageText() {
-        return this.$store.state.iliad.map((line, index) => [index, line]);
+      tokens() {
+        return this.$store.getters.iliadTokens;
       },
     }
   };
