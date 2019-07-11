@@ -1,6 +1,6 @@
 <template>
   <div class="birds-eye">
-    <svg width="100%" height="510">
+    <svg width="100%" height="510" v-if="valid">
       <rect width="200" height="510" x="0" y="0" />
       <template v-for="(collection, offsetIndex) in offsetCollection">
         <line
@@ -9,11 +9,19 @@
         />
       </template>
     </svg>
+    <p v-else>The offset data is invalid.</p>
   </div>
 </template>
 
 <script>
 import utils from './utils';
+
+// Polyfill needed for IE
+Number.isInteger = Number.isInteger || function(value) {
+  return typeof value === 'number' &&
+    isFinite(value) &&
+    Math.floor(value) === value;
+};
 
 export default {
   props: {
@@ -21,13 +29,7 @@ export default {
       type: Array,
       required: true,
       validator: function(value) {
-        console.log('validate', value);
-        value.forEach(item => {
-          if (item.offsets === undefined) {
-            return false;
-          }
-        });
-        return true;
+        return utils.isValidCollection(value);
       }
     },
     wordsPerLine: {
@@ -42,6 +44,9 @@ export default {
   computed: {
     lineLength() {
       return this.wordLength * this.wordsPerLine;
+    },
+    valid() {
+      return utils.isValidCollection(this.offsetCollection);
     }
   },
   methods: {
