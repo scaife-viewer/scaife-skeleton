@@ -20,7 +20,7 @@ const isValidCollection = (value) => {
         valid = false;
         return;
       }
-      if (offset[0] >= offset[1]) {
+      if (offset[0] > offset[1]) {
         valid = false;
       }
     });

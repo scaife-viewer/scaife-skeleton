@@ -8,7 +8,8 @@
 <script>
   import FixedSkeleton from '../skeleton';
 
-  import BirdsEyeWidget from '../components/widgets/birds-eye/BirdsEyeWidget.vue';
+  import BirdsEyeWidget from './widgets/BirdsEyeWidget.vue';
+  import IliadReaderWidget from './widgets/IliadReaderWidget.vue';
 
   export default {
     components: {
@@ -16,13 +17,13 @@
     },
     computed: {
       mainWidget() {
-        return BirdsEyeWidget;
+        return IliadReaderWidget;
       },
       leftWidgets() {
         return [];
       },
       rightWidgets() {
-        return [];
+        return [BirdsEyeWidget];
       },
     },
   }

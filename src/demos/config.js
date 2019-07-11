@@ -20,7 +20,7 @@ import {
   SET_IMAGE_URL,
 } from './constants';
 
-import cards from './homer';
+import cards, { iliad } from './homer';
 
 const parseHomerReference = (ref) => {
   const parts = ref.split('.');
@@ -47,6 +47,7 @@ export default function createStore() {
       readerTextSize: 'md',
       readerTextWidth: 'normal',
 
+      iliad: [...iliad],
       interlinear: false,
       books: [],
       book: null,
@@ -94,6 +95,16 @@ export default function createStore() {
 
         return newCards;
       },
+      iliadTokens: state => state.iliad.map(line => line.split(' ')).flat(),
+      iliadHeatMap: (state, getters) => getters.iliadTokens.reduce((map, token, index) => {
+        if (map[token]) {
+          map[token].indexes.push(index);
+          map[token].count += 1;
+        } else {
+          map[token] = { indexes: [index], count: 1 };
+        }
+        return map;
+      }, {}),
     },
     mutations: {
       [SET_SELECTED_LEMMAS]: (state, lemmas) => {
