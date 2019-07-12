@@ -1,7 +1,7 @@
 <template>
   <div class="birds-eye">
-    <svg width="100%" height="510" v-if="valid">
-      <rect width="200" height="510" x="0" y="0" />
+    <svg width="100%" :height="totalLines" v-if="valid">
+      <rect :width="lineLength" :height="totalLines" x="0" y="0" />
       <template v-for="(collection, offsetIndex) in offsetCollection">
         <line
           v-for="(line, lineIndex) in lines(collection)" :key="`${offsetIndex}-${lineIndex}`"
@@ -32,6 +32,10 @@ export default {
         return utils.isValidCollection(value);
       }
     },
+    totalWords: {
+      type: Number,
+      required: true,
+    },
     wordsPerLine: {
       type: Number,
       default: 10,
@@ -44,6 +48,9 @@ export default {
   computed: {
     lineLength() {
       return this.wordLength * this.wordsPerLine;
+    },
+    totalLines() {
+      return this.totalWords / this.wordsPerLine;
     },
     valid() {
       return utils.isValidCollection(this.offsetCollection);

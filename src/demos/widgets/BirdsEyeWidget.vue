@@ -3,7 +3,7 @@
     <template v-if="selected">
       <h2>{{ selected }}</h2>
       <p>{{ offsets }}</p>
-      <BirdsEye :offset-collection="offsetCollection" />
+      <BirdsEye :offset-collection="offsetCollection" :total-words="totalWords" />
     </template>
     <p v-else>Select a token to see it in context</p>
   </div>
@@ -23,11 +23,17 @@ export default {
     selected() {
       return this.$store.state.selectedToken;
     },
+    tokens() {
+      return this.$store.getters.iliadTokens;
+    },
+    totalWords() {
+      return this.tokens.length;
+    },
     offsets() {
-      return this.$store.getters.iliadHeatMap[this.selected].indexes.map(i => [i, i]);
+      return this.selected && this.$store.getters.iliadHeatMap[this.selected].indexes.map(i => [i, i]);
     },
     offsetCollection() {
-      return [{ offsets: this.offsets }];
+      return this.selected && [{ offsets: this.offsets }];
     },
   }
 }
