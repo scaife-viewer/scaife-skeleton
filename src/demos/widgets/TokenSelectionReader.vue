@@ -21,7 +21,16 @@ export default {
 </script>
 
 <style lang="scss">
+  .reader .token {
+    cursor: pointer;
+    &:hover {
+      background: #FFFDDB;
+    }
+  }
   .reader .token.selected {
-    text-decoration: underline;
+    background: #FCF484;
+    &.hover {
+      background: #FCF484;
+    }
   }
 </style>
