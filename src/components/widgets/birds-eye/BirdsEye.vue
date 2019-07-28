@@ -23,6 +23,12 @@ Number.isInteger = Number.isInteger || function(value) {
     Math.floor(value) === value;
 };
 
+/*
+ * Two Modes of BirdsEye:
+ *
+ * 1.
+ */
+
 export default {
   props: {
     offsetCollection: {
@@ -57,12 +63,21 @@ export default {
     }
   },
   methods: {
+    extractOffset(offset) {
+      if (offset.length === 2) {
+        const [start, end] = offset;
+        const [startLine, startOffset] = utils.divmod(start, this.wordsPerLine);
+        const [endLine, endOffset] = utils.divmod(end, this.wordsPerLine);
+        return {startLine, startOffset, endLine, endOffset};
+      } else {
+        const [startLine, startOffset, endLine, endOffset] = offset;
+        return {startLine, startOffset, endLine, endOffset};
+      }
+    },
     lines(collection) {
       const lines = [];
       collection.offsets.forEach(offset => {
-          const [start, end] = offset;
-          const [startLine, startOffset] = utils.divmod(start, this.wordsPerLine);
-          const [endLine, endOffset] = utils.divmod(end, this.wordsPerLine);
+          const { startLine, startOffset, endLine, endOffset } = this.extractOffset(offset);
 
           for (let line = startLine; line <= endLine; line += 1) {
             const y = line;

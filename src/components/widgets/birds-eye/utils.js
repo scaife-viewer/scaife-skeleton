@@ -12,7 +12,7 @@ const isValidCollection = (value) => {
       return;
     }
     item.offsets.forEach((offset) => {
-      if (!Array.isArray(offset) || offset.length !== 2) {
+      if (!Array.isArray(offset) || !(offset.length === 2 || offset.length === 4)) {
         valid = false;
         return;
       }
@@ -20,7 +20,15 @@ const isValidCollection = (value) => {
         valid = false;
         return;
       }
-      if (offset[0] > offset[1]) {
+      if (offset.length === 4 && (!Number.isInteger(offset[2]) || !Number.isInteger(offset[3]))) {
+        valid = false;
+        return;
+      }
+      if (offset.length === 2 && offset[0] > offset[1]) {
+        valid = false;
+        return;
+      }
+      if (offset.length === 4 && offset[0] > offset[2]) {
         valid = false;
       }
     });
