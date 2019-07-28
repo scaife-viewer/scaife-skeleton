@@ -49,11 +49,14 @@ export default {
     wordLength: {
       type: Number,
       default: 20,
+    },
+    precomputedLineLength: {
+      type: Number
     }
   },
   computed: {
     lineLength() {
-      return this.wordLength * this.wordsPerLine;
+      return this.precomputedLineLength || this.wordLength * this.wordsPerLine;
     },
     totalLines() {
       return this.totalWords / this.wordsPerLine;

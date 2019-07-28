@@ -7,6 +7,7 @@ import MorphGNTDemo from './demos/MorphGNTDemo.vue';
 import PaginationDemo from './demos/PaginationDemo.vue';
 import BirdsEyeDemo from './demos/BirdsEyeDemo.vue';
 import IIIFDemo from './demos/IIIFDemo.vue';
+import HomerBirdsEyeDemo from './demos/HomerBirdsEyeDemo.vue';
 
 Vue.use(Router);
 
@@ -24,6 +25,7 @@ const router = new Router({
     { path: '/pagination/', component: PaginationDemo, name: 'pagination' },
     { path: '/iiif/', component: IIIFDemo, name: 'iiif' },
     { path: '/birds-eye/', component: BirdsEyeDemo, name: 'birds-eye' },
+    { path: '/homer-ngrams-birds-eye/', component: HomerBirdsEyeDemo, name: 'homer-ngrams-birds-eye' },
   ],
 });
 
