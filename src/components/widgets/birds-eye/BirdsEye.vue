@@ -1,6 +1,6 @@
 <template>
   <div class="birds-eye">
-    <svg width="100%" :height="totalLines" v-if="valid">
+    <svg width="100%" :height="totalLines" v-if="valid" :viewBox="viewBox">
       <rect :width="lineLength" :height="totalLines" x="0" y="0" />
       <template v-for="(collection, offsetIndex) in offsetCollection">
         <line
@@ -50,16 +50,22 @@ export default {
       type: Number,
       default: 20,
     },
+    precomputedLineCount: {
+      type: Number
+    },
     precomputedLineLength: {
       type: Number
     }
   },
   computed: {
+    viewBox() {
+      return `0 0 ${this.lineLength} ${this.totalLines}`;
+    },
     lineLength() {
       return this.precomputedLineLength || this.wordLength * this.wordsPerLine;
     },
     totalLines() {
-      return this.totalWords / this.wordsPerLine;
+      return this.precomputedLineCount || this.totalWords / this.wordsPerLine;
     },
     valid() {
       return utils.isValidCollection(this.offsetCollection);
@@ -81,12 +87,15 @@ export default {
       const lines = [];
       collection.offsets.forEach(offset => {
           const { startLine, startOffset, endLine, endOffset } = this.extractOffset(offset);
+          console.log('lines', startLine, startOffset, endLine, endOffset);
 
           for (let line = startLine; line <= endLine; line += 1) {
             const y = line;
+            const x1Offset = offset.length === 2 ? startOffset * this.wordLength : startOffset;
+            const x2Offset = offset.length === 2 ? (1 + endOffset) * this.wordLength : endOffset;
             lines.push({
-              x1: line === startLine ? (startOffset * this.wordLength) : 0,
-              x2: line === endLine ? ((1 + endOffset) * this.wordLength) : this.lineLength,
+              x1: line === startLine ? x1Offset : 0,
+              x2: line === endLine ? x2Offset : this.lineLength,
               y1: y,
               y2: y,
             });

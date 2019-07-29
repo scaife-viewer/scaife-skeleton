@@ -4,7 +4,7 @@
     v-for="(bookLength, bookIndex) in books"
     :key="bookIndex"
     :offset-collection="bookCollection(bookIndex)"
-    :total-words="bookLength"
+    :precomputed-line-count="bookLength"
     :precomputed-line-length="1000"
     />
   </div>
