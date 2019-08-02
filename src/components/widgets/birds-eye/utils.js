@@ -37,7 +37,23 @@ const isValidCollection = (value) => {
   return valid;
 };
 
+const areValidSections = (value) => {
+  let valid = true;
+  value.forEach((section) => {
+    if (!Array.isArray(section)) {
+      valid = false;
+    }
+    section.forEach((subsection) => {
+      if (subsection.highlight === undefined || subsection.id === undefined) {
+        valid = false;
+      }
+    });
+  });
+  return valid;
+};
+
 export default {
   divmod,
   isValidCollection,
+  areValidSections,
 };
