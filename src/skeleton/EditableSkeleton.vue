@@ -89,6 +89,8 @@ export default {
         case 'right':
           this.$store.dispatch(`scaifeSkeleton/${ADD_RIGHT_WIDGET}`, { widget });
           break;
+        default:
+          break;
       }
     },
     changeWidget(mainWidget) {
@@ -103,6 +105,8 @@ export default {
           break;
         case 'right':
           this.$store.dispatch(`scaifeSkeleton/${REMOVE_RIGHT_WIDGET}`, { index });
+          break;
+        default:
           break;
       }
     },

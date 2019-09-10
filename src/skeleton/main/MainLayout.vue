@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import utils from '../utils';
 import EditLayoutButton from './EditLayoutButton.vue';
 import MainWidget from './MainWidget.vue';
 import WidgetEditor from '../editor/WidgetEditor.vue';
@@ -35,7 +36,7 @@ export default {
   },
   computed: {
     widgetHeader() {
-      return this.widget ? this.widget.scaifeConfig.displayName : '';
+      return this.widget ? utils.displayName(this.widget.scaifeConfig.displayName) : '';
     },
   },
 };

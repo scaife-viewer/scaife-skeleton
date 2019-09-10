@@ -1,3 +1,4 @@
+import utils from './utils';
 import {
   ADD_LEFT_WIDGET,
   ADD_RIGHT_WIDGET,
@@ -33,13 +34,13 @@ export default function createStore() {
         [ADD_LEFT_WIDGET]: (state, widget) => {
           state.widgets.left = [
             ...state.widgets.left,
-            widget.scaifeConfig.displayName,
+            utils.displayName(widget.scaifeConfig.displayName),
           ];
         },
         [ADD_RIGHT_WIDGET]: (state, widget) => {
           state.widgets.right = [
             ...state.widgets.right,
-            widget.scaifeConfig.displayName,
+            utils.displayName(widget.scaifeConfig.displayName),
           ];
         },
         [REMOVE_LEFT_WIDGET]: (state, index) => {
@@ -55,7 +56,7 @@ export default function createStore() {
         [CHANGE_MAIN_WIDGET]: (state, widget) => {
           state.widgets = {
             ...state.widgets,
-            mainWidget: widget.scaifeConfig.displayName,
+            mainWidget: utils.displayName(widget.scaifeConfig.displayName),
           };
         },
       },

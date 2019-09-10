@@ -8,7 +8,7 @@
           :key="index"
           @remove="$emit('removeWidget', index)"
           :editing="editing">
-          <span slot="heading" class="heading">{{ widget.scaifeConfig.displayName }}</span>
+          <span slot="heading" class="heading">{{ displayName(widget.scaifeConfig.displayName) }}</span>
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
@@ -22,12 +22,18 @@
 </template>
 
 <script>
+import utils from '../utils';
 import SidebarWidget from './SidebarWidget.vue';
 import WidgetEditor from '../editor/WidgetEditor.vue';
 
 export default {
   props: ['open', 'editing', 'widgets', 'widgetOptions'],
   components: { WidgetEditor, SidebarWidget },
+  methods: {
+    displayName(name) {
+      return utils.displayName(name);
+    },
+  },
 };
 </script>
 

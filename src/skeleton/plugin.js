@@ -3,12 +3,13 @@ import EditableSkeleton from './EditableSkeleton.vue';
 import TextLoader from './TextLoader.vue';
 import Icon from './icons/Icon.vue';
 
+import utils from './utils';
 import iconMap from './icons';
 
 class Skeleton {
   constructor(widgets, additionIconMap) {
     this.widgets = widgets.reduce((map, obj) => {
-      map[obj.scaifeConfig.displayName] = obj;
+      map[utils.displayName(obj.scaifeConfig.displayName)] = obj;
       return map;
     }, {});
     this.iconMap = {
@@ -41,9 +42,9 @@ class Skeleton {
           return true;
         })
         // eslint-disable-next-line arrow-parens
-        .map((name) => ({
-          text: this.widgets[name].scaifeConfig.displayName,
-          component: this.widgets[name],
+        .map((text) => ({
+          text,
+          component: this.widgets[text],
         }))
     );
   }
