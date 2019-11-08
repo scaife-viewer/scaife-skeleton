@@ -6,6 +6,9 @@
         <li><router-link :to="{name: 'morphgnt'}">MorphGNT Demo</router-link></li>
         <li><router-link :to="{name: 'pagination'}">Pagination Demo</router-link></li>
         <li><router-link :to="{name: 'iiif'}">IIIF Demo</router-link></li>
+        <li><router-link :to="{name: 'birds-eye'}">Birds Eye Demo</router-link></li>
+        <li><router-link :to="{name: 'section-birds-eye'}">Section Birds Eye Demo</router-link></li>
+        <li><router-link :to="{name: 'homer-ngrams-birds-eye'}">Homer Birds Eye Demo</router-link></li>
       </ul>
     </div>
     <router-view v-else />

@@ -18,9 +18,10 @@ import {
   HOMER_SELECT_CARD,
   HOMER_LOOKUP_REFERENCE,
   SET_IMAGE_URL,
+  SELECT_TOKEN,
 } from './constants';
 
-import cards from './homer';
+import cards, { iliad } from './homer';
 
 const parseHomerReference = (ref) => {
   const parts = ref.split('.');
@@ -47,6 +48,8 @@ export default function createStore() {
       readerTextSize: 'md',
       readerTextWidth: 'normal',
 
+      selectedToken: null,
+      iliad: [...iliad],
       interlinear: false,
       books: [],
       book: null,
@@ -94,8 +97,21 @@ export default function createStore() {
 
         return newCards;
       },
+      iliadTokens: state => state.iliad.map(line => line.split(' ')).flat(),
+      iliadHeatMap: (state, getters) => getters.iliadTokens.reduce((map, token, index) => {
+        if (map[token]) {
+          map[token].indexes.push(index);
+          map[token].count += 1;
+        } else {
+          map[token] = { indexes: [index], count: 1 };
+        }
+        return map;
+      }, {}),
     },
     mutations: {
+      [SELECT_TOKEN]: (state, token) => {
+        state.selectedToken = token;
+      },
       [SET_SELECTED_LEMMAS]: (state, lemmas) => {
         state.selectedLemmas = lemmas;
       },
@@ -173,6 +189,7 @@ export default function createStore() {
       },
     },
     actions: {
+      [SELECT_TOKEN]: ({ commit }, { token }) => commit(SELECT_TOKEN, token),
       [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
       [TOGGLE_RIGHT_SIDEBAR]: ({ commit }) => commit(TOGGLE_RIGHT_SIDEBAR),
       [SET_PASSAGE_TEXT]: ({ commit }, { lines }) => {
