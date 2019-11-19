@@ -1,6 +1,6 @@
 # Scaife Skeleton
 
-[![CircleCI](https://circleci.com/gh/eldarion/scaife-skeleton.svg?style=svg)](https://circleci.com/gh/eldarion/scaife-skeleton)
+[![CircleCI](https://circleci.com/gh/scaife-viewer/scaife-skeleton.svg?style=svg)](https://circleci.com/gh/scaife-viewer/scaife-skeleton)
 
 This is the foundation for any Scaife reader.  It consists of two main skeleton types, `FixedSkeleton` and `EditableSkeleton`.
 
@@ -204,6 +204,7 @@ npm run test
 
 ### Prettier
 
+```
 yarn run prettier:check
 yarn run prettier:fix
 
@@ -211,6 +212,7 @@ or
 
 npm run prettier:check
 npm run prettier:fix
+```
 
 ### Packaging
 
