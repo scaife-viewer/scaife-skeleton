@@ -61,6 +61,7 @@
 <script>
 import Pagination from '../reader/Pagination';
 import Word from './Word.vue';
+import WIDGETS_NS from '@scaife-viewer/scaife-widgets';
 
 export default {
   scaifeConfig: {
@@ -76,10 +77,10 @@ export default {
       return this.$store.state.interlinear;
     },
     textSize() {
-      return this.$store.state.readerTextSize;
+      return this.$store.state[WIDGETS_NS].readerTextSize;
     },
     textWidth() {
-      return this.$store.state.readerTextWidth;
+      return this.$store.state[WIDGETS_NS].readerTextWidth;
     }
   },
   mounted() {
