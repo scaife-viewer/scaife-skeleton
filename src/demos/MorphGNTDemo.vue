@@ -10,13 +10,16 @@
   import FixedSkeleton from '../skeleton';
 
   import SelectedTextInfoWidget from '../components/widgets/reader/SelectedTextInfoWidget.vue';
-  import TextSizeWidget from '../components/widgets/text-size/TextSizeWidget.vue';
-  import TextWidthWidget from '../components/widgets/text-width/TextWidthWidget.vue';
   import BookInfoWidget from '../components/widgets/morphgnt/BookInfoWidget.vue';
   import BookSelectWidget from '../components/widgets/morphgnt/BookSelectWidget.vue';
   import InterlinearWidget from '../components/widgets/morphgnt/InterlinearWidget.vue';
   import SelectablePassageWidget from '../components/widgets/morphgnt/SelectablePassageWidget.vue';
   import SelectedWordsWidget from '../components/widgets/morphgnt/SelectedWordsWidget.vue';
+
+  import {
+    TextSizeWidget,
+    TextWidthWidget,
+  } from '@scaife-viewer/scaife-widgets';
 
   import { MORPHGNT_SET_BOOKS, MORPHGNT_SET_BOOK, MORPHGNT_SET_PASSAGE, SET_WORD } from './constants';
 
@@ -58,3 +61,34 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import "../variables.scss";
+
+  .text-size-control {
+    cursor: pointer;
+    font-family: 'Noto Serif';
+
+    color: $gray-500;
+
+    &.selected {
+      color: $gray-800;
+    }
+  }
+
+  .text-width-widget {
+    margin: 0 2em;
+    flex: 1;
+    .text-width-control {
+      font-family: 'Noto Serif';
+      cursor: pointer;
+      color: $gray-500;
+      font-size: 14px;
+      padding-right: 5px;
+    }
+
+    .text-width-control.active {
+      color: $black;
+    }
+  }
+</style>

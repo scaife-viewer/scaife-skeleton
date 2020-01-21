@@ -30,6 +30,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/vue-fontawesome": "^0.1.5",
+    "@scaife-viewer/scaife-widgets": "^0.6.0",
     "axios": "^0.18.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.2",

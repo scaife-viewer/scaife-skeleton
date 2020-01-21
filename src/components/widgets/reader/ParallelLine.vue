@@ -7,13 +7,14 @@
 
 <script>
   import ReaderLine from './ReaderLine.vue';
+  import WIDGETS_NS from '@scaife-viewer/scaife-widgets';
 
   export default {
     props: ['left-line', 'right-line'],
     components: { ReaderLine },
     computed: {
       textSize() {
-        return this.$store.state.readerTextSize;
+        return this.$store.state[WIDGETS_NS].readerTextSize;
       }
     }
   };
