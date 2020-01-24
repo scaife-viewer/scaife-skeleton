@@ -25,27 +25,3 @@
     }
   };
 </script>
-
-<style lang="scss">
-  .parallel-reader.text {
-    &.text-xs {
-      max-width: 1000px;
-    }
-
-    &.text-sm {
-      max-width: 1200px;
-    }
-
-    &.text-md {
-      max-width: 1400px;
-    }
-
-    &.text-lg {
-      max-width: 1600px;
-    }
-
-    &.text-xl {
-      max-width: 1800px;
-    }
-  }
-</style>

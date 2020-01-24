@@ -21,6 +21,8 @@
   }
 </script>
 
+<style src="@scaife-viewer/scaife-widgets/dist/scaife-widgets.css"></style>
+
 <style lang="scss">
   @import url(https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&subset=greek,greek-ext,latin-ext);
   @import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700);

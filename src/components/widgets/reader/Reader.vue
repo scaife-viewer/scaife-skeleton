@@ -65,32 +65,4 @@
     font-size: 14px;
     line-height: 1.6;
   }
-
-  .text-xs {
-    font-size: 12px;
-  }
-  .text-sm {
-    font-size: 14px;
-  }
-  .text-md {
-    font-size: 16px;
-  }
-  .text-lg {
-    font-size: 20px;
-  }
-  .text-xl {
-    font-size: 24px;
-  }
-
-  .text-width-normal {
-    max-width: 90%;
-  }
-
-  .text-width-narrow {
-    max-width: 80%;
-  }
-
-  .text-width-wide {
-    max-width: 100%;
-  }
 </style>
