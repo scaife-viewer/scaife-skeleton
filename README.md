@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/scaife-viewer/scaife-skeleton.svg?style=svg)](https://circleci.com/gh/scaife-viewer/scaife-skeleton)
 
+This repository is part of the [Scaife Viewer](https://scaife-viewer.org) project, an open-source ecosystem for building rich online reading environments.
+
 This is the foundation for any Scaife reader.  It consists of two main skeleton types, `FixedSkeleton` and `EditableSkeleton`.
 
 1. In the `FixedSkeleton` case, you the site developer, pre-determine and decide what widgets will belong to the
