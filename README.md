@@ -1,5 +1,7 @@
 # Scaife Skeleton
 
+front-end layout library for Scaife readers
+
 [![CircleCI](https://circleci.com/gh/scaife-viewer/scaife-skeleton.svg?style=svg)](https://circleci.com/gh/scaife-viewer/scaife-skeleton)
 
 This repository is part of the [Scaife Viewer](https://scaife-viewer.org) project, an open-source ecosystem for building rich online reading environments.
