@@ -15,7 +15,7 @@
   } from '../skeleton/constants';
 
   export default {
-    name: 'Width Widget',
+    name: 'width-widget',
     scaifeConfig: {
       displayName: 'Width Demo',
     },

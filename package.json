@@ -32,6 +32,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "@scaife-viewer/scaife-widgets": "^0.13.0",
     "axios": "^0.19.2",
+    "portal-vue": "^2.1.7",
     "vue": "^2.6.11",
     "vue-router": "^3.3.2",
     "vuex": "^3.4.0"

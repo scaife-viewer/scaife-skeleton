@@ -9,6 +9,7 @@
           @remove="$emit('removeWidget', index)"
           :editing="editing">
           <span slot="heading" class="heading">{{ displayName(widget.scaifeConfig.displayName) }}</span>
+          <PortalTarget v-if="widget.scaifeConfig.portalTarget" slot="sticky" :name="widget.scaifeConfig.portalTarget" />
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
@@ -22,18 +23,22 @@
 </template>
 
 <script>
+import { PortalTarget } from 'portal-vue';
 import utils from '../utils';
 import SidebarWidget from './SidebarWidget.vue';
 import WidgetEditor from '../editor/WidgetEditor.vue';
 
 export default {
   props: ['open', 'editing', 'widgets', 'widgetOptions'],
-  components: { WidgetEditor, SidebarWidget },
+  components: { WidgetEditor, SidebarWidget, PortalTarget },
   methods: {
     displayName(name) {
       return utils.displayName(name);
     },
   },
+  created() {
+    console.log(PortalTarget);
+  }
 };
 </script>
 

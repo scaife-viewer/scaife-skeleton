@@ -9,6 +9,7 @@
   import FixedSkeleton from '../skeleton';
 
   import WidthWidget from './WidthWidget.vue';
+  import PortalDemoWidget from './PortalDemoWidget.vue';
   import SelectablePassageWidget from '../components/widgets/morphgnt/SelectablePassageWidget.vue';
 
   import {
@@ -29,7 +30,7 @@
         return SelectablePassageWidget;
       },
       leftWidgets() {
-        return [WidthWidget];
+        return [WidthWidget, PortalDemoWidget];
       },
       rightWidgets() {
         return [TextSizeWidget, TextWidthWidget];
