@@ -7,11 +7,15 @@ import {
   REMOVE_RIGHT_WIDGET,
   TOGGLE_LEFT_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
+  SET_MAIN_LAYOUT_WIDTH_NORMAL,
+  SET_MAIN_LAYOUT_WIDTH_WIDE,
+  SET_MAIN_LAYOUT_WIDTH_WIDER,
+  SKELETON_NAMESPACE,
 } from './constants';
 
 export default function createStore() {
   return {
-    namespace: 'scaifeSkeleton',
+    namespace: SKELETON_NAMESPACE,
     store: {
       namespaced: true, // expects to be namespaced under `scaife`
       state: {
@@ -22,9 +26,19 @@ export default function createStore() {
           right: [],
           left: [],
         },
+        mainLayoutFlexClass: 'main-layout-flex-2',
       },
       getters: {},
       mutations: {
+        [SET_MAIN_LAYOUT_WIDTH_NORMAL]: (state) => {
+          state.mainLayoutFlexClass = 'main-layout-flex-2';
+        },
+        [SET_MAIN_LAYOUT_WIDTH_WIDE]: (state) => {
+          state.mainLayoutFlexClass = 'main-layout-flex-4';
+        },
+        [SET_MAIN_LAYOUT_WIDTH_WIDER]: (state) => {
+          state.mainLayoutFlexClass = 'main-layout-flex-6';
+        },
         [TOGGLE_LEFT_SIDEBAR]: (state) => {
           state.leftOpen = !state.leftOpen;
         },
@@ -61,6 +75,15 @@ export default function createStore() {
         },
       },
       actions: {
+        [SET_MAIN_LAYOUT_WIDTH_NORMAL]: ({ commit }) => {
+          commit(SET_MAIN_LAYOUT_WIDTH_NORMAL);
+        },
+        [SET_MAIN_LAYOUT_WIDTH_WIDE]: ({ commit }) => {
+          commit(SET_MAIN_LAYOUT_WIDTH_WIDE);
+        },
+        [SET_MAIN_LAYOUT_WIDTH_WIDER]: ({ commit }) => {
+          commit(SET_MAIN_LAYOUT_WIDTH_WIDER);
+        },
         [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => {
           commit(TOGGLE_LEFT_SIDEBAR);
         },
