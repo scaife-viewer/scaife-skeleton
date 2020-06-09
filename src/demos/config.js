@@ -193,7 +193,7 @@ export default function createStore() {
         axios
           .get(
             // eslint-disable-next-line comma-dangle
-            `https://homer-api.herokuapp.com/urn:cts:greekLit:tlg0012.tlg001.perseus-grc2:${card}/`,
+            `https://homer-api.herokuapp.com/urn:cts:greekLit:tlg0012.tlg001.perseus-grc2:${card}/`
           )
           .then((r) => {
             dispatch(SET_PASSAGE_TEXT, { lines: r.data });
