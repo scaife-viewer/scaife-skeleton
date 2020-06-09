@@ -1,12 +1,12 @@
 <template>
-    <EditableSkeleton />
+  <EditableSkeleton />
 </template>
 <script>
-  import { EditableSkeleton } from '../skeleton/';
+  import { EditableSkeleton } from '../skeleton';
 
   export default {
     components: {
-      EditableSkeleton
+      EditableSkeleton,
     },
-  }
+  };
 </script>

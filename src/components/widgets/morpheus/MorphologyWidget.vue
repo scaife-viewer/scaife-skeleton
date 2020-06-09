@@ -1,6 +1,6 @@
 <template>
   <div class="morphology-widget" v-if="enabled">
-    <TextLoader v-if="loading" size="7px" margin="1px"/>
+    <TextLoader v-if="loading" size="7px" margin="1px" />
     <div v-else-if="morphBody">
       <div class="group" v-for="group in morphBody" :key="group.uri">
         <div class="head">
@@ -24,10 +24,7 @@
               {{ entry.num }}
               {{ entry.gend }}
               {{ entry.comp }}
-              <span
-                v-if="entry.dial"
-                class="dial"
-              >({{ entry.dial }})</span>
+              <span v-if="entry.dial" class="dial">({{ entry.dial }})</span>
             </div>
             <!-- {{ entry.derivtype }} -->
             <!-- {{ entry.morph }} -->
@@ -36,8 +33,9 @@
       </div>
     </div>
     <p v-else-if="selectedWord" class="no-results">No results found.</p>
-    <p v-else class="instructions">In
-      <span class="mode">HIGHLIGHT</span> text mode, select a word to get morphological analysis (Greek and Latin only).
+    <p v-else class="instructions">
+      In <span class="mode">HIGHLIGHT</span> text mode, select a word to get
+      morphological analysis (Greek and Latin only).
     </p>
   </div>
   <div v-else>
@@ -67,17 +65,20 @@
     },
     computed: {
       enabled() {
-        return this.textMetadata && (this.textMetadata.lang === 'grc' || this.textMetadata.lang === 'lat');
+        return (
+          this.textMetadata &&
+          (this.textMetadata.lang === 'grc' || this.textMetadata.lang === 'lat')
+        );
       },
       selectedWord() {
-        const selectedWords = this.$store.state.selectedWords;
+        const { selectedWords } = this.$store.state;
         if (selectedWords.length === 0) {
           return null;
         }
         return selectedWords[0];
       },
       textMetadata() {
-          return this.text.metadata;
+        return this.text.metadata;
       },
       text() {
         return this.$store.state.readerText;
@@ -87,7 +88,7 @@
       fetchData() {
         if (this.enabled) {
           const word = this.selectedWord;
-          const lang = this.text.metadata.lang;
+          const { lang } = this.text.metadata;
           if (word) {
             this.loading = true;
             const url = `/morpheus/?word=${word.w}&lang=${lang}`;

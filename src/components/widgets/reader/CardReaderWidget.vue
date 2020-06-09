@@ -1,5 +1,11 @@
 <template>
-  <Card :current="currentCard" :previous="previousCard" :next="nextCard" @prevClick="onPreviousCard" @nextClick="onNextCard">
+  <Card
+    :current="currentCard"
+    :previous="previousCard"
+    :next="nextCard"
+    @prevClick="onPreviousCard"
+    @nextClick="onNextCard"
+  >
     <Reader :passage-text="passageText" />
   </Card>
 </template>
@@ -19,32 +25,41 @@
     },
     methods: {
       onPreviousCard() {
-          this.$store.dispatch('previousCard');
+        this.$store.dispatch('previousCard');
       },
       onNextCard() {
-          this.$store.dispatch('nextCard');
-      }
+        this.$store.dispatch('nextCard');
+      },
     },
     computed: {
       currentCard() {
         return this.$store.state.selectedCard;
       },
       previousCard() {
-        if (this.currentCard === null || this.$store.state.cards.indexOf(this.currentCard) === 0) {
-            return this.$store.state.cards[this.$store.state.cards.length - 1];
+        if (
+          this.currentCard === null ||
+          this.$store.state.cards.indexOf(this.currentCard) === 0
+        ) {
+          return this.$store.state.cards[this.$store.state.cards.length - 1];
         }
-        return this.$store.state.cards[this.$store.state.cards.indexOf(this.currentCard) - 1];
+        return this.$store.state.cards[
+          this.$store.state.cards.indexOf(this.currentCard) - 1
+        ];
       },
       nextCard() {
-        if (this.currentCard === null || this.$store.state.cards.indexOf(this.currentCard) === this.$store.state.cards.length - 1) {
-            return this.$store.state.cards[0];
+        if (
+          this.currentCard === null ||
+          this.$store.state.cards.indexOf(this.currentCard) === this.$store.state.cards.length - 1
+        ) {
+          return this.$store.state.cards[0];
         }
-        return this.$store.state.cards[this.$store.state.cards.indexOf(this.currentCard) + 1];
+        return this.$store.state.cards[
+          this.$store.state.cards.indexOf(this.currentCard) + 1
+        ];
       },
       passageText() {
         return this.$store.state.passageText;
       },
-    }
+    },
   };
 </script>
-

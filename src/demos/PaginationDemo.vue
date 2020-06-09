@@ -1,9 +1,10 @@
 <template>
-    <FixedSkeleton
-      :main-widget="mainWidget"
-      :left-widgets="leftWidgets"
-      :right-widgets="rightWidgets">
-    </FixedSkeleton>
+  <FixedSkeleton
+    :main-widget="mainWidget"
+    :left-widgets="leftWidgets"
+    :right-widgets="rightWidgets"
+  >
+  </FixedSkeleton>
 </template>
 <script>
   import FixedSkeleton from '../skeleton';
@@ -28,5 +29,5 @@
         return [HomerReferenceInputWidget, HomerCurrentCardsWidget];
       },
     },
-  }
+  };
 </script>

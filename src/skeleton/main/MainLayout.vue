@@ -10,44 +10,55 @@
         />
       </h2>
 
-      <WidgetEditor slot="body" v-if="editing" class="main-widget-editor"
+      <WidgetEditor
+        slot="body"
+        v-if="editing"
+        class="main-widget-editor"
         kind="main"
         :editing="editing"
         :main-widget="widget"
         :options="widgetOptions"
-        @change-widget="widget => $emit('changeWidget', widget)" />
-      <component slot="body" :is="widget" v-show="!editing" v-if="widget !== null" />
+        @change-widget="(widget) => $emit('changeWidget', widget)"
+      />
+      <component
+        slot="body"
+        :is="widget"
+        v-show="!editing"
+        v-if="widget !== null"
+      />
     </MainWidget>
   </div>
 </template>
 
 <script>
-import utils from '../utils';
-import EditLayoutButton from './EditLayoutButton.vue';
-import MainWidget from './MainWidget.vue';
-import WidgetEditor from '../editor/WidgetEditor.vue';
-import { SKELETON_NAMESPACE } from '../constants';
+  import utils from '../utils';
+  import EditLayoutButton from './EditLayoutButton.vue';
+  import MainWidget from './MainWidget.vue';
+  import WidgetEditor from '../editor/WidgetEditor.vue';
+  import { SKELETON_NAMESPACE } from '../constants';
 
-export default {
-  props: ['editing', 'widget', 'widgetOptions', 'fixed', 'isEditable'],
-  components: {
-    EditLayoutButton,
-    MainWidget,
-    WidgetEditor,
-  },
-  computed: {
-    widgetHeader() {
-      return this.widget ? utils.displayName(this.widget.scaifeConfig.displayName) : '';
+  export default {
+    props: ['editing', 'widget', 'widgetOptions', 'fixed', 'isEditable'],
+    components: {
+      EditLayoutButton,
+      MainWidget,
+      WidgetEditor,
     },
-    flexSize() {
-      return this.$store.state[SKELETON_NAMESPACE].mainLayoutFlexClass;
+    computed: {
+      widgetHeader() {
+        return this.widget
+          ? utils.displayName(this.widget.scaifeConfig.displayName)
+          : '';
+      },
+      flexSize() {
+        return this.$store.state[SKELETON_NAMESPACE].mainLayoutFlexClass;
+      },
     },
-  },
-};
+  };
 </script>
 
 <style lang="scss">
-  @import "../../variables.scss";
+  @import '../../variables.scss';
 
   .main-layout-flex-2 {
     flex: 2;

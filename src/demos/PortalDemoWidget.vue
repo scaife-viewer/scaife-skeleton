@@ -44,16 +44,16 @@
       displayName: 'Portal Demo',
       portalTarget: 'some-name',
     },
-  }
+  };
 </script>
 
 <style lang="scss" scoped>
- .content {
-   height: 600px;
-   overflow-y: scroll;
- }
- .portal-content {
-   padding: 1rem;
-   background: #CCC;
- }
+  .content {
+    height: 600px;
+    overflow-y: scroll;
+  }
+  .portal-content {
+    padding: 1rem;
+    background: #ccc;
+  }
 </style>

@@ -4,9 +4,21 @@
       <small>
         <p>Select an image to test:</p>
         <ul>
-          <li><span v-on:click="updateSampleImage(0)" class="link">Railroad Map</span></li>
-          <li><span v-on:click="updateSampleImage(1)" class="link">Rosa Parks Paper</span></li>
-          <li><span v-on:click="updateSampleImage(2)" class="link">Invalid Image</span></li>
+          <li>
+            <span v-on:click="updateSampleImage(0)" class="link"
+              >Railroad Map</span
+            >
+          </li>
+          <li>
+            <span v-on:click="updateSampleImage(1)" class="link"
+              >Rosa Parks Paper</span
+            >
+          </li>
+          <li>
+            <span v-on:click="updateSampleImage(2)" class="link"
+              >Invalid Image</span
+            >
+          </li>
         </ul>
       </small>
     </section>
@@ -39,7 +51,7 @@
       },
     },
     methods: {
-      updateSampleImage (index) {
+      updateSampleImage(index) {
         const url = SAMPLES[index];
         this.$store.dispatch('setImageURL', { url });
       },
@@ -48,11 +60,11 @@
 </script>
 
 <style lang="scss">
-  @import "../../../variables.scss";
+  @import '../../../variables.scss';
 
   .open-seadragon-input-widget {
-      margin: 0 2em;
-      flex: 1;
+    margin: 0 2em;
+    flex: 1;
 
     .link {
       cursor: pointer;

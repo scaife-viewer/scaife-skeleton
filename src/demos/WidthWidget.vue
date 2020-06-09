@@ -21,18 +21,26 @@
     },
     methods: {
       onNormal() {
-        this.$store.dispatch(`${SKELETON_NAMESPACE}/${SET_MAIN_LAYOUT_WIDTH_NORMAL}`);
+        this.$store.dispatch(
+          `${SKELETON_NAMESPACE}/${SET_MAIN_LAYOUT_WIDTH_NORMAL}`,
+        );
       },
       onWide() {
-        this.$store.dispatch(`${SKELETON_NAMESPACE}/${SET_MAIN_LAYOUT_WIDTH_WIDE}`);
+        this.$store.dispatch(
+          `${SKELETON_NAMESPACE}/${SET_MAIN_LAYOUT_WIDTH_WIDE}`,
+        );
       },
       onWider() {
-        this.$store.dispatch(`${SKELETON_NAMESPACE}/${SET_MAIN_LAYOUT_WIDTH_WIDER}`);
+        this.$store.dispatch(
+          `${SKELETON_NAMESPACE}/${SET_MAIN_LAYOUT_WIDTH_WIDER}`,
+        );
       },
-    }
-  }
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-  a { display: block; }
+  a {
+    display: block;
+  }
 </style>

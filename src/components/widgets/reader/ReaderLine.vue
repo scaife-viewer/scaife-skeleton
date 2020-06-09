@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-export default {
-  props: ['lineRef', 'text']
-}
+  export default {
+    props: ['lineRef', 'text'],
+  };
 </script>

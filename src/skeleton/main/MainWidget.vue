@@ -11,7 +11,7 @@
 </template>
 
 <script>
-export default {
-  props: ['editing'],
-};
+  export default {
+    props: ['editing'],
+  };
 </script>

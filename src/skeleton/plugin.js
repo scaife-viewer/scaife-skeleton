@@ -9,6 +9,7 @@ import iconMap from './icons';
 class Skeleton {
   constructor(widgets, additionIconMap) {
     this.widgets = widgets.reduce((map, obj) => {
+      // eslint-disable-next-line no-param-reassign
       map[utils.displayName(obj.scaifeConfig.displayName)] = obj;
       return map;
     }, {});
