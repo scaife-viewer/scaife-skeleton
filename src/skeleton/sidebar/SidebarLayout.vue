@@ -36,9 +36,6 @@ export default {
       return utils.displayName(name);
     },
   },
-  created() {
-    console.log(PortalTarget);
-  }
 };
 </script>
 

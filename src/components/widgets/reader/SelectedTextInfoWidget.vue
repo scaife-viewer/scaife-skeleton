@@ -20,8 +20,7 @@
       }
     },
     methods: {
-      handleNormSelect(word) {
-        console.log(word);
+      handleNormSelect() {
       }
     }
   }
