@@ -6,8 +6,8 @@
 </template>
 
 <script>
-  import ReaderLine from './ReaderLine.vue';
   import WIDGETS_NS from '@scaife-viewer/scaife-widgets';
+  import ReaderLine from './ReaderLine.vue';
 
   export default {
     props: ['left-line', 'right-line'],
@@ -15,13 +15,13 @@
     computed: {
       textSize() {
         return this.$store.state[WIDGETS_NS].readerTextSize;
-      }
-    }
+      },
+    },
   };
 </script>
 
 <style lang="scss">
-  @import "../../../variables.scss";
+  @import '../../../variables.scss';
 
   .parallel-line {
     padding: 5px;

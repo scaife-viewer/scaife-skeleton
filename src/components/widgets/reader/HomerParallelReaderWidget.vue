@@ -20,27 +20,24 @@
     },
     data() {
       return {
-        source: []
-      }
+        source: [],
+      };
     },
     computed: {
       flipped() {
-        return this.source.map(line => {
-            const reverseLine = line[1].split(' ').reverse().join(' ');
-            return [
-                line[0],
-                reverseLine + reverseLine
-            ];
+        return this.source.map((line) => {
+          const reverseLine = line[1].split(' ').reverse().join(' ');
+          return [line[0], reverseLine + reverseLine];
         });
-      }
-    }
-  }
+      },
+    },
+  };
 </script>
 
 <style lang="scss">
   .homer-parallel-widget {
     .select-passage-reader {
-        overflow-y: scroll;
+      overflow-y: scroll;
     }
   }
 </style>

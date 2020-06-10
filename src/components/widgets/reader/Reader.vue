@@ -1,12 +1,20 @@
 <template>
-  <div class="reader" :class="['text', `text-${textSize}`, `text-width-${textWidth}`]">
-    <ReaderLine v-for="line in passageText" :key="line[0]" :line-ref="line[0]" :text="line[1]" />
+  <div
+    class="reader"
+    :class="['text', `text-${textSize}`, `text-width-${textWidth}`]"
+  >
+    <ReaderLine
+      v-for="line in passageText"
+      :key="line[0]"
+      :line-ref="line[0]"
+      :text="line[1]"
+    />
   </div>
 </template>
 
 <script>
-  import ReaderLine from './ReaderLine.vue';
   import WIDGETS_NS from '@scaife-viewer/scaife-widgets';
+  import ReaderLine from './ReaderLine.vue';
 
   export default {
     props: ['passage-text'],
@@ -17,8 +25,8 @@
       },
       textWidth() {
         return this.$store.state[WIDGETS_NS].readerTextWidth;
-      }
-    }
+      },
+    },
   };
 </script>
 
@@ -32,7 +40,7 @@
       align-items: flex-start;
       .line-ref {
         font-family: 'Noto Sans';
-        color: #69C;
+        color: #69c;
         width: 3.5em;
         flex-shrink: 0;
       }

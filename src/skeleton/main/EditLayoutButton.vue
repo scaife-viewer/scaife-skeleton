@@ -1,16 +1,21 @@
 <template>
-    <a href @click.prevent="$emit('editToggle')" class="edit-layout-button" :class="{ editing }">
-        <template v-if="editing">Done</template>
-        <Icon v-else name="cog" />
-    </a>
+  <a
+    href
+    @click.prevent="$emit('editToggle')"
+    class="edit-layout-button"
+    :class="{ editing }"
+  >
+    <template v-if="editing">Done</template>
+    <Icon v-else name="cog" />
+  </a>
 </template>
 <script>
-export default {
-  props: ['editing'],
-};
+  export default {
+    props: ['editing'],
+  };
 </script>
 <style lang="scss">
-  @import "../../variables.scss";
+  @import '../../variables.scss';
 
   .edit-layout-button {
     color: $gray-300;

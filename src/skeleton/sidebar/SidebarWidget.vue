@@ -8,11 +8,23 @@
           </span>
           <slot name="heading" />
         </span>
-        <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link">
+        <a
+          v-if="editing"
+          href="#"
+          @click.prevent="$emit('remove')"
+          class="remove-link"
+        >
           <Icon name="minus-circle" />
         </a>
-        <span v-if="open & !editing" class="fixed-toggle" @click.prevent="toggleFix">
-          <Icon class="fa-flip-horizontal" :name="fixed ? 'expand' : 'compress'" />
+        <span
+          v-if="open & !editing"
+          class="fixed-toggle"
+          @click.prevent="toggleFix"
+        >
+          <Icon
+            class="fa-flip-horizontal"
+            :name="fixed ? 'expand' : 'compress'"
+          />
         </span>
       </h2>
       <div v-if="open" class="sticky-body">
@@ -26,27 +38,27 @@
 </template>
 
 <script>
-export default {
-  props: ['editing'],
-  data() {
-    return {
-      open: true,
-      fixed: false,
-    };
-  },
-  methods: {
-    toggle() {
-      this.open = !this.open;
+  export default {
+    props: ['editing'],
+    data() {
+      return {
+        open: true,
+        fixed: false,
+      };
     },
-    toggleFix() {
-      this.fixed = !this.fixed;
+    methods: {
+      toggle() {
+        this.open = !this.open;
+      },
+      toggleFix() {
+        this.fixed = !this.fixed;
+      },
     },
-  },
-};
+  };
 </script>
 
 <style lang="scss">
-  @import "../../variables.scss";
+  @import '../../variables.scss';
 
   .remove-link {
     color: red;
@@ -121,7 +133,7 @@ export default {
 
   /* <div class="widget-body-blur"></div> */
   .widget-body-blur {
-    background: linear-gradient(0deg,#fff,hsla(0,0%,100%,0));
+    background: linear-gradient(0deg, #fff, hsla(0, 0%, 100%, 0));
     height: 32px;
     position: absolute;
     bottom: 0;

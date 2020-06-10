@@ -1,12 +1,17 @@
 <template>
-    <FixedSkeleton
-      :main-widget="mainWidget"
-      :left-widgets="leftWidgets"
-      :right-widgets="rightWidgets">
-    </FixedSkeleton>
+  <FixedSkeleton
+    :main-widget="mainWidget"
+    :left-widgets="leftWidgets"
+    :right-widgets="rightWidgets"
+  >
+  </FixedSkeleton>
 </template>
 <script>
   import axios from 'axios';
+  import {
+    TextSizeWidget,
+    TextWidthWidget,
+  } from '@scaife-viewer/scaife-widgets';
   import FixedSkeleton from '../skeleton';
 
   import SelectedTextInfoWidget from '../components/widgets/reader/SelectedTextInfoWidget.vue';
@@ -17,30 +22,36 @@
   import SelectedWordsWidget from '../components/widgets/morphgnt/SelectedWordsWidget.vue';
 
   import {
-    TextSizeWidget,
-    TextWidthWidget,
-  } from '@scaife-viewer/scaife-widgets';
-
-  import { MORPHGNT_SET_BOOKS, MORPHGNT_SET_BOOK, MORPHGNT_SET_PASSAGE, SET_WORD } from './constants';
+    MORPHGNT_SET_BOOKS,
+    MORPHGNT_SET_BOOK,
+    MORPHGNT_SET_PASSAGE,
+  } from './constants';
 
   export default {
     components: {
-      FixedSkeleton
+      FixedSkeleton,
     },
     methods: {
       fetchData() {
         const apiRoot = 'https://api.morphgnt.org';
-        axios.get(`${apiRoot}/v0/root.json`)
-          .then(r => this.$store.dispatch(MORPHGNT_SET_BOOKS, r.data));
+        axios
+          .get(`${apiRoot}/v0/root.json`)
+          .then((r) => this.$store.dispatch(MORPHGNT_SET_BOOKS, r.data));
         if (this.$route.query.book) {
-          axios.get(`${apiRoot}${this.$route.query.book}`)
-            .then(r => this.$store.dispatch(MORPHGNT_SET_BOOK, { book: r.data }));
+          axios
+            .get(`${apiRoot}${this.$route.query.book}`)
+            .then((r) =>
+              this.$store.dispatch(MORPHGNT_SET_BOOK, { book: r.data }),
+            );
         }
         if (this.$route.query.passage) {
-          axios.get(`${apiRoot}${this.$route.query.passage}`)
-            .then(r => this.$store.dispatch(MORPHGNT_SET_PASSAGE, { passage: r.data }));
+          axios
+            .get(`${apiRoot}${this.$route.query.passage}`)
+            .then((r) =>
+              this.$store.dispatch(MORPHGNT_SET_PASSAGE, { passage: r.data }),
+            );
         }
-      }
+      },
     },
     computed: {
       mainWidget() {
@@ -50,20 +61,26 @@
         return [BookSelectWidget, BookInfoWidget];
       },
       rightWidgets() {
-        return [TextSizeWidget, TextWidthWidget, InterlinearWidget, SelectedTextInfoWidget, SelectedWordsWidget];
+        return [
+          TextSizeWidget,
+          TextWidthWidget,
+          InterlinearWidget,
+          SelectedTextInfoWidget,
+          SelectedWordsWidget,
+        ];
       },
     },
     created() {
-        this.fetchData();
+      this.fetchData();
     },
     watch: {
-        $route: 'fetchData',
-    }
-  }
+      $route: 'fetchData',
+    },
+  };
 </script>
 
 <style lang="scss">
-  @import "../variables.scss";
+  @import '../variables.scss';
 
   .text-size-control {
     cursor: pointer;

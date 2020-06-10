@@ -15,6 +15,6 @@
       toggleInterlinear() {
         this.$store.dispatch('toggleInterlinear');
       },
-    }
+    },
   };
 </script>

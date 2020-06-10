@@ -13,7 +13,11 @@
 
     <MainLayout :widget="mainWidget" :isEditable="isEditable" />
 
-    <SidebarLayout class="right" :class="sidebarClasses" :widgets="rightWidgets">
+    <SidebarLayout
+      class="right"
+      :class="sidebarClasses"
+      :widgets="rightWidgets"
+    >
       <div slot="button-container" class="button-container">
         <button class="toggle-open" v-if="rightOpen" @click="onRightToggle">
           <Icon name="arrow-right" />
@@ -27,58 +31,65 @@
 </template>
 
 <script>
-import MainLayout from './main/MainLayout.vue';
-import SidebarLayout from './sidebar/SidebarLayout.vue';
+  import MainLayout from './main/MainLayout.vue';
+  import SidebarLayout from './sidebar/SidebarLayout.vue';
 
-import {
-  TOGGLE_LEFT_SIDEBAR,
-  TOGGLE_RIGHT_SIDEBAR,
-} from './constants';
+  import { TOGGLE_LEFT_SIDEBAR, TOGGLE_RIGHT_SIDEBAR } from './constants';
 
-export default {
-  props: ['mainWidget', 'leftWidgets', 'rightWidgets'],
-  components: { MainLayout, SidebarLayout },
-  data() {
-    return {
-      editing: false,
-      isEditable: false,
-    };
-  },
-  methods: {
-    onLeftToggle() {
-      this.$emit('leftToggle');
-      this.$store.dispatch(`scaifeSkeleton/${TOGGLE_LEFT_SIDEBAR}`);
+  export default {
+    props: ['mainWidget', 'leftWidgets', 'rightWidgets'],
+    components: { MainLayout, SidebarLayout },
+    data() {
+      return {
+        editing: false,
+        isEditable: false,
+      };
     },
-    onRightToggle() {
-      this.$emit('rightToggle');
-      this.$store.dispatch(`scaifeSkeleton/${TOGGLE_RIGHT_SIDEBAR}`);
+    methods: {
+      onLeftToggle() {
+        this.$emit('leftToggle');
+        this.$store.dispatch(`scaifeSkeleton/${TOGGLE_LEFT_SIDEBAR}`);
+      },
+      onRightToggle() {
+        this.$emit('rightToggle');
+        this.$store.dispatch(`scaifeSkeleton/${TOGGLE_RIGHT_SIDEBAR}`);
+      },
     },
-  },
-  computed: {
-    leftOpen() {
-      return this.$store.state.scaifeSkeleton.leftOpen;
+    computed: {
+      leftOpen() {
+        return this.$store.state.scaifeSkeleton.leftOpen;
+      },
+      rightOpen() {
+        return this.$store.state.scaifeSkeleton.rightOpen;
+      },
+      sidebarClasses() {
+        return [
+          this.leftOpen ? 'sidebar-left--open' : 'sidebar-left--closed',
+          this.rightOpen ? 'sidebar-right--open' : 'sidebar-right--closed',
+        ];
+      },
+      mainWidgetOptions() {
+        return this.$scaife.skeleton.widgetOptions(
+          'main',
+          this.mainWidget,
+          this.leftWidgets,
+          this.rightWidgets,
+        );
+      },
+      sidebarWidgetOptions() {
+        return this.$scaife.skeleton.widgetOptions(
+          'sidebar',
+          this.mainWidget,
+          this.leftWidgets,
+          this.rightWidgets,
+        );
+      },
     },
-    rightOpen() {
-      return this.$store.state.scaifeSkeleton.rightOpen;
-    },
-    sidebarClasses() {
-      return [
-        this.leftOpen ? 'sidebar-left--open' : 'sidebar-left--closed',
-        this.rightOpen ? 'sidebar-right--open' : 'sidebar-right--closed',
-      ];
-    },
-    mainWidgetOptions() {
-      return this.$scaife.skeleton.widgetOptions('main', this.mainWidget, this.leftWidgets, this.rightWidgets);
-    },
-    sidebarWidgetOptions() {
-      return this.$scaife.skeleton.widgetOptions('sidebar', this.mainWidget, this.leftWidgets, this.rightWidgets);
-    },
-  },
-};
+  };
 </script>
 
 <style lang="scss">
-  @import "../variables.scss";
+  @import '../variables.scss';
 
   .skeleton {
     display: flex;

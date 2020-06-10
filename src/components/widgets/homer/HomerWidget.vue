@@ -7,17 +7,18 @@
         v-for="(bookLength, bIndex) in work.bookLengths"
         :class="{ selected: isSelected(work.urn, bIndex + 1, bookLength) }"
       >
-        <a
-          href
-          @click.prevent="selectBook(work.urn, bIndex + 1, bookLength)"
-        >{{ work.displayName }} {{ bIndex + 1 }}.1&ndash;{{ bIndex + 1 }}.{{ bookLength }}</a>
+        <a href @click.prevent="selectBook(work.urn, bIndex + 1, bookLength)"
+          >{{ work.displayName }} {{ bIndex + 1 }}.1&ndash;{{ bIndex + 1 }}.{{
+            bookLength
+          }}</a
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import axios from "axios";
+  import axios from 'axios';
 
   export default {
     scaifeConfig: {
@@ -28,11 +29,11 @@
     data() {
       return {
         selected: {
-          urn: "",
+          urn: '',
           book: null,
           start: null,
-          end: null
-        }
+          end: null,
+        },
       };
     },
     methods: {
@@ -48,12 +49,14 @@
           urn,
           book,
           start: 1,
-          end: bookLength
+          end: bookLength,
         };
         axios
           .get(`https://homer-api.herokuapp.com/${this.selectedUrn}/`)
-          .then(r => this.$store.dispatch("setPassageText", { lines: r.data} ));
-      }
+          .then((r) =>
+            this.$store.dispatch('setPassageText', { lines: r.data }),
+          );
+      },
     },
     computed: {
       selectedUrn() {
@@ -63,8 +66,8 @@
       works() {
         return [
           {
-            displayName: "Iliad",
-            urn: "urn:cts:greekLit:tlg0012.tlg001.perseus-grc2",
+            displayName: 'Iliad',
+            urn: 'urn:cts:greekLit:tlg0012.tlg001.perseus-grc2',
             bookLengths: [
               611,
               877,
@@ -89,17 +92,17 @@
               611,
               515,
               897,
-              804
-            ]
-          }
+              804,
+            ],
+          },
         ];
-      }
-    }
+      },
+    },
   };
 </script>
 
 <style lang="scss">
-  @import "../../../variables.scss";
+  @import '../../../variables.scss';
 
   .homer-widget {
     margin: 0 2em;
@@ -120,6 +123,5 @@
         color: $gray-700;
       }
     }
-
   }
 </style>

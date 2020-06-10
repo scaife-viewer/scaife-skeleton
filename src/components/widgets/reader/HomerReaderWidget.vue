@@ -21,7 +21,7 @@
     data() {
       return {
         passageText: '',
-      }
+      };
     },
   };
 </script>

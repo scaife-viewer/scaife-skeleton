@@ -8,6 +8,6 @@
 
 <script>
   export default {
-    name: 'text-loader'
+    name: 'text-loader',
   };
 </script>
