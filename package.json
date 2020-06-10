@@ -19,6 +19,7 @@
     "package:ssr": "NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "package:es": "NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "package:unpkg": "NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "prepare": "yarn package",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "eslint .",
