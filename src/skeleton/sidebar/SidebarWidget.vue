@@ -27,11 +27,11 @@
           />
         </span>
       </h2>
-      <div v-if="open" class="sticky-body">
+      <div v-show="open" class="sticky-body">
         <slot name="sticky" />
       </div>
     </div>
-    <div v-if="open" :class="['body', { fixed }]">
+    <div v-show="open" :class="['body', { fixed }]">
       <slot name="body" />
     </div>
   </div>
