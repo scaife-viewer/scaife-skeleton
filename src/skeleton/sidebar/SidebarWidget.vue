@@ -79,6 +79,7 @@
       border-top: 1px solid $gray-200;
     }
     .sticky-block {
+      background: inherit;
       position: sticky;
       top: 0;
       z-index: 1000;
