@@ -39,7 +39,13 @@
 
 <script>
   export default {
-    props: ['editing'],
+    props: ['editing', 'defaults'],
+    created() {
+      if (this.defaults) {
+        this.open = this.defaults.open;
+        this.fixed = this.defaults.fixed;
+      }
+    },
     data() {
       return {
         open: true,
