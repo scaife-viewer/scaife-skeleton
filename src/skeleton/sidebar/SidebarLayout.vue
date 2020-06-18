@@ -8,6 +8,7 @@
           :key="index"
           @remove="$emit('removeWidget', index)"
           :editing="editing"
+          :defaults="widget.scaifeConfig.defaults"
         >
           <span slot="heading" class="heading">{{
             displayName(widget.scaifeConfig.displayName)
