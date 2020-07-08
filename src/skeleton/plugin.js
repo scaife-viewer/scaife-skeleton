@@ -61,6 +61,7 @@ const install = (Vue, options) => {
   Vue.prototype.$scaife = {
     ...Vue.prototype.$scaife,
     skeleton: new Skeleton(options.widgets || [], options.iconMap || {}),
+    config: options.config || {},
   };
 
   Vue.component('FixedSkeleton', FixedSkeleton);
