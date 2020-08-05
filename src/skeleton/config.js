@@ -7,27 +7,32 @@ import {
   REMOVE_RIGHT_WIDGET,
   TOGGLE_LEFT_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
+  CHANGE_SIDEBAR_VISIBILITY,
   SET_MAIN_LAYOUT_WIDTH_NORMAL,
   SET_MAIN_LAYOUT_WIDTH_WIDE,
   SET_MAIN_LAYOUT_WIDTH_WIDER,
   SKELETON_NAMESPACE,
 } from './constants';
 
+const getDefaultState = () => ({
+  rightOpen: true,
+  leftOpen: true,
+  leftVisible: true,
+  rightVisible: true,
+  widgets: {
+    mainWidget: null,
+    right: [],
+    left: [],
+  },
+  mainLayoutFlexClass: 'main-layout-flex-2',
+});
+
 export default function createStore() {
   return {
     namespace: SKELETON_NAMESPACE,
     store: {
       namespaced: true, // expects to be namespaced under `scaife`
-      state: {
-        rightOpen: true,
-        leftOpen: true,
-        widgets: {
-          mainWidget: null,
-          right: [],
-          left: [],
-        },
-        mainLayoutFlexClass: 'main-layout-flex-2',
-      },
+      state: getDefaultState,
       getters: {},
       mutations: {
         [SET_MAIN_LAYOUT_WIDTH_NORMAL]: (state) => {
@@ -73,6 +78,14 @@ export default function createStore() {
             mainWidget: utils.displayName(widget.scaifeConfig.displayName),
           };
         },
+        [CHANGE_SIDEBAR_VISIBILITY]: (state, { side, bool }) => {
+          if (side === 'left') {
+            state.leftVisible = bool;
+          }
+          if (side === 'right') {
+            state.rightVisible = bool;
+          }
+        },
       },
       actions: {
         [SET_MAIN_LAYOUT_WIDTH_NORMAL]: ({ commit }) => {
@@ -104,6 +117,9 @@ export default function createStore() {
         },
         [CHANGE_MAIN_WIDGET]: ({ commit }, { widget }) => {
           commit(CHANGE_MAIN_WIDGET, widget);
+        },
+        [CHANGE_SIDEBAR_VISIBILITY]: ({ commit }, { side, bool }) => {
+          commit(CHANGE_SIDEBAR_VISIBILITY, { side, bool });
         },
       },
     },

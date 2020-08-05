@@ -16,9 +16,37 @@ import {
   HOMER_SELECT_CARD,
   HOMER_LOOKUP_REFERENCE,
   SET_IMAGE_URL,
+  CHANGE_SIDEBAR_VISIBILITY,
 } from './constants';
 
 import cards from './homer';
+
+const getDefaultState = () => ({
+  rightOpen: true,
+  leftOpen: true,
+  leftVisible: true,
+  rightVisible: true,
+  widgets: {
+    mainWidget: null,
+    right: [],
+    left: [],
+  },
+  passageText: '',
+  selectedWords: [],
+  readerText: {},
+  selectedLemmas: [],
+  readerTextSize: 'md',
+  readerTextWidth: 'normal',
+
+  interlinear: false,
+  books: [],
+  book: null,
+  passage: null,
+  word: null,
+  selectedCard: null,
+  cards,
+  imageURL: '',
+});
 
 const parseHomerReference = (ref) => {
   const parts = ref.split('.');
@@ -30,28 +58,7 @@ const parseHomerReference = (ref) => {
 
 export default function createStore() {
   return {
-    state: {
-      rightOpen: true,
-      leftOpen: true,
-      widgets: {
-        mainWidget: null,
-        right: [],
-        left: [],
-      },
-      passageText: '',
-      selectedWords: [],
-      readerText: {},
-      selectedLemmas: [],
-
-      interlinear: false,
-      books: [],
-      book: null,
-      passage: null,
-      word: null,
-      selectedCard: null,
-      cards,
-      imageURL: '',
-    },
+    state: getDefaultState,
     getters: {
       // eslint-disable-next-line arrow-parens
       getChunks: (state) => (start, end) => {
@@ -161,6 +168,14 @@ export default function createStore() {
       [SET_IMAGE_URL]: (state, url) => {
         state.imageURL = url;
       },
+      [CHANGE_SIDEBAR_VISIBILITY]: (state, { side, bool }) => {
+        if (side === 'left') {
+          state.leftVisible = bool;
+        }
+        if (side === 'right') {
+          state.rightVisible = bool;
+        }
+      },
     },
     actions: {
       [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => commit(TOGGLE_LEFT_SIDEBAR),
@@ -233,6 +248,9 @@ export default function createStore() {
       },
       [SET_IMAGE_URL]: ({ commit }, { url }) => {
         commit(SET_IMAGE_URL, url);
+      },
+      [CHANGE_SIDEBAR_VISIBILITY]: ({ commit }, { side, bool }) => {
+        commit(CHANGE_SIDEBAR_VISIBILITY, { side, bool });
       },
     },
   };

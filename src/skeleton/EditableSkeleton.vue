@@ -1,6 +1,7 @@
 <template>
   <div class="skeleton">
     <SidebarLayout
+      v-if="leftVisible"
       class="left"
       :class="sidebarClasses"
       :widgetOptions="sidebarWidgetOptions"
@@ -30,6 +31,7 @@
     />
 
     <SidebarLayout
+      v-if="rightVisible"
       class="right"
       :class="sidebarClasses"
       :widgetOptions="sidebarWidgetOptions"
@@ -54,7 +56,6 @@
 <script>
   import MainLayout from './main/MainLayout.vue';
   import SidebarLayout from './sidebar/SidebarLayout.vue';
-
   import {
     TOGGLE_LEFT_SIDEBAR,
     TOGGLE_RIGHT_SIDEBAR,
@@ -64,15 +65,6 @@
     REMOVE_RIGHT_WIDGET,
     CHANGE_MAIN_WIDGET,
   } from './constants';
-
-  const addActions = {
-    left: `scaifeSkeleton/${ADD_LEFT_WIDGET}`,
-    right: `scaifeSkeleton/${ADD_RIGHT_WIDGET}`,
-  };
-  const removeActions = {
-    left: `scaifeSkeleton/${REMOVE_LEFT_WIDGET}`,
-    right: `scaifeSkeleton/${REMOVE_RIGHT_WIDGET}`,
-  };
 
   export default {
     components: { MainLayout, SidebarLayout },
@@ -93,9 +85,13 @@
       },
       addWidget(name, widget) {
         this.$emit('addWidget', name, widget);
-        const action = addActions[name];
-        if (action) {
-          this.$store.dispatch(action, { widget });
+        switch (name) {
+          case 'left':
+            this.$store.dispatch(`scaifeSkeleton/${ADD_LEFT_WIDGET}`, { widget });
+            break;
+          case 'right':
+            this.$store.dispatch(`scaifeSkeleton/${ADD_RIGHT_WIDGET}`, { widget });
+            break;
         }
       },
       changeWidget(mainWidget) {

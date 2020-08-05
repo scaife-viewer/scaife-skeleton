@@ -3,7 +3,7 @@
     :main-widget="mainWidget"
     :left-widgets="leftWidgets"
     :right-widgets="rightWidgets"
-  >
+  />
   </FixedSkeleton>
 </template>
 <script>

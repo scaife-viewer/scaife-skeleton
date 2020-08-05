@@ -14,6 +14,8 @@ import SelectablePassageWidget from './morphgnt/SelectablePassageWidget.vue';
 
 import OpenSeadragonWidget from './image/OpenSeadragonWidget.vue';
 
+import ToggleVisibilityWidget from '../../demos/visibility/ToggleVisibilityWidget.vue';
+
 const widgets = [
   HomerWidget,
   // MorphologyWidget,
@@ -30,6 +32,8 @@ const widgets = [
   SelectablePassageWidget,
 
   OpenSeadragonWidget,
+
+  ToggleVisibilityWidget,
 ];
 
 export default widgets;
