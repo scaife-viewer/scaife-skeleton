@@ -5,8 +5,6 @@ import {
   NEXT_CARD,
   SET_PASSAGE_TEXT,
   SET_SELECTED_LEMMAS,
-  SET_TEXT_SIZE,
-  SET_TEXT_WIDTH,
   TOGGLE_LEFT_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
   MORPHGNT_SET_BOOKS,
@@ -104,12 +102,6 @@ export default function createStore() {
       [SET_SELECTED_LEMMAS]: (state, lemmas) => {
         state.selectedLemmas = lemmas;
       },
-      [SET_TEXT_SIZE]: (state, size) => {
-        state.readerTextSize = size;
-      },
-      [SET_TEXT_WIDTH]: (state, width) => {
-        state.readerTextWidth = width;
-      },
       [SET_PASSAGE_TEXT]: (state, lines) => {
         state.passageText = lines;
       },
@@ -193,12 +185,6 @@ export default function createStore() {
       },
       [SET_SELECTED_LEMMAS]: ({ commit }, { lemmas }) => {
         commit(SET_SELECTED_LEMMAS, lemmas);
-      },
-      [SET_TEXT_SIZE]: ({ commit }, { size }) => {
-        commit(SET_TEXT_SIZE, size);
-      },
-      [SET_TEXT_WIDTH]: ({ commit }, { width }) => {
-        commit(SET_TEXT_WIDTH, width);
       },
       [MORPHGNT_SET_BOOKS]: ({ commit }, { books }) => {
         commit(MORPHGNT_SET_BOOKS, books);

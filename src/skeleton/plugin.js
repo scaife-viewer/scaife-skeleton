@@ -3,12 +3,14 @@ import EditableSkeleton from './EditableSkeleton.vue';
 import TextLoader from './TextLoader.vue';
 import Icon from './icons/Icon.vue';
 
+import utils from './utils';
 import iconMap from './icons';
 
 class Skeleton {
   constructor(widgets, additionIconMap) {
     this.widgets = widgets.reduce((map, obj) => {
-      map[obj.scaifeConfig.displayName] = obj;
+      // eslint-disable-next-line no-param-reassign
+      map[utils.displayName(obj.scaifeConfig.displayName)] = obj;
       return map;
     }, {});
     this.iconMap = {
@@ -41,9 +43,9 @@ class Skeleton {
           return true;
         })
         // eslint-disable-next-line arrow-parens
-        .map((name) => ({
-          text: this.widgets[name].scaifeConfig.displayName,
-          component: this.widgets[name],
+        .map((text) => ({
+          text,
+          component: this.widgets[text],
         }))
     );
   }
@@ -59,6 +61,7 @@ const install = (Vue, options) => {
   Vue.prototype.$scaife = {
     ...Vue.prototype.$scaife,
     skeleton: new Skeleton(options.widgets || [], options.iconMap || {}),
+    config: options.config || {},
   };
 
   Vue.component('FixedSkeleton', FixedSkeleton);

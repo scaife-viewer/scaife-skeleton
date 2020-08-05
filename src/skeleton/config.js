@@ -1,3 +1,4 @@
+import utils from './utils';
 import {
   ADD_LEFT_WIDGET,
   ADD_RIGHT_WIDGET,
@@ -7,6 +8,10 @@ import {
   TOGGLE_LEFT_SIDEBAR,
   TOGGLE_RIGHT_SIDEBAR,
   CHANGE_SIDEBAR_VISIBILITY,
+  SET_MAIN_LAYOUT_WIDTH_NORMAL,
+  SET_MAIN_LAYOUT_WIDTH_WIDE,
+  SET_MAIN_LAYOUT_WIDTH_WIDER,
+  SKELETON_NAMESPACE,
 } from './constants';
 
 const getDefaultState = () => ({
@@ -19,16 +24,26 @@ const getDefaultState = () => ({
     right: [],
     left: [],
   },
+  mainLayoutFlexClass: 'main-layout-flex-2',
 });
 
 export default function createStore() {
   return {
-    namespace: 'scaifeSkeleton',
+    namespace: SKELETON_NAMESPACE,
     store: {
       namespaced: true, // expects to be namespaced under `scaife`
       state: getDefaultState,
       getters: {},
       mutations: {
+        [SET_MAIN_LAYOUT_WIDTH_NORMAL]: (state) => {
+          state.mainLayoutFlexClass = 'main-layout-flex-2';
+        },
+        [SET_MAIN_LAYOUT_WIDTH_WIDE]: (state) => {
+          state.mainLayoutFlexClass = 'main-layout-flex-4';
+        },
+        [SET_MAIN_LAYOUT_WIDTH_WIDER]: (state) => {
+          state.mainLayoutFlexClass = 'main-layout-flex-6';
+        },
         [TOGGLE_LEFT_SIDEBAR]: (state) => {
           state.leftOpen = !state.leftOpen;
         },
@@ -38,13 +53,13 @@ export default function createStore() {
         [ADD_LEFT_WIDGET]: (state, widget) => {
           state.widgets.left = [
             ...state.widgets.left,
-            widget.scaifeConfig.displayName,
+            utils.displayName(widget.scaifeConfig.displayName),
           ];
         },
         [ADD_RIGHT_WIDGET]: (state, widget) => {
           state.widgets.right = [
             ...state.widgets.right,
-            widget.scaifeConfig.displayName,
+            utils.displayName(widget.scaifeConfig.displayName),
           ];
         },
         [REMOVE_LEFT_WIDGET]: (state, index) => {
@@ -60,7 +75,7 @@ export default function createStore() {
         [CHANGE_MAIN_WIDGET]: (state, widget) => {
           state.widgets = {
             ...state.widgets,
-            mainWidget: widget.scaifeConfig.displayName,
+            mainWidget: utils.displayName(widget.scaifeConfig.displayName),
           };
         },
         [CHANGE_SIDEBAR_VISIBILITY]: (state, { side, bool }) => {
@@ -73,6 +88,15 @@ export default function createStore() {
         },
       },
       actions: {
+        [SET_MAIN_LAYOUT_WIDTH_NORMAL]: ({ commit }) => {
+          commit(SET_MAIN_LAYOUT_WIDTH_NORMAL);
+        },
+        [SET_MAIN_LAYOUT_WIDTH_WIDE]: ({ commit }) => {
+          commit(SET_MAIN_LAYOUT_WIDTH_WIDE);
+        },
+        [SET_MAIN_LAYOUT_WIDTH_WIDER]: ({ commit }) => {
+          commit(SET_MAIN_LAYOUT_WIDTH_WIDER);
+        },
         [TOGGLE_LEFT_SIDEBAR]: ({ commit }) => {
           commit(TOGGLE_LEFT_SIDEBAR);
         },

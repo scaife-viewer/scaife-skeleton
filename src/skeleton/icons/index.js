@@ -24,6 +24,7 @@ const iconMap = [
   faPlusSquare,
   faCheckSquare,
 ].reduce((map, obj) => {
+  // eslint-disable-next-line no-param-reassign
   map[obj.iconName] = obj;
   return map;
 }, {});

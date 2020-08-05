@@ -10,12 +10,12 @@
     name: 'icon',
     props: ['name', 'inline'],
     components: {
-      FontAwesomeIcon
+      FontAwesomeIcon,
     },
     computed: {
       icon() {
         return this.$scaife.skeleton.iconMap[this.name];
-      }
-    }
-  }
+      },
+    },
+  };
 </script>

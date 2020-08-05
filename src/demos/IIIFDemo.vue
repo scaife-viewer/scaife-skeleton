@@ -6,14 +6,13 @@
     :right-open="!rightOpen"
     :main-widget="mainWidget"
     :left-widgets="leftWidgets"
-    :right-widgets="rightWidgets">
+    :right-widgets="rightWidgets"
+  >
   </FixedSkeleton>
 </template>
 
 <script>
   import FixedSkeleton from '../skeleton/FixedSkeleton.vue';
-  import MainLayout from '../skeleton/main/MainLayout.vue';
-  import SidebarLayout from '../skeleton/sidebar/SidebarLayout.vue';
 
   import OpenSeadragonWidget from '../components/widgets/image/OpenSeadragonWidget.vue';
 
@@ -22,8 +21,6 @@
   export default {
     components: {
       FixedSkeleton,
-      MainLayout,
-      SidebarLayout,
     },
     methods: {
       onLeftToggle() {
@@ -50,5 +47,5 @@
         return this.$store.state.rightOpen;
       },
     },
-  }
+  };
 </script>

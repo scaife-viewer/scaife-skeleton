@@ -1,6 +1,10 @@
 # Scaife Skeleton
 
-[![CircleCI](https://circleci.com/gh/eldarion/scaife-skeleton.svg?style=svg)](https://circleci.com/gh/eldarion/scaife-skeleton)
+front-end layout library for Scaife readers
+
+[![CircleCI](https://circleci.com/gh/scaife-viewer/scaife-skeleton.svg?style=svg)](https://circleci.com/gh/scaife-viewer/scaife-skeleton)
+
+This repository is part of the [Scaife Viewer](https://scaife-viewer.org) project, an open-source ecosystem for building rich online reading environments.
 
 This is the foundation for any Scaife reader.  It consists of two main skeleton types, `FixedSkeleton` and `EditableSkeleton`.
 
@@ -204,6 +208,7 @@ npm run test
 
 ### Prettier
 
+```
 yarn run prettier:check
 yarn run prettier:fix
 
@@ -211,6 +216,7 @@ or
 
 npm run prettier:check
 npm run prettier:fix
+```
 
 ### Packaging
 

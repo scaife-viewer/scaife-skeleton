@@ -7,32 +7,48 @@
           v-for="(widget, index) in widgets"
           :key="index"
           @remove="$emit('removeWidget', index)"
-          :editing="editing">
-          <span slot="heading" class="heading">{{ widget.scaifeConfig.displayName }}</span>
+          :editing="editing"
+          :defaults="widget.scaifeConfig.defaults"
+        >
+          <span slot="heading" class="heading">{{
+            displayName(widget.scaifeConfig.displayName)
+          }}</span>
+          <PortalTarget
+            v-if="widget.scaifeConfig.portalTarget"
+            slot="sticky"
+            :name="widget.scaifeConfig.portalTarget"
+          />
           <component slot="body" :is="widget" />
         </SidebarWidget>
       </div>
       <WidgetEditor
         :options="widgetOptions"
         v-if="editing"
-        @change-widget="widget => $emit('changeWidget', widget)"
+        @change-widget="(widget) => $emit('changeWidget', widget)"
       />
     </div>
   </aside>
 </template>
 
 <script>
-import SidebarWidget from './SidebarWidget.vue';
-import WidgetEditor from '../editor/WidgetEditor.vue';
+  import { PortalTarget } from 'portal-vue';
+  import utils from '../utils';
+  import SidebarWidget from './SidebarWidget.vue';
+  import WidgetEditor from '../editor/WidgetEditor.vue';
 
-export default {
-  props: ['open', 'editing', 'widgets', 'widgetOptions'],
-  components: { WidgetEditor, SidebarWidget },
-};
+  export default {
+    props: ['open', 'editing', 'widgets', 'widgetOptions'],
+    components: { WidgetEditor, SidebarWidget, PortalTarget },
+    methods: {
+      displayName(name) {
+        return utils.displayName(name);
+      },
+    },
+  };
 </script>
 
 <style lang="scss">
-  @import "../../variables.scss";
+  @import '../../variables.scss';
 
   .sidebar-wrapper {
     flex: 1;
@@ -96,7 +112,6 @@ export default {
 
   .left.sidebar-left--open,
   .right.sidebar-right--open {
-
     min-width: 200px;
 
     button.toggle-open {

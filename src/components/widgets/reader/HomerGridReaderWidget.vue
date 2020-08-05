@@ -18,7 +18,7 @@
     components: {
       HomerReaderWidget,
     },
-  }
+  };
 </script>
 
 <style lang="scss">
@@ -30,7 +30,6 @@
     height: calc(100vh - 45px);
 
     .select-passage-reader {
-
       padding: 5px;
       overflow-y: scroll;
     }

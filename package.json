@@ -1,6 +1,6 @@
 {
   "name": "scaife-skeleton",
-  "version": "0.6.0",
+  "version": "0.10.0",
   "description": "Quickly build Scaife reading environments",
   "author": "Eldarion",
   "homepage": "https://github.com/eldarion/scaife-skeleton/",
@@ -19,6 +19,7 @@
     "package:ssr": "NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "package:es": "NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "package:unpkg": "NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "prepare": "yarn package",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "eslint .",
@@ -27,39 +28,41 @@
     "prettier:fix": "prettier --write --trailing-comma es5 --single-quote --arrow-parens always 'src/**/*.js'"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.15",
-    "@fortawesome/free-solid-svg-icons": "^5.7.2",
-    "@fortawesome/vue-fontawesome": "^0.1.5",
-    "axios": "^0.18.0",
-    "vue": "^2.6.10",
-    "vue-router": "^3.0.2",
-    "vuex": "^3.0.1"
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/vue-fontawesome": "^0.1.9",
+    "@scaife-viewer/scaife-widgets": "^0.13.0",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "axios": "^0.19.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^6.2.2",
+    "portal-vue": "^2.1.7",
+    "vue": "^2.6.11",
+    "vue-router": "^3.3.2",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.3.1",
-    "@vue/cli-plugin-babel": "^3.3.0",
-    "@vue/cli-service": "^3.3.0",
+    "@vue/cli-plugin-babel": "^4.4.1",
+    "@vue/cli-service": "^4.4.1",
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.5.0",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-html": "^5.0.3",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-vue": "^5.2.2",
-    "jest": "^24.8.0",
+    "babel-jest": "^26.0.1",
+    "eslint": "^7.2.0",
+    "jest": "^26.0.1",
     "minimist": "^1.2.0",
     "node-sass": "^4.9.0",
-    "prettier": "1.17.1",
-    "rollup": "^1.12.1",
+    "openseadragon": "^2.4.0",
+    "prettier": "2.0.5",
+    "rollup": "^2.15.0",
     "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-terser": "^4.0.4",
-    "rollup-plugin-vue": "^5.0.0",
-    "openseadragon": "^2.4.0",
-    "sass-loader": "^7.0.1",
+    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-vue": "5.1.9",
+    "sass-loader": "^8.0.2",
     "vue-jest": "^3.0.4",
     "vue-template-compiler": "^2.6.10"
   },
@@ -83,5 +86,8 @@
       "^.+\\.js$": "./node_modules/babel-jest",
       ".*\\.(vue)$": "./node_modules/vue-jest"
     }
+  },
+  "peerDependencies": {
+    "portal-vue": "^2.1.7"
   }
 }

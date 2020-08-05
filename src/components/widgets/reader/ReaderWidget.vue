@@ -17,6 +17,6 @@
       passageText() {
         return this.$store.state.passageText;
       },
-    }
+    },
   };
 </script>

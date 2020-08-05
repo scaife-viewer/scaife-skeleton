@@ -4,13 +4,11 @@
       <Pagination :prev="linker(passage.prev)" :next="linker(passage.next)" :title="passage.title" />
 
       <div id="text" :class="['text', `text-${textSize}`, `text-width-${textWidth}`]" v-fragment="passage.fragment">
-        <p>
-          <div v-for="word in passage.words" :key="word['@id']" class="word unit">
-            <span class="verse-num" v-if="word.id.slice(8, 11) == '001'">{{ parseInt(word.id.slice(5, 8)) }}</span><!--
-         --><span :key="word.id" :id="word.id" :class="['txt', ...word.classes]" @click="handleWordSelect(word)">{{ word.text }}</span><br>
-            <Interlinear v-if="interlinear" :word="word" />
-          </div>
-        </p>
+        <div v-for="word in passage.words" :key="word['@id']" class="word unit">
+          <span class="verse-num" v-if="word.id.slice(8, 11) == '001'">{{ parseInt(word.id.slice(5, 8)) }}</span><!--
+        --><span :key="word.id" :id="word.id" :class="['txt', ...word.classes]" @click="handleWordSelect(word)">{{ word.text }}</span><br>
+          <Interlinear v-if="interlinear" :word="word" />
+        </div>
       </div>
 
       <Pagination :prev="linker(passage.prev)" :next="linker(passage.next)" :title="passage.title" />
@@ -57,68 +55,70 @@
 </template>
 
 <script>
-import Pagination from '../reader/Pagination';
-import Interlinear from './Interlinear.vue';
+  import WIDGETS_NS from '@scaife-viewer/scaife-widgets';
+  import Pagination from '../reader/Pagination.vue';
+  import Interlinear from './Interlinear.vue';
 
-export default {
-  scaifeConfig: {
-    displayName: 'Passage',
-    location: 'main',
-    singleton: true,
-  },
-  computed: {
-    passage() {
-      return this.$store.state.passage;
+  export default {
+    scaifeConfig: {
+      displayName: 'Passage',
+      location: 'main',
+      singleton: true,
     },
-    interlinear() {
-      return this.$store.state.interlinear;
-    },
-    textSize() {
-      return this.$store.state.readerTextSize;
-    },
-    textWidth() {
-      return this.$store.state.readerTextWidth;
-    },
-  },
-  mounted() {
-    window.addEventListener('keyup', this.handleKeyUp);
-  },
-  beforeDestroy() {
-    window.removeEventListener('keyup', this.handleKeyUp);
-  },
-  methods: {
-    linker(passage) {
-      return {name: 'morphgnt', query: { passage }};
-    },
-    handleWordSelect(word) {
-      this.$store.dispatch('selectedWord', { word });
-    },
-    handleKeyUp(e) {
-      if (e.key === 'ArrowLeft') {
-        if (this.passage.prev) {
-          this.$router.push(this.linker(this.passage.prev));
-        }
-      } else if (e.key === 'ArrowRight') {
-        if (this.passage.next) {
-          this.$router.push(this.linker(this.passage.next));
-        }
+    computed: {
+      passage() {
+        return this.$store.state.passage;
+      },
+      interlinear() {
+        return this.$store.state.interlinear;
+      },
+      textSize() {
+        return this.$store.state[WIDGETS_NS].readerTextSize;
+      },
+      textWidth() {
+        return this.$store.state[WIDGETS_NS].readerTextWidth;
       }
     },
-  },
-  components: {
-    Interlinear,
-    Pagination,
-  },
-  directives: {
-    fragment(el, binding) {
-      const fragment = binding.value;
-      if (fragment && fragment.childElementCount > 0) {
-        el.innerHTML = '';
-        el.appendChild(fragment);
-      }
+    mounted() {
+      window.addEventListener('keyup', this.handleKeyUp);
     },
-  },
-};
+    beforeDestroy() {
+      window.removeEventListener('keyup', this.handleKeyUp);
+    },
+    methods: {
+      linker(passage) {
+        return {name: 'morphgnt', query: { passage }};
+      },
+      handleWordSelect(word) {
+        this.$store.dispatch('selectedWord', { word });
+      },
+      handleKeyUp(e) {
+        if (e.key === 'ArrowLeft') {
+          if (this.passage.prev) {
+            this.$router.push(this.linker(this.passage.prev));
+          }
+        } else if (e.key === 'ArrowRight') {
+          if (this.passage.next) {
+            this.$router.push(this.linker(this.passage.next));
+          }
+        }
+      },
+    },
+    components: {
+      Interlinear,
+      Pagination,
+    },
+    directives: {
+      fragment(el, binding) {
+        const fragment = binding.value;
+        if (fragment && fragment.childElementCount > 0) {
+          // eslint-disable-next-line no-param-reassign
+          el.innerHTML = '';
+          el.appendChild(fragment);
+        }
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>

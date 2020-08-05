@@ -8,45 +8,63 @@
           </span>
           <slot name="heading" />
         </span>
-        <a v-if="editing" href="#" @click.prevent="$emit('remove')" class="remove-link">
+        <a
+          v-if="editing"
+          href="#"
+          @click.prevent="$emit('remove')"
+          class="remove-link"
+        >
           <Icon name="minus-circle" />
         </a>
-        <span v-if="open & !editing" class="fixed-toggle" @click.prevent="toggleFix">
-          <Icon class="fa-flip-horizontal" :name="fixed ? 'expand' : 'compress'" />
+        <span
+          v-if="open & !editing"
+          class="fixed-toggle"
+          @click.prevent="toggleFix"
+        >
+          <Icon
+            class="fa-flip-horizontal"
+            :name="fixed ? 'expand' : 'compress'"
+          />
         </span>
       </h2>
-      <div v-if="open" class="sticky-body">
+      <div v-show="open" class="sticky-body">
         <slot name="sticky" />
       </div>
     </div>
-    <div v-if="open" :class="['body', { fixed }]">
+    <div v-show="open" :class="['body', { fixed }]">
       <slot name="body" />
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  props: ['editing'],
-  data() {
-    return {
-      open: true,
-      fixed: false,
-    };
-  },
-  methods: {
-    toggle() {
-      this.open = !this.open;
+  export default {
+    props: ['editing', 'defaults'],
+    created() {
+      if (this.defaults) {
+        this.open = this.defaults.open;
+        this.fixed = this.defaults.fixed;
+      }
     },
-    toggleFix() {
-      this.fixed = !this.fixed;
+    data() {
+      return {
+        open: true,
+        fixed: false,
+      };
     },
-  },
-};
+    methods: {
+      toggle() {
+        this.open = !this.open;
+      },
+      toggleFix() {
+        this.fixed = !this.fixed;
+      },
+    },
+  };
 </script>
 
 <style lang="scss">
-  @import "../../variables.scss";
+  @import '../../variables.scss';
 
   .remove-link {
     color: red;
@@ -61,6 +79,7 @@ export default {
       border-top: 1px solid $gray-200;
     }
     .sticky-block {
+      background: inherit;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -121,7 +140,7 @@ export default {
 
   /* <div class="widget-body-blur"></div> */
   .widget-body-blur {
-    background: linear-gradient(0deg,#fff,hsla(0,0%,100%,0));
+    background: linear-gradient(0deg, #fff, hsla(0, 0%, 100%, 0));
     height: 32px;
     position: absolute;
     bottom: 0;

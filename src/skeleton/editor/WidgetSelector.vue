@@ -1,32 +1,39 @@
 <template>
   <div class="add-widgets">
-    <div v-for="(option, i) in options" :key="i" class="widget-option"
+    <div
+      v-for="(option, i) in options"
+      :key="i"
+      class="widget-option"
       :class="{ selected: selected(option) }"
-      @click.prevent="$emit('select', option.component)">
-      <span><Icon :name="iconName(option)" /></span> <span>{{ option.text }}</span>
+      @click.prevent="$emit('select', option.component)"
+    >
+      <span><Icon :name="iconName(option)" /></span>
+      <span>{{ option.text }}</span>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  props: ['options', 'mainWidget'],
-  methods: {
-    selected(option) {
-      return this.mainWidget && this.mainWidget === option.component;
+  export default {
+    props: ['options', 'mainWidget'],
+    methods: {
+      selected(option) {
+        return this.mainWidget && this.mainWidget === option.component;
+      },
+      iconName(option) {
+        if (this.mainWidget) {
+          return this.mainWidget === option.component
+            ? 'check-square'
+            : 'square';
+        }
+        return 'plus-square';
+      },
     },
-    iconName(option) {
-      if (this.mainWidget) {
-        return this.mainWidget === option.component ? 'check-square' : 'square';
-      }
-      return 'plus-square';
-    },
-  },
-};
+  };
 </script>
 
 <style lang="scss">
-  @import "../../variables.scss";
+  @import '../../variables.scss';
 
   .widget-option {
     display: flex;
@@ -44,7 +51,7 @@ export default {
       background: $gray-300;
       color: $black;
       span svg {
-        color: #0A0;
+        color: #0a0;
       }
     }
 

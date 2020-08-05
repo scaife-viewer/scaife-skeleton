@@ -7,19 +7,14 @@
         :key="card"
         :class="{ selected: selectedCard(card) }"
       >
-        <a
-          href
-          @click.prevent="selectCard(card)"
-        >Iliad {{ card }}</a>
+        <a href @click.prevent="selectCard(card)">Iliad {{ card }}</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
-export default {
+  export default {
     scaifeConfig: {
       displayName: 'Homer Cards',
       singleton: true,
@@ -34,24 +29,24 @@ export default {
       },
     },
     computed: {
-        passageStart() {
-            return this.$store.state.passageText && this.$store.state.passageText[0][0];
-        },
-        passageEnd() {
-            return this.$store.state.passageText && this.$store.state.passageText[this.$store.state.passageText.length - 1][0];
-        },
-        selectedCards() {
-            return this.$store.getters.getChunks(this.passageStart, this.passageEnd);
-        },
-        cards() {
-            return this.$store.state.cards;
-        }
-    }
-}
+      passageStart() {
+        return this.$store.state.passageText && this.$store.state.passageText[0][0];
+      },
+      passageEnd() {
+        return this.$store.state.passageText && this.$store.state.passageText[this.$store.state.passageText.length - 1][0];
+      },
+      selectedCards() {
+        return this.$store.getters.getChunks(this.passageStart, this.passageEnd);
+      },
+      cards() {
+        return this.$store.state.cards;
+      }
+    },
+  }
 </script>
 
 <style lang="scss">
-  @import "../../../variables.scss";
+  @import '../../../variables.scss';
 
   .homer-card-widget {
     margin: 0 2em;
@@ -72,6 +67,5 @@ export default {
         color: $gray-700;
       }
     }
-
   }
 </style>

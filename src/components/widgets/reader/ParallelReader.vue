@@ -1,14 +1,19 @@
 <template>
-  <div class="parallel-reader" :class="['text', `text-${textSize}`, `text-width-${textWidth}`]">
+  <div
+    class="parallel-reader"
+    :class="['text', `text-${textSize}`, `text-width-${textWidth}`]"
+  >
     <ParallelLine
-        v-for="(line, index) in passageText" :key="line[0]"
-        :left-line="line"
-        :right-line="rightPassageText[index]"
+      v-for="(line, index) in passageText"
+      :key="line[0]"
+      :left-line="line"
+      :right-line="rightPassageText[index]"
     />
   </div>
 </template>
 
 <script>
+  import WIDGETS_NS from '@scaife-viewer/scaife-widgets';
   import ParallelLine from './ParallelLine.vue';
 
   export default {
@@ -16,12 +21,12 @@
     components: { ParallelLine },
     computed: {
       textSize() {
-        return this.$store.state.readerTextSize;
+        return this.$store.state[WIDGETS_NS].readerTextSize;
       },
       textWidth() {
-        return this.$store.state.readerTextWidth;
-      }
-    }
+        return this.$store.state[WIDGETS_NS].readerTextWidth;
+      },
+    },
   };
 </script>
 

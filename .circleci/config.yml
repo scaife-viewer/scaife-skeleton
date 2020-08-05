@@ -2,12 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:11.13.0
+      - image: circleci/node:12
     parallelism: 1
     steps:
       - checkout
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run test
-      - run: npm run prettier:check
-      - run: npm run build
+      - run: yarn install
+      - run: yarn lint
+      # - run: npm run test
+      - run: yarn prettier:check
+      - run: yarn build
